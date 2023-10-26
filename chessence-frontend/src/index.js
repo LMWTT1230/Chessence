@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOMClient from "react-dom/client";
-import MyApp from "./MyApp";
+import ChessBoard from "./ChessBoard.js"
 import "./index.css";
 
 
@@ -11,4 +11,4 @@ const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container);
 
 // Initial render: Render an element to the Root
-root.render(<MyApp />);//makes this component available to other files
+root.render(<ChessBoard />);
