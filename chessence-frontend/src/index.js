@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOMClient from "react-dom/client";
-import ChessBoard from "./ChessBoard.js"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ChessBoard from "./pages/ChessBoard.js"
 import "./index.css";
 
 
@@ -10,5 +11,17 @@ const container = document.getElementById("root");
 // Create a root
 const root = ReactDOMClient.createRoot(container);
 
-// Initial render: Render an element to the Root
-root.render(<ChessBoard />);
+export default function App() {
+    return (
+      <BrowserRouter>
+        <Routes>
+            <Route path="/play" element={<ChessBoard />}>
+            {/*<Route path="*" element={<NoPage />} />*/}
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+  
+root.render(<App />);
+
