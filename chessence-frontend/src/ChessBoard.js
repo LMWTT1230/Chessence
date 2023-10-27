@@ -64,9 +64,9 @@ export default function App() {
   // ...
   
   return (
-    <div>
-      <div style={{ padding: '0px', paddingLeft: '35px', height: '60px'}}>
-      <p style={{ padding: '0px', fontFamily: 'JetBrains Mono, monospace', fontSize: '65px', fontWeight:'bold', lineHeight: '80px'}}>chessence</p>
+    <div style={{backgroundImage: "url(game-page.png)"}}>
+      <div style={{ padding: '0px', paddingLeft: '35px', height: '60px' }}>
+      <p style={{ color: 'white', padding: '0px', fontFamily: 'JetBrains Mono, monospace', fontSize: '65px', fontWeight:'bold', lineHeight: '80px'}}>chessence</p>
       </div>
       <div style={{ paddingLeft: '20px'}}>
         <div style={{ height: height_string, width: height_string, padding: '20px'}}>
