@@ -553,16 +553,19 @@ dd {
 }
 
 .full-container {
+  height: 100vh;
   max-width: 100%;
   padding: 0 1rem;
 }
 
-.container, .small-container, .medium-container {
+.small-container, .medium-container {
   max-width: 1200px;
   padding: 0 1rem;
   margin-left: auto;
   margin-right: auto;
 }
+
+
 
 .small-container {
   max-width: 800px;
@@ -1013,6 +1016,23 @@ caption {
 .contain-table {
   overflow-x: auto;
 }
+
+
+.center-left-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  background-color: lightblue; /* Optional background color */
+}
+
+.content {
+  padding: 20px;
+  border: 1px solid blue;
+  /* Additional styling for the content */
+}
+
 
 @media (min-width: 600px) {
   .contain-table {
