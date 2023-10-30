@@ -11,7 +11,7 @@ export default function LoginBox() {
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const forgotPasswordPath = "/ForgotPassword";
-    const createAccountPath = "/CreateAccount";
+    const createAccountPath = "/register";
     const verifyAccountPath = "/VerifyAccountPage";
     
     return (
