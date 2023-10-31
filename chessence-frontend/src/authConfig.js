@@ -16,7 +16,7 @@ export const msalConfig = {
         clientId: "55485b3d-dc99-4d17-80ad-bfa86900e243", // This is the ONLY mandatory field that you need to supply.
         authority: 'https://login.microsoftonline.com/organizations', // Replace the placeholder with your tenant subdomain 
         redirectUri: '/redirect', // Points to window.location.origin. You must register this URI on Azure Portal/App Registration.
-        postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
+        postLogoutRedirectUri: '/redirect', // Indicates the page to navigate after logout.
         navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
     },
     cache: {

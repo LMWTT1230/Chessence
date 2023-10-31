@@ -1,5 +1,6 @@
 import { useIsAuthenticated,
     useMsal } from "@azure/msal-react";
+import { loginRequest } from '../../authConfig';
 
 export default function RedirectPage() {
     const { instance, accounts, inProgress } = useMsal();
@@ -11,6 +12,9 @@ export default function RedirectPage() {
                 "Authenticated" : "Not Authenticated"}</p>
             {accounts.map((user) => 
                     <p>Hello, {user.name} ({user.username})!</p> )}
+            {isAuthenticated ? 
+                <button onClick={() => instance.logout()}>Logout</button> :
+                <button onClick={() => instance.loginRedirect(loginRequest)}>Login</button>}
         </>
     )
 }
