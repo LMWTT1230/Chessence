@@ -6,7 +6,7 @@ export default function RegisterPage() {
         <div id="registerPage">
             <h1>chessence</h1>
             <h2>sign up</h2>
-            <SignUpForm/>
+            <SignUpForm />
         </div>
     );
 }
