@@ -11,10 +11,16 @@
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "3.0.3",
     "react-scripts": "5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "eslint": "npx eslint ./",
+    "prettier": "npx prettier . --check",
+    "prettier --write": "npx prettier . --write"
   },
   "browserslist": {
     "production": [
