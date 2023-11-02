@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import React from "react";
 import LoginBox from "./LoginBox";
+
 export default function LoginPage() {
   return (
     <div id="loginPage">
