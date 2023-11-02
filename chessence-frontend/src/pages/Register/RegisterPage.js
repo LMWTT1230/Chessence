@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React from "react";
 import SignUpForm from "./RegisterForm";
 
 export default function RegisterPage() {

@@ -18,9 +18,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "eslint": "npx eslint ./",
-    "prettier": "npx prettier . --check",
-    "prettier --write": "npx prettier . --write"
+    "lint": "npx eslint ./",
+    "check": "npx prettier . --check",
+    "format": "npx prettier . --write"
   },
   "browserslist": {
     "production": [
