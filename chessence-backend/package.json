@@ -8,9 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon backend_with_db.js",
     "start": "node backend_with_db.js",
-    "lint": "npx eslint ./",
-    "check": "npx prettier . --check",
-    "format": "npx prettier . --write"
+    "lint": "eslint ./",
+    "check": "prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
     "nodemon": "^3.0.1",
     "prettier": "3.0.3"
