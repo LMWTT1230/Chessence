@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const bcrypt = require("bcrypt");
+
 // uncomment the following line to view mongoose debug messages
 mongoose.set("debug", true);
 
@@ -38,7 +40,16 @@ async function addUser(user) {
             return { success: false, message: "Username already exists" };
         }
 
-        const userToAdd = new userModel(user);
+        const hashedPwd = await bcrypt.hash(user.password);
+
+        const userToAdd = new userModel({
+            firstname: user.firstname,
+            lastname: user.lastname,
+            username: user.username,
+            password: hashedPwd,
+            email: user.email,
+        });
+
         const savedUser = await userToAdd.save();
         return savedUser;
     } catch (error) {
