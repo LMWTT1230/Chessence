@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import "./register.css"
+import React, { useState } from "react";
+import "./register.css";
 
 export default function RegisterForm() {
     const [firstName, setFirstName] = useState("");
@@ -10,7 +10,7 @@ export default function RegisterForm() {
     const [confirmPassword, setConfirmPassword] = useState("");
 
     function handleChange(event) {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         if (name === "firstName") {
             setFirstName(value);
         }
@@ -33,10 +33,9 @@ export default function RegisterForm() {
 
     function submitForm() {
         if (password != confirmPassword) {
-            console.log("Password & Confirm Password Fields Do Not Match")
+            console.log("Password & Confirm Password Fields Do Not Match");
         } else {
-            const user = 
-            {
+            const user = {
                 firstName: firstName,
                 lastName: lastName,
                 username: username,
@@ -57,51 +56,58 @@ export default function RegisterForm() {
                     name="firstName"
                     value={firstName}
                     onChange={handleChange}
-                    placeholder="First Name"/>
+                    placeholder="First Name"
+                />
                 <p className="registerLabel">Last Name</p>
                 <input
                     type="text"
                     name="lastName"
                     value={lastName}
                     onChange={handleChange}
-                    placeholder="Last Name"/>
+                    placeholder="Last Name"
+                />
                 <p className="registerLabel">Username</p>
                 <input
                     type="text"
                     name="username"
                     value={username}
                     onChange={handleChange}
-                    placeholder="Username"/>
+                    placeholder="Username"
+                />
                 <p className="registerLabel">Email</p>
                 <input
                     type="email"
                     name="email"
                     value={email}
                     onChange={handleChange}
-                    placeholder="Email"/>
+                    placeholder="Email"
+                />
                 <p className="registerLabel">Password</p>
                 <input
                     type="password"
                     name="password"
                     value={password}
                     onChange={handleChange}
-                    placeholder="Password"/>
+                    placeholder="Password"
+                />
                 <p className="registerLabel">Confirm Password</p>
                 <input
                     type="password"
                     name="confirmPassword"
                     value={confirmPassword}
                     onChange={handleChange}
-                    placeholder="Confirm Password"/>
+                    placeholder="Confirm Password"
+                />
                 <div id="registerFooter">
                     <button
                         type="button"
                         id="registerSubmit"
-                        onClick={submitForm}>
-                        Create Account 
+                        onClick={submitForm}
+                    >
+                        Create Account
                     </button>
                 </div>
             </form>
-        </div>    
+        </div>
     );
 }
