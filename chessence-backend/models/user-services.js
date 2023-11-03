@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 import userModel from "./user.js";
 
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
-const bcrypt = require("bcrypt");
 
 // uncomment the following line to view mongoose debug messages
 mongoose.set("debug", true);

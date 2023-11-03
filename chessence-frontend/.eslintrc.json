@@ -8,10 +8,6 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "no-unused-vars":"warn"
-    }
+    "plugins": ["react"],
+    "rules": {}
 }
