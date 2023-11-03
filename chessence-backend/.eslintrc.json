@@ -1,28 +1,23 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended"
+    ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-<<<<<<< HEAD
     "plugins": ["react"],
-<<<<<<< Updated upstream
-    "rules": {}
-=======
     "rules": {
-        "no-unused-vars": "warn"
+        "no-unused-vars":"warn",
+        "react/prop-types": 0,
+        "react/react-in-jsx-scope": "off",
+        "prettier/prettier": "warn"
     }
->>>>>>> Stashed changes
-=======
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "no-unused-vars":"warn"
-    }
->>>>>>> 41907be9349dd8d0fb9262c3a6e3653ace53fb97
 }
