@@ -5,6 +5,7 @@ import ChessBoard from "./pages/ChessBoard.js";
 import "./index.css";
 import LoginPage from "./pages/Login/LoginPage.js";
 import RegisterPage from "./pages/Register/RegisterPage.js";
+import ProfilePage from "./pages/Profile/ProfilePage.js"
 
 // Create the container
 const container = document.getElementById("root");
@@ -14,14 +15,15 @@ const root = ReactDOMClient.createRoot(container);
 
 export default function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/play" element={<ChessBoard />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                {/*<Route path="*" element={<NoPage />} />*/}
-            </Routes>
-        </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+            <Route path="/play" element={<ChessBoard />}/>
+            <Route path="/login" element={<LoginPage />}/>
+            <Route path="/register" element={<RegisterPage />}/>
+            <Route path="/profile" element={<ProfilePage />}/>
+            {/*<Route path="*" element={<NoPage />} />*/}
+        </Routes>
+      </BrowserRouter>
     );
 }
 
