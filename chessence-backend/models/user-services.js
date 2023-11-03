@@ -1,70 +1,89 @@
 import mongoose from "mongoose";
 import userModel from "./user.js";
 
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const bcrypt = require("bcrypt");
+
 // uncomment the following line to view mongoose debug messages
 mongoose.set("debug", true);
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/users", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .catch((error) => console.log(error));
+    .connect(
+        "mongodb+srv://" +
+            process.env.MONGO_USER +
+            ":" +
+            process.env.MONGO_PWD +
+            "@" +
+            process.env.MONGO_CLUSTER +
+            "/" +
+            process.env.MONGO_DB +
+            "?retryWrites=true&w=majority",
+        {
+            useNewUrlParser: true, //useFindAndModify: false,
+            useUnifiedTopology: true,
+        }
+    )
+    .catch((error) => console.log(error));
 
-async function getUsers(name, job) {
-  let result;
-  if (name === undefined && job === undefined) {
-    result = await userModel.find();
-  } else if (name && !job) {
-    result = await findUserByName(name);
-  } else if (job && !name) {
-    result = await findUserByJob(job);
-  }
-  return result;
-}
-
-async function findUserById(id) {
-  try {
-    return await userModel.findById(id);
-  } catch (error) {
-    console.log(error);
-    return undefined;
-  }
-}
+// async function findUserByUserName(username) {
+//   return await userModel.find({ username: username });
+// }
 
 async function addUser(user) {
-  try {
-    const userToAdd = new userModel(user);
-    const savedUser = await userToAdd.save();
-    return savedUser;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
+    try {
+        const exist = await userModel.findOne({ username: user.username });
+
+        if (exist) {
+            return { success: false, message: "Username already exists" };
+        }
+
+        const hashedPwd = await bcrypt.hash(user.password);
+
+        const userToAdd = new userModel({
+            firstname: user.firstname,
+            lastname: user.lastname,
+            username: user.username,
+            password: hashedPwd,
+            email: user.email,
+        });
+
+        const savedUser = await userToAdd.save();
+        return savedUser;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
 }
 
-async function findUserByName(name) {
-  return await userModel.find({ name: name });
-}
+async function login(email, password) {
+    try {
+        const user = await userModel.findOne({ email: email });
 
-async function findUserByJob(job) {
-  return await userModel.find({ job: job });
-}
+        if (!user) {
+            // User not found
+            return { success: false, message: "User not found" };
+        }
 
-async function findUserByNameAndJob(name, job) {
-  return await userModel.find({ name: name, job: job });
-}
+        // At this point, user is found. Now, check if the provided password matches the stored hash
+        const passwordMatch = await bcrypt.compare(password, user.password);
 
-async function deleteUserById(id) {
-  return await userModel.findByIdAndDelete(id);
+        if (passwordMatch) {
+            // Passwords match
+            return { success: true, message: "Login successful" };
+        } else {
+            // Passwords don't match
+            return { success: false, message: "Incorrect password" };
+        }
+    } catch (error) {
+        console.log(error);
+        return { success: false, message: "An error occurred" };
+    }
 }
 
 export default {
-  addUser,
-  getUsers,
-  findUserById,
-  findUserByName,
-  findUserByJob,
-  findUserByNameAndJob,
-  deleteUserById
+    addUser,
+    login,
 };
