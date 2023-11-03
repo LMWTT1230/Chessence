@@ -29,62 +29,90 @@
 
 // export default Navbar;
 
-import { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "./navbar.css"
-// import logoImage from "../../public/logo.png";
-// import homeImage from "../../public/home.png";
-// import iconImage from "../../public/icon.png";
-// import archiveImage from "../../public/archive.png";
-// import loginImage from "../../public/login.png";
-// import playImage from "../../public/play.png";
-// import socialImage from "../../public/social.png";
-
-//<img src={"url{logo.png"} alt="Logo" />
 
 export default function Navbar() {
-    const [isNavExpanded, setIsNavExpanded] = useState(false);
+  useEffect (() => {
+    const imgElement = document.querySelector('img[alt="Chessence"]');
+      imgElement.width = 72;
+      imgElement.height = 72;
+    }, []);
+  useEffect (() => {
+    const imgElement = document.querySelector('img[alt="Home"]');
+      imgElement.width = 36;
+      imgElement.height = 36;
+    }, []);
+  useEffect (() => {
+    const imgElement = document.querySelector('img[alt="Play"]');
+      imgElement.width = 36;
+      imgElement.height = 24;
+    }, []);
+  useEffect (() => {
+    const imgElement = document.querySelector('img[alt="Social"]');
+      imgElement.width = 36;
+      imgElement.height = 27;
+    }, []);
+  useEffect (() => {
+    const imgElement = document.querySelector('img[alt="Archive"]');
+      imgElement.width = 36;
+      imgElement.height = 36;
+    }, []);
+  useEffect (() => {
+    const imgElement = document.querySelector('img[alt="Login"]');
+      imgElement.width = 36;
+      imgElement.height = 36;
+    }, []);
+  useEffect (() => {
+    const imgElement = document.querySelector('img[alt="Icon"]');
+      imgElement.width = 48;
+      imgElement.height = 48;
+    }, []);
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   return (
     <nav className="navigation">
       <a href="/" className="brand-name">
-        Chessence
+        <img src={"/logo.png"} alt="Chessence" />
       </a>
+      <button
+        className="hamburger"
+        onClick={() => {
+          setIsNavExpanded(!isNavExpanded)
+        }}
+      >
+      </button>
       <div className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
         <ul>
           <li>
             <a href="/">
-                Logo
-            </a>
-          </li>
-          <li>
-            <a href="/">
-                Home
+                <img src={"/home.png"} alt="Home" />
             </a>
           </li>
           <li>
             <a href="/play">
-                Play
+                <img src={"/play.png"} alt="Play" />
             </a>
           </li>
           <li>
             <a href="/">
-                Social
+                <img src={"/social.png"} alt="Social" />
             </a>
           </li>
           <li>
             <a href="/">
-                Archive
+                <img src={"/archive.png"} alt="Archive" />
             </a>
           </li>
           <li>
             <a href="/login">
-                Login
+                <img src={"/login.png"} alt="Login" />
             </a>
           </li>
         </ul>
       </div>
     <a href="/" className="icon">
-        Icon
+        <img src={"/icon.png"} alt="Icon" />
     </a>
     </nav>
   );
