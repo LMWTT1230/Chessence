@@ -6,7 +6,6 @@ import bcrypt from "bcrypt";
 
 dotenv.config();
 
-
 // uncomment the following line to view mongoose debug messages
 mongoose.set("debug", true);
 

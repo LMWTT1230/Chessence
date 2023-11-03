@@ -8,21 +8,8 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-<<<<<<< HEAD
     "plugins": ["react"],
-<<<<<<< Updated upstream
-    "rules": {}
-=======
     "rules": {
         "no-unused-vars": "warn"
     }
->>>>>>> Stashed changes
-=======
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "no-unused-vars":"warn"
-    }
->>>>>>> 41907be9349dd8d0fb9262c3a6e3653ace53fb97
 }
