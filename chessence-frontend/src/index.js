@@ -9,6 +9,7 @@ import { msalConfig } from "./authConfig.js";
 import ChessBoard from "./pages/ChessBoard.js"
 import "./index.css";
 import LoginPage from "./pages/Login/LoginPage.js";
+import ProfilePage from "./pages/Profile/ProfilePage.js"
 import RegisterPage from "./pages/Register/RegisterPage.js";
 import RedirectPage from "./pages/Redirect/LoginRedirectPage.jsx";
 
@@ -30,13 +31,13 @@ export default function App() {
               <Route path="/play" element={<ChessBoard />}/>
               <Route path="/login" element={<LoginPage />}/>
               <Route path="/register" element={<RegisterPage />}/>
+                <Route path="/profile" element={<ProfilePage />}/>
               <Route path="/redirect" element={<RedirectPage />}/>
               {/*<Route path="*" element={<NoPage />} />*/}
           </Routes>
         </BrowserRouter>
       </MsalProvider>
     );
-  }
-  
-root.render(<App />);
+}
 
+root.render(<App />);
