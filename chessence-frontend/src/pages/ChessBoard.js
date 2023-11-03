@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Chess } from "chess.js";
 import "../index.css"; // Import your custom CSS file
 
