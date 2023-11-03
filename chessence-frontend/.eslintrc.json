@@ -9,5 +9,11 @@
         "sourceType": "module"
     },
     "plugins": ["react"],
+<<<<<<< Updated upstream
     "rules": {}
+=======
+    "rules": {
+        "no-unused-vars": "warn"
+    }
+>>>>>>> Stashed changes
 }
