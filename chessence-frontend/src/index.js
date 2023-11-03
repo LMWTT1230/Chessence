@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOMClient from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ChessBoard from "./pages/ChessBoard.js"
+import ChessBoard from "./pages/ChessBoard.js";
 import "./index.css";
 import LoginPage from "./pages/Login/LoginPage.js";
 import RegisterPage from "./pages/Register/RegisterPage.js";
 import ProfilePage from "./pages/Profile/ProfilePage.js"
-
 
 // Create the container
 const container = document.getElementById("root");
@@ -26,7 +25,6 @@ export default function App() {
         </Routes>
       </BrowserRouter>
     );
-  }
-  
-root.render(<App />);
+}
 
+root.render(<App />);

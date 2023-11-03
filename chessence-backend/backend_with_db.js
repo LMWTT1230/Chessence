@@ -9,49 +9,31 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/login", async (req, res) => {
+    const email = req.query["email"];
+    const password = req.query["password"];
 
+    try {
+        const result = await userServices.login(email, password);
 
-  
+        if (result.success) {
+            res.status(200).json({ message: result.message });
+        } else {
+            res.status(401).json({ message: result.message });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "An error occurred in the server." });
+    }
 });
 
-app.get("/users", async (req, res) => {
-  const name = req.query["name"];
-  const job = req.query["job"];
-  try {
-    const result = await userServices.getUsers(name, job);
-    res.send({ users_list: result });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("An error ocurred in the server.");
-  }
-});
-
-app.get("/users/:id", async (req, res) => {
-  const id = req.params["id"];
-  const result = await userServices.findUserById(id);
-  if (result === undefined || result === null)
-    res.status(404).send("Resource not found.");
-  else {
-    res.send({ users_list: result });
-  }
-});
-
-app.post("/users", async (req, res) => {
-  const user = req.body;
-  const savedUser = await userServices.addUser(user);
-  if (savedUser) res.status(201).send(savedUser);
-  else res.status(500).end();
-});
-
-app.delete("/users/:id", async (req, res) => {
-  const id = req.params["id"];
-  const deletedUser = await userServices.deleteUserById(id);
-  if (deletedUser) res.status(204).end();
-  else res.status(404).send("Resource not found.");
+app.post("/register", async (req, res) => {
+    const user = req.body;
+    const result = await userServices.addUser(user);
+    if (result.success) res.status(201).send(result);
+    else res.status(400).json({ message: result.message });
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Example app listening at http://localhost:${port}`);
 });
