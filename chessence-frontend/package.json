@@ -1,39 +1,41 @@
 {
-  "name": "chessence-frontend",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^1.5.1",
-    "chess.js": "^1.0.0-beta.6",
-    "react": "^18.2.0",
-    "react-chessboard": "^4.3.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.17.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.52.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "prettier": "3.0.3",
-    "react-scripts": "5.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "lint": "eslint ./",
-    "check": "prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "chessence-frontend",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "axios": "^1.5.1",
+        "chess.js": "^1.0.0-beta.6",
+        "react": "^18.2.0",
+        "react-chessboard": "^4.3.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.17.0"
+    },
+    "devDependencies": {
+        "eslint": "^8.52.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.1",
+        "eslint-plugin-react": "^7.33.2",
+        "prettier": "3.0.3",
+        "react-scripts": "5.0.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "eslint": "npx eslint ./",
+        "check": "prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+        "test": "jest",
+        "coverage": "jest --collectCoverage"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
