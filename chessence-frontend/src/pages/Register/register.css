@@ -20,7 +20,7 @@
     font-family: 'JetBrains Mono';
     font-style: bold;
     font-size: 3rem;
-    margin: 2rem 0 0 0;
+    margin: 2rem 0 2rem;
 }
 
 .register-container {
@@ -29,8 +29,8 @@
     font-family: 'JetBrains Mono';
     width: fit-content;
     border-radius: 2rem;
-    padding: 1rem 0rem;
-    margin: 0rem 0 8rem;
+    padding: 1rem;
+    margin: 0 0 8rem;
 }
 
 .register-container #registerForm {
