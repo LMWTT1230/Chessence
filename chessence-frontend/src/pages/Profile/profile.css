@@ -1,0 +1,112 @@
+#profilePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-image: -webkit-linear-gradient(30deg,
+        #593453 20%, 
+        #6E2F78 40%, 
+        white 40%);
+}
+
+#profilePage h1 {
+    font-family: 'JetBrains Mono';
+    font-style: bold;
+    font-size: 4rem;
+    margin: 0.5rem 0 4rem;
+}
+
+.profile-container {
+    background-color: #626262;
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-family: 'JetBrains Mono';
+    width: fit-content;
+    border-radius: 2rem;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    margin: 0 0 8rem;
+}
+
+.profile-container #profileImage {
+    width: 150pt;
+    height: 150pt;
+    padding: 0.5rem;
+    margin: 1rem 0 0 0;
+    background-color: black;
+}
+
+.profile-container #profileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 3rem 0.5rem;
+}
+
+.profile-container .editLabel {
+    font-size: 2rem;
+    margin: 0 0 1.5rem;
+}
+
+.profile-container input {
+    height: 1.5rem;
+    width: 100%;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    background-color: #D9D9D9;
+}
+
+.profile-container .profileLabel {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.profile-container .nameRow {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+}
+
+.profile-container .nameRow .nameColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-container .passwordColumn {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    width: 100%;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    
+}
+
+.profile-container .passwordColumn .passwordLabel {
+    font-size: 2rem;
+    margin: 1rem 0 1.5rem;
+}
+
+.profile-container #profileFooter {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-container #profileSubmit {
+    font-size: 1rem;
+    width: fit-content;
+    border-radius: 2rem;
+    padding: .5rem 2rem;
+    margin: 2rem 0 1rem 0;
+    border-style: none;
+    background-color: #8455D1;
+    color: white;
+    font-family: 'JetBrains Mono';
+}
+
+.profile-container #profileSubmit:hover {
+    background-color: #5b4283;
+}
