@@ -1,23 +1,34 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
+    {
+        fistName: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        lastName: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        username: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        password: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        email: {
+            type: String,
+            required: true,
+            trim: true,
+        },
     },
-    job: {
-      type: String,
-      required: true,
-      trim: true,
-      validate(value) {
-        if (value.length < 2)
-          throw new Error("Invalid job, must be at least 2 characters.");
-      },
-    },
-  },
-  { collection: "users_list" }
+    { collection: "user" }
 );
 
 export default mongoose.model("User", UserSchema);
