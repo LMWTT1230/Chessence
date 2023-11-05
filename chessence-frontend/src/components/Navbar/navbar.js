@@ -1,34 +1,3 @@
-// import React from 'react';
-// import { Link } from "react-router-dom";
-// import "./navbar.css"
-
-// const Navbar= () =>{
-//     return(
-//         <div>
-//             <li>
-//                 <Link to = "/">Logo</Link>
-//             </li>
-//             <li>
-//                 <Link to = "/">Home</Link>
-//             </li>
-//             <li>
-//                 <Link to = "/play">Play</Link>
-//             </li>
-//             <li>
-//                 <Link to = "/">Social</Link>
-//             </li>
-//             <li>
-//                 <Link to = "/">Archive</Link>
-//             </li>
-//             <li>
-//                 <Link to = "/login">Login</Link>
-//             </li>
-//         </div>
-//     );
-// }
-
-// export default Navbar;
-
 import React, { useEffect, useState } from "react"
 import "./navbar.css"
 
@@ -68,21 +37,14 @@ export default function Navbar() {
       imgElement.width = 48;
       imgElement.height = 48;
     }, []);
-  const [isNavExpanded, setIsNavExpanded] = useState(false);
+  /*const [isNavExpanded, setIsNavExpanded] = useState(false);*/
 
   return (
     <nav className="navigation">
       <a href="/" className="brand-name">
         <img src={"/logo.png"} alt="Chessence" />
       </a>
-      <button
-        className="hamburger"
-        onClick={() => {
-          setIsNavExpanded(!isNavExpanded)
-        }}
-      >
-      </button>
-      <div className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
+      <div className="navigation-menu"/*</nav>{isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}*/>
         <ul>
           <li>
             <a href="/">
@@ -111,7 +73,7 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-    <a href="/" className="icon">
+    <a href="/profile" className="icon">
         <img src={"/icon.png"} alt="Icon" />
     </a>
     </nav>

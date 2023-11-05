@@ -12,7 +12,7 @@ export default function RedirectPage() {
             <p>{isAuthenticated ?
                 "Authenticated" : "Not Authenticated"}</p>
             {accounts.map((user) => 
-                    <p>Hello, {user.name} ({user.username})!</p> )}
+                    <p key={user.id}>Hello, {user.name} ({user.username})!</p> )}
             {isAuthenticated ? 
                 <button onClick={() => instance.logout()}>Logout</button> :
                 <button onClick={() => instance.loginRedirect(loginRequest)}>Login</button>}

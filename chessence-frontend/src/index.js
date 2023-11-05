@@ -34,7 +34,7 @@ export default function App() {
               <Route path="/play" element={<ChessBoard />}/>
               <Route path="/login" element={<LoginPage />}/>
               <Route path="/register" element={<RegisterPage />}/>
-                <Route path="/profile" element={<ProfilePage />}/>
+              <Route path="/profile" element={<ProfilePage />}/>
               <Route path="/redirect" element={<RedirectPage />}/>
               {/*<Route path="*" element={<NoPage />} />*/}
           </Routes>
