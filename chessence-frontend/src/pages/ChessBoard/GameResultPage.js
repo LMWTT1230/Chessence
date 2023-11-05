@@ -1,20 +1,22 @@
 import React from "react";
-import Game from "./ChessBoard.js";
-import Board from "./ChessBoard.js";
 import { useLocation } from 'react-router-dom';
 
-
-
-
-export default function GameResultPage(props) {
+export default function GameResultPage() {
     // const { winner } = useParams();
     const { state } = useLocation();
     const { winner } = state;
+    let printWinner = "";
+    if(winner === "w"){
+        printWinner = "White"
+    }
+    else{
+        printWinner = "Black"
+    }
 
   return (
-    <div>
-        <p>Winner: { winner }</p>
-        <p>Results!!</p>
+    <div id="GameResultPage">
+        <h1>Winner: { printWinner }</h1>
+        <h1>Results!!</h1>
     </div>
   );
 }

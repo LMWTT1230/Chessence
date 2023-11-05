@@ -18,6 +18,20 @@ export default function Game() {
   // const [redirResults, setRedirectToResults] = useState(false);
   const navigate = useNavigate(); // Get the history object for navigation
 
+  useEffect(() => {
+    const getFenState = window.sessionStorage.getItem('fenState');
+    if (getFenState !== null ) setFen(getFenState);
+    const getTurnState = window.sessionStorage.getItem('turnState');
+    if (getTurnState !== null ) setTurn(getTurnState);
+    // setFen(JSON.parse(window.localStorage.getItem('fen')));
+    // console.log('getFenState', getFenState);
+  }, []);
+
+  useEffect(() => {
+    window.sessionStorage.setItem('fenState', fen);
+    window.sessionStorage.setItem('turnState', turn)
+    // console.log("fen: ", fen)
+  }, [fen]);
   
   function onDrop(sourceSquare, targetSquare) {
     const move = {
@@ -34,6 +48,7 @@ export default function Game() {
       if(newChess.isGameOver()){
         console.log("in if");
         const playerColor = turn; 
+        sessionStorage.clear();
         navigate("/results", { state : { winner: playerColor } }); // Navigate to the "/results" route
       }
       setFen(newFen); // Update the state with the new FEN
@@ -41,6 +56,7 @@ export default function Game() {
       setTurn(newTurn);
     } catch (error) {
       console.log("Illegal move.") 
+
     }
   }
 
@@ -72,24 +88,14 @@ export default function Game() {
       </div>
       <div id="scoreboard-container">
         <div id="scoreboard">
-          <ScoreboardComponent turn={turn} />
+          <ScoreboardComponent this="b" turn={turn} />
         </div>
         <div id="chatbox"></div>
         <div id="scoreboard2">
-          <ScoreboardComponent turn={turn} />
+          <ScoreboardComponent this="w" turn={turn} />
         </div>
       </div>
     </div>
-    // <div id="ChessBoardPage" style={{padding: '1px'}}>
-    //   {/* <div style={{ padding: '0px', paddingLeft: '0px', height: '0px' }}>
-    //   <p style={{ color: 'white', padding: '0px', fontFamily: 'JetBrains Mono, monospace', fontSize: '65px', fontWeight:'bold', lineHeight: '0px'}}>chessence</p>
-    //   </div> */}
-    //   <div style={{ paddingLeft: '0px'}}>
-    //     <div className="board-container" style={{ height: height_string, width: height_string}}>
-    //       <Chessboard id="BasicBoard" position={fen} onPieceDrop={onDrop} />
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
 
