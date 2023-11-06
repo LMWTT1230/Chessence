@@ -39,7 +39,7 @@ async function addUser(user) {
             return { success: false, message: "Username already exists" };
         }
 
-        const hashedPwd = await bcrypt.hash(user.password);
+        const hashedPwd = await bcrypt.hash(user.password, 10);
 
         const userToAdd = new userModel({
             firstname: user.firstname,
@@ -82,7 +82,53 @@ async function login(email, password) {
     }
 }
 
+async function updateProfile(user, oldPwd) {
+    try {
+      const exist = await userModel.findById(user._id);
+  
+      if (!exist) {
+        return { success: false, message: "User not found" };
+      }
+  
+      const pwdMatch = await bcrypt.compare(oldPwd, exist.password);
+  
+      if (pwdMatch) {
+  
+        const filter = { _id: user._id };
+        const update = {};
+
+        if (user.firstName) {
+          update.firstName = user.firstName;
+        }
+        if (user.lastName) {
+          update.lastName = user.lastName;
+        }
+        if (user.email) {
+          update.email = user.email;
+        }
+        if (user.password) {
+          const hashedPwd = await bcrypt.hash(user.password, 10); // Hash the new password
+          update.password = hashedPwd;
+        }
+
+        const updatedUser = null;
+        if (Object.keys(update).length > 0) {
+            updatedUser = await userModel.findOneAndUpdate(filter, update, { new: true });
+            return updatedUser;
+        } 
+
+        return updatedUser;
+      } else {
+        return { success: false, message: "Incorrect old password" };
+      }
+    } catch (error) {
+      console.error('Error updating user profile:', error);
+      return { success: false, message: "An error occurred" };
+    }
+  }
+
 export default {
     addUser,
     login,
+    updateProfile,
 };

@@ -34,6 +34,19 @@ app.post("/register", async (req, res) => {
     else res.status(400).json({ message: result.message });
 });
 
+app.post("/profile", async (req, res) => {
+    const user = req.body;
+    const oldPwd = req.body.oldPwd;
+
+    const result = await userServices.updateProfile(user, oldPwd);
+
+    if (result.success) {
+        res.status(200).send(result);
+    } else {
+        res.status(400).json({ message: result.message });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
