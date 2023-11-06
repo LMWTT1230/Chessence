@@ -11,6 +11,8 @@ import "./index.css";
 import LoginPage from "./pages/Login/LoginPage.js";
 import ProfilePage from "./pages/Profile/ProfilePage.js"
 import RegisterPage from "./pages/Register/RegisterPage.js";
+import Navbar from "./components/Navbar/navbar.js";
+import { Chess } from "chess.js";
 import RedirectPage from "./pages/Redirect/LoginRedirectPage.jsx";
 import GameResultPage from "./pages/ChessBoard/GameResultPage.js";
 
@@ -28,6 +30,7 @@ export default function App() {
     return (
       <MsalProvider instance={msalInstance}>
         <BrowserRouter>
+          <Navbar />
           <Routes>
               <Route path="/play" element={<GamePage />}/>
               <Route path="/login" element={<LoginPage />}/>

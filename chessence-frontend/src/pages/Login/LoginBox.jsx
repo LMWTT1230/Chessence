@@ -15,7 +15,7 @@ export default function LoginBox() {
     const verifyAccountPath = "/VerifyAccountPage";
 
     return (
-        <div class="login-box">
+        <div className="login-box">
             <form id="loginForm">
                 <p className="loginLabel">Email</p>
                 <input
@@ -30,7 +30,7 @@ export default function LoginBox() {
                     type="password"
                     name="password"
                     placeholder="hunter2"
-                    minlength="8"
+                    minLength="8"
                 />
                 <Link to={forgotPasswordPath} id="loginForgotPassword">
                     Forgot Password?
