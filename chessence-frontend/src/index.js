@@ -14,11 +14,8 @@ import RegisterPage from "./pages/Register/RegisterPage.js";
 import Navbar from "./components/Navbar/navbar.js";
 import { Chess } from "chess.js";
 import RedirectPage from "./pages/Redirect/LoginRedirectPage.jsx";
-<<<<<<< HEAD
 import axios from 'axios';
-=======
 import GameResultPage from "./pages/ChessBoard/GameResultPage.js";
->>>>>>> 182e8c789a35668b9f6ae91acee1c5950c235421
 
 // Set up MSAL
 const msalInstance = new PublicClientApplication(msalConfig);
