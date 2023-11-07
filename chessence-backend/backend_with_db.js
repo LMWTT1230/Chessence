@@ -34,16 +34,16 @@ app.post("/register", async (req, res) => {
     else res.status(400).json({ message: result.message });
 });
 
-app.post("/profile", async (req, res) => {
+app.put("/profile", async (req, res) => {
     const user = req.body;
     const oldPwd = req.body.oldPwd;
 
     const result = await userServices.updateProfile(user, oldPwd);
 
-    if (result.success) {
+    if (result) {
         res.status(200).send(result);
     } else {
-        res.status(400).json({ message: result.message });
+        res.status(400).end();
     }
 });
 

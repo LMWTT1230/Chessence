@@ -107,7 +107,7 @@ async function updateProfile(user, oldPwd) {
           update.email = user.email;
         }
         if (user.password) {
-          const hashedPwd = await bcrypt.hash(user.password, 10); // Hash the new password
+          const hashedPwd = await bcrypt.hash(user.password, 10);
           update.password = hashedPwd;
         }
 
@@ -119,11 +119,11 @@ async function updateProfile(user, oldPwd) {
 
         return updatedUser;
       } else {
-        return { success: false, message: "Incorrect old password" };
+        return null;
       }
     } catch (error) {
       console.error('Error updating user profile:', error);
-      return { success: false, message: "An error occurred" };
+      return null;
     }
   }
 
