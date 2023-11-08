@@ -31,6 +31,10 @@ mongoose
 //   return await userModel.find({ username: username });
 // }
 
+async function deleteUser(username) {
+    return await userModel.findOneAndDelete({ username });
+}
+
 async function addUser(user) {
     try {
         const exist = await userModel.findOne({ username: user.username });
@@ -42,8 +46,8 @@ async function addUser(user) {
         const hashedPwd = await bcrypt.hash(user.password, 10);
 
         const userToAdd = new userModel({
-            firstname: user.firstname,
-            lastname: user.lastname,
+            firstName: user.firstname,
+            lastName: user.lastname,
             username: user.username,
             password: hashedPwd,
             email: user.email,
@@ -130,6 +134,7 @@ async function updateProfile(user, oldPwd) {
 
 export default {
     addUser,
+    deleteUser,
     login,
     updateProfile,
 };
