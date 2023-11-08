@@ -5,14 +5,13 @@
     "type": "module",
     "main": "index.js",
     "scripts": {
-      "dev": "nodemon backend_with_db.js",
-      "start": "node backend_with_db.js",
-      "lint": "eslint ./",
-      "check": "prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-      "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-      "test": "prettier --check . && jest",
-      "coverage": "jest --collectCoverage"
-      
+        "dev": "nodemon backend_with_db.js",
+        "start": "node backend_with_db.js",
+        "lint": "eslint ./",
+        "check": "prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+        "test": "prettier --check . && jest",
+        "coverage": "jest --collectCoverage"
     },
     "author": "",
     "license": "ISC",
