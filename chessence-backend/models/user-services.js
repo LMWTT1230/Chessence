@@ -54,6 +54,7 @@ async function addUser(user) {
         });
 
         const savedUser = await userToAdd.save();
+
         return savedUser;
     } catch (error) {
         console.log(error);

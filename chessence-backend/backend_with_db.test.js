@@ -8,7 +8,7 @@ test("test addUser", async () => {
         password: "test",
         email: "ykang08@calpoly.edu",
     };
-    userServices.deleteUser("LMWTT");
+    const deleteUser = await userServices.deleteUser("LMWTT");
     const add = await userServices.addUser(user);
 
     expect(add).toBeTruthy();
