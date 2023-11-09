@@ -93,11 +93,12 @@ export default function Game() {
             <div id="scoreboard-container">
                 <div id="scoreboard">
                     <ScoreboardComponent this="b" turn={turn} />
+                    <MyTimer expiryTimestamp={time} turn={turn} player="b" />
                 </div>
                 <div id="chatbox"></div>
-                    <MyTimer expiryTimestamp={time} />
                 <div id="scoreboard2">
                     <ScoreboardComponent this="w" turn={turn} />
+                    <MyTimer expiryTimestamp={time} turn={turn} player="w" />
                 </div>
             </div>
         </div>
