@@ -10,7 +10,7 @@
         "lint": "eslint ./",
         "check": "prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-        "test": "prettier --check . && cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+        "test": "prettier --check . && cross-env NODE_OPTIONS=--experimental-vm-modules jest --forceExit",
         "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --collectCoverage"
     },
     "author": "",
