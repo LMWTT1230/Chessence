@@ -21,7 +21,7 @@ export default function MyTimer({ expiryTimestamp, turn, player }) {
     useEffect(() => {
         console.log("switch");
         if (player === turn) {
-            start();
+            resume();
         } else {
             pause();
         }
