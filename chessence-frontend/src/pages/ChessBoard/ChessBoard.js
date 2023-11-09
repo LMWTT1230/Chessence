@@ -4,8 +4,11 @@ import "./chessboard.css"; // Import your custom CSS file
 import { Chessboard } from "react-chessboard";
 import ScoreboardComponent from "./Scoreboard";
 import { useNavigate } from "react-router-dom";
+import MyTimer from "./Timer";
 
 export default function Game() {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
     const chess = new Chess();
     const game_fen = chess.fen();
     const game_turn = chess.turn();
@@ -92,6 +95,7 @@ export default function Game() {
                     <ScoreboardComponent this="b" turn={turn} />
                 </div>
                 <div id="chatbox"></div>
+                    <MyTimer expiryTimestamp={time} />
                 <div id="scoreboard2">
                     <ScoreboardComponent this="w" turn={turn} />
                 </div>
