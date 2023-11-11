@@ -47,6 +47,12 @@ app.put("/profile", async (req, res) => {
     }
 });
 
+app.post('/loginTokenTest', (req, res) => {
+    res.send({
+        token: "test123",
+    });
+});
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
