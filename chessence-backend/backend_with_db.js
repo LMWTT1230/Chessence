@@ -2,12 +2,19 @@ import express from "express";
 import cors from "cors";
 
 import userServices from "./models/user-services.js";
+import sessionEndpoints from "./routes/sessions.js";
 
 const app = express();
 const port = 8000;
 
-app.use(cors());
+var corsOptions = {
+    origin: "http://localhost:3000", // TODO make this use .env
+    credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
+
+app.use("/session", sessionEndpoints);
 
 app.get("/login", async (req, res) => {
     const email = req.query["email"];

@@ -1,16 +1,19 @@
 import "./login.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // login function
 async function loginUser(credentials) {
-    return fetch("http://localhost:8000/loginTokenTest", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
-    }).then((data) => data.json());
+    const response = await axios.post(
+        "http://localhost:8000/session/login",
+        credentials,
+        {
+            // credentials: 'include',
+            withCredentials: true,
+        }
+    );
+    return response;
 }
 
 export default function LoginBox({setToken}) {
@@ -27,12 +30,20 @@ export default function LoginBox({setToken}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = await loginUser({
-            email,
-            password,
-        });
-        setToken(token);
-        console.log(token);
+        try {
+            const res = await loginUser({
+                email,
+                password,
+            });
+            console.log(res);
+            setPasswordError("");
+        } catch (error) {
+            if (error.response?.data?.message) {
+                setPasswordError(error.response.data.message);
+            } else {
+                setPasswordError("Could not connect to the server");
+            }
+        }
     };
 
     return (
