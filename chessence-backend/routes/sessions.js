@@ -1,7 +1,6 @@
 import express from "express";
 import session from "express-session";
 
-const app = express();
 const router = express.Router();
 
 const oneDayMs = 1000 * 60 * 60 * 24;

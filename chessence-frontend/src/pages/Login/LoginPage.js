@@ -3,7 +3,7 @@ import { useMsal } from "@azure/msal-react";
 import LoginBox from "./LoginBox";
 import { loginRequest } from '../../authConfig';
 
-export default function LoginPage({ setToken }) {
+export default function LoginPage() {
   const { instance, accounts, inProgress } = useMsal();
   const redir = async () => {
     try {
@@ -16,7 +16,7 @@ export default function LoginPage({ setToken }) {
   return (
     <div id="loginPage">
         <h1>chessence</h1>
-        <LoginBox setToken={setToken}/>
+        <LoginBox/>
         <img src="/msft-login.svg" onClick={redir} />
     </div>
   );

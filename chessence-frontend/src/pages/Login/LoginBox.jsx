@@ -16,7 +16,7 @@ async function loginUser(credentials) {
     return response;
 }
 
-export default function LoginBox({setToken}) {
+export default function LoginBox() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState({
         value: "",

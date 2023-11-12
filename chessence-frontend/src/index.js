@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
 import { msalConfig } from "./authConfig.js";
-import useToken from './useToken';
 
 import GamePage from "./pages/ChessBoard/GamePage.js"
 import "./index.css";
@@ -28,15 +27,13 @@ const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container);
 
 export default function App() {
-    const { token, setToken } = useToken();
-
     return (
       <MsalProvider instance={msalInstance}>
         <BrowserRouter>
           <Navbar />
           <Routes>
               <Route path="/play" element={<GamePage />}/>
-              <Route path="/login" element={<LoginPage setToken={setToken}/>}/>
+              <Route path="/login" element={<LoginPage/>}/>
               <Route path="/register" element={<RegisterPage />}/>
               <Route path="/profile" element={<ProfilePage />}/>
               <Route path="/redirect" element={<RedirectPage />}/>
