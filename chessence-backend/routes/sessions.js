@@ -14,20 +14,18 @@ router.use(
 );
 
 router.post("/login", (req, res) => {
-    console.log(req);
     if (req.session.loggedIn) {
         res.status(200).json({ message: "already logged in!" });
     } else {
         // placeholder login logic
         try {
             const { email, password } = req.body;
-            console.log(password);
             if (password === "password") {
                 req.session.loggedIn = true;
                 req.session.email = email;
-                res.status(200).json({ message: "success!" });
+                res.status(200).json({ message: "Logged in" });
             } else {
-                res.status(401).json({ message: "login fail" });
+                res.status(401).json({ message: "Unrecognized credentials" });
             }
         } catch (error) {
             console.log(error);
@@ -42,16 +40,18 @@ router.get("/logout", (req, res) => {
     req.session.destroy();
 });
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
     if (req.session.views) {
         req.session.views++
-        res.setHeader('Content-Type', 'text/html')
-        res.write('<p>views: ' + req.session.views + '</p>')
-        res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
+        res.setHeader("Content-Type", "text/html");
+        res.write("<p>views: " + req.session.views + "</p>");
+        res.write(
+            "<p>expires in: " + req.session.cookie.maxAge / 1000 + "s</p>"
+        );
         res.end();
     } else {
-        req.session.views = 1
-        res.end('welcome to the session demo. refresh!');
+        req.session.views = 1;
+        res.end("welcome to the session demo. refresh!");
     }
 });
 

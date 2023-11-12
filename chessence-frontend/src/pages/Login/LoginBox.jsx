@@ -9,7 +9,6 @@ async function loginUser(credentials) {
         "http://localhost:8000/session/login",
         credentials,
         {
-            // credentials: 'include',
             withCredentials: true,
         }
     );
@@ -22,7 +21,6 @@ export default function LoginBox() {
         value: "",
         showPassword: false,
     });
-    const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const forgotPasswordPath = "/ForgotPassword";
     const createAccountPath = "/register";
@@ -35,7 +33,6 @@ export default function LoginBox() {
                 email,
                 password,
             });
-            console.log(res);
             setPasswordError("");
         } catch (error) {
             if (error.response?.data?.message) {
@@ -53,16 +50,14 @@ export default function LoginBox() {
                 <input
                     className="loginInput"
                     type="text"
-                    placeholder="zuck@fb.com"
+                    placeholder="email"
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <div className="inputError">{emailError}</div>
                 <p className="loginLabel">Password</p>
                 <input
                     type="password"
                     name="password"
-                    placeholder="hunter2"
-                    minLength="8"
+                    placeholder="password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <Link to={forgotPasswordPath} id="loginForgotPassword">
