@@ -1,19 +1,7 @@
 import "./login.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-
-// login function
-async function loginUser(credentials) {
-    const response = await axios.post(
-        "http://localhost:8000/session/login",
-        credentials,
-        {
-            withCredentials: true,
-        }
-    );
-    return response;
-}
+import { loginUser } from "../../api/session";
 
 export default function LoginBox() {
     const [email, setEmail] = useState("");
@@ -29,10 +17,7 @@ export default function LoginBox() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await loginUser({
-                email,
-                password,
-            });
+            const res = await loginUser(email, password);
             setPasswordError("");
         } catch (error) {
             if (error.response?.data?.message) {
