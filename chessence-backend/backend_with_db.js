@@ -29,9 +29,13 @@ app.get("/login", async (req, res) => {
 
 app.post("/register", async (req, res) => {
     const user = req.body;
+    console.log(user);
     const result = await userServices.addUser(user);
     if (result.success) res.status(201).send(result);
-    else res.status(400).json({ message: result.message });
+    else {
+        console.log("something wrong");
+        res.status(400).json({ message: result.message });
+    }
 });
 
 app.put("/profile", async (req, res) => {
