@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1699835360680" clover="3.2.0">
-  <project timestamp="1699835360681" name="All files">
+<coverage generated="1699835978996" clover="3.2.0">
+  <project timestamp="1699835978996" name="All files">
     <metrics statements="43" coveredstatements="43" conditionals="22" coveredconditionals="22" methods="4" coveredmethods="4" elements="69" coveredelements="69" complexity="0" loc="43" ncloc="43" packages="1" files="2" classes="2"/>
     <file name="user-services.js" path="E:\CSC307\Chessence\chessence-backend\models\user-services.js">
       <metrics statements="42" coveredstatements="42" conditionals="22" coveredconditionals="22" methods="4" coveredmethods="4"/>

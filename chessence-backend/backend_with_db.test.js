@@ -126,7 +126,6 @@ test("test updateProfile", async () => {
 });
 
 test("test updateProfile not exist", async () => {
-
     let user2 = {};
 
     const oldPwd = "test";
