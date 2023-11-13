@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - main
-      -add-ci-backend
+      - add-ci-backend
   workflow_dispatch:
 
 defaults:
