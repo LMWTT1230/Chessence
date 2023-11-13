@@ -10,15 +10,22 @@ export default function LoginBox() {
         showPassword: false,
     });
     const [passwordError, setPasswordError] = useState("");
+
+    const navigate = useNavigate();
     const forgotPasswordPath = "/ForgotPassword";
     const createAccountPath = "/register";
+    const playPath = "/play";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (email.trim() === "" || password === "") {
+            setPasswordError("please fill out all the required fields");
+            return;
+        }
         try {
-            const res = await loginUser(email, password);
-            window.location.reload(); // TODO remove
             setPasswordError("");
+            const res = await loginUser(email, password);
+            navigate(playPath);
         } catch (error) {
             if (error.response?.data?.message) {
                 setPasswordError(error.response.data.message);

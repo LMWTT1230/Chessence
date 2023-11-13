@@ -20,6 +20,8 @@ router.post("/login", async (req, res) => {
     } else {
         // placeholder login logic
         try {
+            req.session.loggedIn = true;
+            req.session.email = email;
             const { email, password } = req.body;
             const result = await userServices.login(email, password);
             if (result.success) {
