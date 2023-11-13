@@ -38,6 +38,17 @@ router.post("/login", (req, res) => {
 
 router.get("/logout", (req, res) => {
     req.session.destroy();
+    res.status(200);
+    res.send();
+});
+
+router.get("/authenticated", (req, res) => {
+    if (req.session.loggedIn) {
+        res.status(200);
+        res.send();
+    } else {
+        res.status(401).json({ message: "Not Authenticated" });
+    }
 });
 
 router.get("/", (req, res) => {

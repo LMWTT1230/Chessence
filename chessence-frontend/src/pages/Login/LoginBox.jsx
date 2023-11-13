@@ -12,12 +12,12 @@ export default function LoginBox() {
     const [passwordError, setPasswordError] = useState("");
     const forgotPasswordPath = "/ForgotPassword";
     const createAccountPath = "/register";
-    const verifyAccountPath = "/VerifyAccountPage";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const res = await loginUser(email, password);
+            window.location.reload(); // TODO remove
             setPasswordError("");
         } catch (error) {
             if (error.response?.data?.message) {
