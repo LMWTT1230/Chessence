@@ -53,7 +53,7 @@ router.get("/authenticated", (req, res) => {
 
 router.get("/", (req, res) => {
     if (req.session.views) {
-        req.session.views++
+        req.session.views++;
         res.setHeader("Content-Type", "text/html");
         res.write("<p>views: " + req.session.views + "</p>");
         res.write(
