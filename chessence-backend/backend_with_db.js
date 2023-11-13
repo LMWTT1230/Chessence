@@ -1,14 +1,16 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 
 import userServices from "./models/user-services.js";
 import sessionEndpoints from "./routes/sessions.js";
 
 const app = express();
 const port = 8000;
+dotenv.config();
 
 var corsOptions = {
-    origin: "http://localhost:3000", // TODO make this use .env
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
 };
 app.use(cors(corsOptions));
