@@ -9,6 +9,7 @@
         #6e2f78 40%,
         rgb(255, 255, 255) 40%
     );
+    padding-right: 1rem;
 }
 
 #GameResultPage {
@@ -67,7 +68,7 @@
 #scoreboard-container {
     display: flex;
     flex-shrink: 1;
-    flex-grow: 0.7;
+    flex-grow: 1;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
@@ -79,13 +80,14 @@
         0,
         0
     ); /* Gray color (adjust the shade if needed) */
-    margin: 2rem 0rem;
+    margin: 2rem 7.8rem 2rem 0rem;
+    padding-left: 0%;
     border-radius: 0.5rem;
 }
 
 #chatbox {
-    flex-grow: 2;
-    flex-shrink: 0.5;
+    flex-grow: 1;
+    flex-shrink: 1;
     background-color: #888888; /* Gray color (adjust the shade if needed) */
     margin: 0rem 1rem;
     border-radius: 0.5rem;
