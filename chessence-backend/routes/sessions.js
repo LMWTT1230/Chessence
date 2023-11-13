@@ -17,15 +17,16 @@ router.use(
     })
 );
 
+// returns 200 on successful login
 router.post("/login", async (req, res) => {
     if (req.session.loggedIn) {
         res.status(200).json({ message: "already logged in!" });
     } else {
-        // placeholder login logic
         try {
             const { email, password } = req.body;
             const result = await userServices.login(email, password);
             if (result.success) {
+                // set session to logged in
                 req.session.loggedIn = true;
                 req.session.email = email;
                 res.status(200).json({ message: result.message });
@@ -47,6 +48,7 @@ router.get("/logout", (req, res) => {
     res.send();
 });
 
+// return 200 if authorized, 401 if not
 router.get("/authenticated", (req, res) => {
     if (req.session.loggedIn) {
         res.status(200);
