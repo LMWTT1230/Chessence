@@ -1,5 +1,6 @@
 import express from "express";
 import session from "express-session";
+import userServices from "../models/user-services.js";
 
 const router = express.Router();
 
@@ -13,19 +14,18 @@ router.use(
     })
 );
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
     if (req.session.loggedIn) {
         res.status(200).json({ message: "already logged in!" });
     } else {
         // placeholder login logic
         try {
             const { email, password } = req.body;
-            if (password === "password") {
-                req.session.loggedIn = true;
-                req.session.email = email;
-                res.status(200).json({ message: "Logged in" });
+            const result = await userServices.login(email, password);
+            if (result.success) {
+                res.status(200).json({ message: result.message });
             } else {
-                res.status(401).json({ message: "Unrecognized credentials" });
+                res.status(401).json({ message: result.message });
             }
         } catch (error) {
             console.log(error);
