@@ -7,7 +7,12 @@ on:
   push:
     branches:
       - main
+      -add-ci-backend
   workflow_dispatch:
+
+defaults:
+  run: 
+    working-directory: /chessence-backend
 
 jobs:
   build:
