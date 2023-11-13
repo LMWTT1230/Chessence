@@ -2,7 +2,6 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 export default function GameResultPage() {
-    // const { winner } = useParams();
     const { state } = useLocation();
     const { winner } = state;
     let printWinner = "";
@@ -19,6 +18,3 @@ export default function GameResultPage() {
         </div>
     );
 }
-
-// just added this page to be redirected to when reaching a stalemate or end Game. maybe dont
-// redirect and instead just have a popup?
