@@ -41,8 +41,8 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: chessence
-          path: release.zip
+          name: node-app
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,7 +55,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: chessence
+          name: node-app
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
@@ -67,4 +67,4 @@ jobs:
           app-name: 'chessence'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C0265BA4B50D4F09A06C046D84FE156C }}
-          package: .
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
