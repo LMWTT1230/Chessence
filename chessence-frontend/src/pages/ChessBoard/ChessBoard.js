@@ -7,8 +7,11 @@ import { useNavigate } from "react-router-dom";
 import MyTimer from "./Timer";
 
 export default function Game() {
-    const time = new Date();
-    time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
+    console.log("setting to null");
+    let badtime = null;
+    // badtime.setSeconds(badtime.getSeconds() + 600); // 10 minutes timer
+    let badtime2 = null;
+    // badtime2.setSeconds(badtime2.getSeconds() + 600); // 10 minutes timer
     const chess = new Chess();
     const game_fen = chess.fen();
     const game_turn = chess.turn();
@@ -21,6 +24,7 @@ export default function Game() {
         if (getFenState !== null) setFen(getFenState);
         const getTurnState = window.sessionStorage.getItem("turnState");
         if (getTurnState !== null) setTurn(getTurnState);
+
     }, []);
 
     useEffect(() => {
@@ -74,6 +78,7 @@ export default function Game() {
 
     const height_string = windowDimension.winHeight - 63.5 + "px"; // Convert to a string with 'px' appended
 
+    console.log("HERE>")
     return (
         <div id="ChessBoardPage">
             <div
@@ -93,12 +98,12 @@ export default function Game() {
             <div id="scoreboard-container">
                 <div id="scoreboard">
                     <ScoreboardComponent this="b" turn={turn} />
-                    <MyTimer expiryTimestamp={time} turn={turn} player="b" />
+                    <MyTimer expiryTimestamp={badtime} turn={turn} player="b" />
                 </div>
                 <div id="chatbox"></div>
                 <div id="scoreboard2">
                     <ScoreboardComponent this="w" turn={turn} />
-                    <MyTimer expiryTimestamp={time} turn={turn} player="w" />
+                    <MyTimer expiryTimestamp={badtime2} turn={turn} player="w" />
                 </div>
             </div>
         </div>
