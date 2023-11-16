@@ -8,7 +8,6 @@ export default function MyTimer({ onExpire, expiryTimestamp, turn, player }) {
         minutes,
         hours,
         days,
-        isRunning,
         start,
         pause,
         resume,
@@ -20,101 +19,46 @@ export default function MyTimer({ onExpire, expiryTimestamp, turn, player }) {
 
     const [initOver, setInitOver] = useState(false);
 
-
+    //Timer initialization. Runs only once per instance of a timer.
     useEffect(() => {
-        if(expiryTimestamp == null){
-            console.log("NULL")
-
-        }
-        else{
-            console.log("NOT NULL")
-        }
-    }, []);
-
-    useEffect(() => {
-        // const getTimerSeconds = window.sessionStorage.getItem(player + "TimerSeconds");
-        // // const getTimerMinutes = window.sessionStorage.getItem(player + "TimerMinutes");
-        // console.log("checking if old timer state exists...")
-        // if (getTimerSeconds !== null) {
-        //     console.log("exists. getting old timer state:");
-        //     // console.log(player + " minutes: " + getTimerMinutes)
-        //     console.log(player + " seconds: " + getTimerSeconds);
-        //     const time = new Date();
-        //     console.log(Number(getTimerSeconds));
-        //     time.setSeconds(time.getSeconds() + Number(getTimerSeconds));
-        //     // time.setMinutes(Number(getTimerMinutes));
-
-        //     console.log("new timer minutes: " + time.get);
-        //     console.log("new timer seconds: " + time.getSeconds());
-        //     restart(time);
-        //     console.log(totalSeconds);
-        // }
-
-
-
-
-        console.log("in player " + player + "....")
         let time = new Date();
-        time.setSeconds(time.getSeconds() + 10); // 10 minutes timer
-        console.log("setting default time object to: " + time.getMinutes() + ":" + time.getSeconds());
+        time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
 
-        const TimerSeconds = window.sessionStorage.getItem(player + "TimerSeconds");
-        console.log("seeing if " + player + "TimerSeconds exists...");
-        if (TimerSeconds !== null){
-            console.log("exists. getting old timer state:");
-            // console.log(player + " minutes: " + getTimerMinutes)
-            console.log(player + " seconds: " + TimerSeconds);
+        //Grab session storage for timer value and use if it exists.
+        const TimerSeconds = window.sessionStorage.getItem(
+            player + "TimerSeconds"
+        );
+        if (TimerSeconds !== null) {
             const sessionTime = new Date();
-            console.log(Number(TimerSeconds));
-            sessionTime.setSeconds(sessionTime.getSeconds() + Number(TimerSeconds));
+            sessionTime.setSeconds(
+                sessionTime.getSeconds() + Number(TimerSeconds)
+            );
             time = sessionTime;
-            console.log("setting time to: " + time.getMinutes() + ":" + time.getSeconds());
             start();
             restart(time);
-        }
-        else{
-            console.log("does not exist.. setting time to: " + time.getMinutes() + ":" + time.getSeconds());
+        } else {
             resume();
             restart(time);
-            console.log(totalSeconds);
         }
-
-        if(expiryTimestamp == null){
-            console.log("NULL2")
-
-        }
-        else{
-            console.log("NOT NULL2")
-        }
-        if (player === turn) {
-            console.log("resuming timer for " + player);
-        } else {
-            console.log("pausing timer for " + player);
+        if (player != turn) {
             pause();
         }
     }, []);
 
-
+    //Updates session storage for each instance of the timer every second.
     useEffect(() => {
         window.sessionStorage.setItem(player + "TimerSeconds", totalSeconds);
-        // window.sessionStorage.setItem(player + "TimerMinutes", minutes);
     }, [seconds]);
 
-
+    //Logic for pausing/starting an instance of a timer when the turn switches.
     useEffect(() => {
-        console.log("switch");
-        if(initOver){
-            console.log("switch setting turn");
+        if (initOver) {
             if (player === turn) {
-                console.log("resuming timer for " + player);
                 resume();
             } else {
-                console.log("pausing timer for " + player);
                 pause();
             }
-        }
-        else{
-            console.log("switch enter");
+        } else {
             setInitOver(true);
         }
     }, [turn]);

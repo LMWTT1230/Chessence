@@ -7,11 +7,6 @@ import { useNavigate } from "react-router-dom";
 import MyTimer from "./Timer";
 
 export default function Game() {
-    console.log("setting to null");
-    let badtime = null;
-    // badtime.setSeconds(badtime.getSeconds() + 600); // 10 minutes timer
-    let badtime2 = null;
-    // badtime2.setSeconds(badtime2.getSeconds() + 600); // 10 minutes timer
     const chess = new Chess();
     const game_fen = chess.fen();
     const game_turn = chess.turn();
@@ -19,12 +14,34 @@ export default function Game() {
     const [turn, setTurn] = useState(game_turn);
     const navigate = useNavigate(); // Get the history object for navigation
 
+    //// Window resizing ///
+    const [windowDimension, detectHW] = useState({
+        winWidth: window.innerWidth,
+        winHeight: window.innerHeight,
+    });
+
+    const detectSize = () => {
+        detectHW({
+            winWidth: window.innerWidth,
+            winHeight: window.innerHeight,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", detectSize);
+        return () => {
+            window.removeEventListener("resize", detectSize);
+        };
+    }, []);
+
+    const height_string = windowDimension.winHeight - 63.5 + "px"; // Convert to a string with 'px' appended
+
+    /// GAME LOGIC ///
     useEffect(() => {
         const getFenState = window.sessionStorage.getItem("fenState");
         if (getFenState !== null) setFen(getFenState);
         const getTurnState = window.sessionStorage.getItem("turnState");
         if (getTurnState !== null) setTurn(getTurnState);
-
     }, []);
 
     useEffect(() => {
@@ -43,9 +60,7 @@ export default function Game() {
             const newChess = new Chess(fen);
             newChess.move(move);
             const newFen = newChess.fen();
-            console.log("in here");
             if (newChess.isGameOver()) {
-                console.log("in if");
                 endGame(turn);
             }
             setFen(newFen); // Update the state with the new FEN
@@ -56,41 +71,19 @@ export default function Game() {
         }
     }
 
-    function endGame(winnerColor){
+    function endGame(winnerColor) {
         sessionStorage.clear();
         navigate("/results", { state: { winner: winnerColor } }); // Navigate to the "/results" route
     }
 
-    function onTimerExpire(){
-        if(turn === "w"){
+    function onTimerExpire() {
+        if (turn === "w") {
             endGame("b");
-        }
-        else{
+        } else {
             endGame("w");
         }
     }
 
-    const [windowDimension, detectHW] = useState({
-        winWidth: window.innerWidth,
-        winHeight: window.innerHeight,
-    });
-    const detectSize = () => {
-        detectHW({
-            winWidth: window.innerWidth,
-            winHeight: window.innerHeight,
-        });
-    };
-    useEffect(() => {
-        window.addEventListener("resize", detectSize);
-
-        return () => {
-            window.removeEventListener("resize", detectSize);
-        };
-    }, []);
-
-    const height_string = windowDimension.winHeight - 63.5 + "px"; // Convert to a string with 'px' appended
-
-    console.log("HERE>")
     return (
         <div id="ChessBoardPage">
             <div
@@ -110,12 +103,12 @@ export default function Game() {
             <div id="scoreboard-container">
                 <div id="scoreboard">
                     <ScoreboardComponent this="b" turn={turn} />
-                    <MyTimer onExpire={onTimerExpire} expiryTimestamp={badtime} turn={turn} player="b" />
+                    <MyTimer onExpire={onTimerExpire} turn={turn} player="b" />
                 </div>
                 <div id="chatbox"></div>
                 <div id="scoreboard2">
                     <ScoreboardComponent this="w" turn={turn} />
-                    <MyTimer onExpire={onTimerExpire} expiryTimestamp={badtime2} turn={turn} player="w" />
+                    <MyTimer onExpire={onTimerExpire} turn={turn} player="w" />
                 </div>
             </div>
         </div>
