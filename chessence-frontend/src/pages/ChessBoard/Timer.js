@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTimer } from "react-timer-hook";
 
-export default function MyTimer({ expiryTimestamp, turn, player }) {
+export default function MyTimer({ onExpire, expiryTimestamp, turn, player }) {
     const {
         totalSeconds,
         seconds,
@@ -15,7 +15,7 @@ export default function MyTimer({ expiryTimestamp, turn, player }) {
         restart,
     } = useTimer({
         expiryTimestamp,
-        onExpire: () => console.warn("onExpire called"),
+        onExpire,
     });
 
     const [initOver, setInitOver] = useState(false);
@@ -55,7 +55,7 @@ export default function MyTimer({ expiryTimestamp, turn, player }) {
 
         console.log("in player " + player + "....")
         let time = new Date();
-        time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
+        time.setSeconds(time.getSeconds() + 10); // 10 minutes timer
         console.log("setting default time object to: " + time.getMinutes() + ":" + time.getSeconds());
 
         const TimerSeconds = window.sessionStorage.getItem(player + "TimerSeconds");

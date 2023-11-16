@@ -46,15 +46,27 @@ export default function Game() {
             console.log("in here");
             if (newChess.isGameOver()) {
                 console.log("in if");
-                const playerColor = turn;
-                sessionStorage.clear();
-                navigate("/results", { state: { winner: playerColor } }); // Navigate to the "/results" route
+                endGame(turn);
             }
             setFen(newFen); // Update the state with the new FEN
             const newTurn = newChess.turn();
             setTurn(newTurn);
         } catch (error) {
             console.log("Illegal move.");
+        }
+    }
+
+    function endGame(winnerColor){
+        sessionStorage.clear();
+        navigate("/results", { state: { winner: winnerColor } }); // Navigate to the "/results" route
+    }
+
+    function onTimerExpire(){
+        if(turn === "w"){
+            endGame("b");
+        }
+        else{
+            endGame("w");
         }
     }
 
@@ -98,12 +110,12 @@ export default function Game() {
             <div id="scoreboard-container">
                 <div id="scoreboard">
                     <ScoreboardComponent this="b" turn={turn} />
-                    <MyTimer expiryTimestamp={badtime} turn={turn} player="b" />
+                    <MyTimer onExpire={onTimerExpire} expiryTimestamp={badtime} turn={turn} player="b" />
                 </div>
                 <div id="chatbox"></div>
                 <div id="scoreboard2">
                     <ScoreboardComponent this="w" turn={turn} />
-                    <MyTimer expiryTimestamp={badtime2} turn={turn} player="w" />
+                    <MyTimer onExpire={onTimerExpire} expiryTimestamp={badtime2} turn={turn} player="w" />
                 </div>
             </div>
         </div>
