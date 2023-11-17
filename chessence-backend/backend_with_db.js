@@ -16,34 +16,35 @@ app.get("/login", async (req, res) => {
     try {
         const result = await userServices.login(email, password);
 
-        if (result.success) {
-            res.status(200).json({ message: result.message });
+        if (result) {
+            res.status(200).end();
         } else {
-            res.status(401).json({ message: result.message });
+            res.status(401).end();
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "An error occurred in the server." });
+        res.status(500).end();
     }
 });
 
 app.post("/register", async (req, res) => {
     const user = req.body;
-    const result = await userServices.addUser(user);
-    if (result.success) res.status(201).send(result);
-    else res.status(400).json({ message: result.message });
+    const savedUser = await userServices.addUser(user);
+    if (savedUser) res.status(201).send(savedUser);
+    else res.status(500).end();
 });
 
-app.put("/profile", async (req, res) => {
+app.put("/profile/:id", async (req, res) => {
+    const id = req.params["id"];
     const user = req.body;
     const oldPwd = req.body.oldPwd;
 
-    const result = await userServices.updateProfile(user, oldPwd);
+    const result = await userServices.updateProfile(id, user, oldPwd);
 
-    if (result.success) {
+    if (result) {
         res.status(200).send(result);
     } else {
-        res.status(400).json({ message: result.message });
+        res.status(400).end();
     }
 });
 
