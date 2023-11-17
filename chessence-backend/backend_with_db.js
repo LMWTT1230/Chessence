@@ -66,7 +66,7 @@ app.post("/results", async (req, res) => {
     else res.status(500).end();
 });
 
-app.delete("history/:id", async (req, res) => {
+app.delete("/history/:id", async (req, res) => {
     const id = req.params["id"];
     const result = await gameServices.deleteGame(id);
     if (!result) {
