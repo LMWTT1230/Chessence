@@ -4,8 +4,9 @@ import "./chessboard.css"; // Import your custom CSS file
 import { Chessboard } from "react-chessboard";
 import ScoreboardComponent from "./Scoreboard";
 import { useNavigate } from "react-router-dom";
+import MyTimer from "./Timer";
 
-export default function Game() {
+export default function Game(props) {
     const chess = new Chess();
     const game_fen = chess.fen();
     const game_turn = chess.turn();
@@ -13,6 +14,29 @@ export default function Game() {
     const [turn, setTurn] = useState(game_turn);
     const navigate = useNavigate(); // Get the history object for navigation
 
+    //// Window resizing ///
+    const [windowDimension, detectHW] = useState({
+        winWidth: window.innerWidth,
+        winHeight: window.innerHeight,
+    });
+
+    const detectSize = () => {
+        detectHW({
+            winWidth: window.innerWidth,
+            winHeight: window.innerHeight,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", detectSize);
+        return () => {
+            window.removeEventListener("resize", detectSize);
+        };
+    }, []);
+
+    const height_string = windowDimension.winHeight - 63.5 + "px"; // Convert to a string with 'px' appended
+
+    /// GAME LOGIC ///
     useEffect(() => {
         const getFenState = window.sessionStorage.getItem("fenState");
         if (getFenState !== null) setFen(getFenState);
@@ -36,12 +60,8 @@ export default function Game() {
             const newChess = new Chess(fen);
             newChess.move(move);
             const newFen = newChess.fen();
-            console.log("in here");
             if (newChess.isGameOver()) {
-                console.log("in if");
-                const playerColor = turn;
-                sessionStorage.clear();
-                navigate("/results", { state: { winner: playerColor } }); // Navigate to the "/results" route
+                endGame(turn);
             }
             setFen(newFen); // Update the state with the new FEN
             const newTurn = newChess.turn();
@@ -51,25 +71,18 @@ export default function Game() {
         }
     }
 
-    const [windowDimension, detectHW] = useState({
-        winWidth: window.innerWidth,
-        winHeight: window.innerHeight,
-    });
-    const detectSize = () => {
-        detectHW({
-            winWidth: window.innerWidth,
-            winHeight: window.innerHeight,
-        });
-    };
-    useEffect(() => {
-        window.addEventListener("resize", detectSize);
+    function endGame(winnerColor) {
+        sessionStorage.clear();
+        navigate("/results", { state: { winner: winnerColor } }); // Navigate to the "/results" route
+    }
 
-        return () => {
-            window.removeEventListener("resize", detectSize);
-        };
-    }, []);
-
-    const height_string = windowDimension.winHeight - 63.5 + "px"; // Convert to a string with 'px' appended
+    function onTimerExpire() {
+        if (turn === "w") {
+            endGame("b");
+        } else {
+            endGame("w");
+        }
+    }
 
     return (
         <div id="ChessBoardPage">
@@ -90,10 +103,12 @@ export default function Game() {
             <div id="scoreboard-container">
                 <div id="scoreboard">
                     <ScoreboardComponent this="b" turn={turn} />
+                    <MyTimer initTime={props.initTime} onExpire={onTimerExpire} turn={turn} player="b" />
                 </div>
                 <div id="chatbox"></div>
                 <div id="scoreboard2">
                     <ScoreboardComponent this="w" turn={turn} />
+                    <MyTimer initTime={props.initTime} onExpire={onTimerExpire} turn={turn} player="w" />
                 </div>
             </div>
         </div>

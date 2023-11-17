@@ -7,8 +7,25 @@
         30deg,
         #593453 20%,
         #6e2f78 40%,
-        white 40%
+        rgb(255, 255, 255) 40%
     );
+    padding-right: 1rem;
+}
+
+#GameStartPage{
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+    justify-content: center;
+    background-image: -webkit-linear-gradient(
+        30deg,
+        #593453 20%,
+        #6e2f78 40%,
+        rgb(255, 255, 255) 40%
+    );
+    padding: 2rem 2rem;
+    font-family: "JetBrains Mono";
+
 }
 
 #GameResultPage {
@@ -24,6 +41,46 @@
     );
 }
 
+#timeInput {
+    background-color: rgba(96, 108, 110, 0.9);
+    color: #ffffff;
+    font-size: 30px;
+    outline: 0 solid transparent;
+    border: 0 solid transparent;
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px 1px;
+    width: 150px;
+    font-family: "JetBrains Mono";
+    text-align: center;
+  }
+
+
+.settings-container {
+    background-color: #626262;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'JetBrains Mono';
+    width: fit-content;
+    border-radius: 2rem;
+    gap: 0rem;
+    padding: 1rem 2rem;
+    margin: 0 0 8rem;
+}
+
+.settings-container #settingsSubmit {
+    font-size: 1rem;
+    width: fit-content;
+    border-radius: 2rem;
+    padding: .5rem 2rem;
+    margin: 2rem 0 1rem 0;
+    border-style: none;
+    background-color: #8455D1;
+    color: white;
+    font-family: 'JetBrains Mono';
+}
 #GameResultPage h1 {
     font-size: medium;
     font-family: "JetBrains Mono";
@@ -67,21 +124,27 @@
 #scoreboard-container {
     display: flex;
     flex-shrink: 1;
-    flex-grow: 0.7;
+    flex-grow: 1;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: stretch;
     /* width: 300px; 
     height: 800px; */
-    background-color: #616161; /* Gray color (adjust the shade if needed) */
-    margin: 2rem 0rem;
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0
+    ); /* Gray color (adjust the shade if needed) */
+    margin: 2rem 7.8rem 2rem 0rem;
+    padding-left: 0%;
     border-radius: 0.5rem;
 }
 
 #chatbox {
-    flex-grow: 2;
-    flex-shrink: 0.5;
-    background-color: #888888; /* Gray color (adjust the shade if needed) */
+    flex-grow: 1;
+    flex-shrink: 1;
+    background-color: transparent; /* Gray color (adjust the shade if needed) */
     margin: 0rem 1rem;
     border-radius: 0.5rem;
 }
@@ -90,31 +153,29 @@
     display: flex;
     flex-grow: 1;
     flex-shrink: 1;
-    /* justify-content: center;
-    align-items: center; */
+    justify-content: center;
+    align-items: center;
     color: white;
     font-size: small;
-    font-family: "JetBrains Mono";
+    font-family: 'Lato', sans-serif;
     background-color: #6e2f78; /* Gray color (adjust the shade if needed) */
     border-radius: 0.5rem;
     margin: 1rem;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
 }
 
 #highlightbox {
     flex-grow: 1;
     flex-shrink: 1;
     margin: 1rem;
-    background-color: #e7e7e7; /* Gray color (adjust the shade if needed) */
+    background-color: transparent; /* Gray color (adjust the shade if needed) */
     border-radius: 0.5rem;
 }
 #unselectedbox {
     flex-grow: 1;
     flex-shrink: 1;
     margin: 1rem;
-    background-color: #616161; /* Gray color (adjust the shade if needed) */
+    background-color: transparent; /* Gray color (adjust the shade if needed) */
     border-radius: 0.5rem;
 }
 .register-container #registerForm {
