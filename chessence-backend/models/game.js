@@ -22,7 +22,7 @@ const GameSchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
-        rules: {
+        winner: {
             type: String,
             required: true,
             trim: true,
