@@ -29,7 +29,10 @@ export default function ArchivePage() {
     const [gameId, setGameId] = useState(0);
 
     function toggleMove(newGId) {
-        setShowMove(!showMove);
+        if(newGId == gameId){
+            setShowMove(!showMove);
+        }
+        
         setGameId(newGId)
     }
 
