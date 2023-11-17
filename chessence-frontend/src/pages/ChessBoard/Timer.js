@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTimer } from "react-timer-hook";
 
-export default function MyTimer({ onExpire, expiryTimestamp, turn, player }) {
+export default function MyTimer({ initTime, onExpire, expiryTimestamp, turn, player }) {
     const {
         totalSeconds,
         seconds,
@@ -22,7 +22,37 @@ export default function MyTimer({ onExpire, expiryTimestamp, turn, player }) {
     //Timer initialization. Runs only once per instance of a timer.
     useEffect(() => {
         let time = new Date();
-        time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
+        // console.log("time seconds before: " + time.getSeconds());
+        // console.log(time.getSeconds());
+        let [hours, minutes, seconds] = initTime.split(':');
+        let secondsToAdd = 0;
+        if(seconds == null){
+            // console.log("enter")
+            seconds = minutes;
+            minutes = hours;
+            hours = 0;
+            secondsToAdd = seconds + (60 * minutes);
+            // console.log("seconds to add: ")
+            // console.log(secondsToAdd)
+
+            // time.setSeconds(time.getSeconds() + secondsToAdd);
+        }
+        else{
+            secondsToAdd = seconds + (3600 * hours + 60 * minutes);
+            // console.log("seconds to add: ");
+            // console.log(secondsToAdd)
+            // time.setSeconds(time.getSeconds() + secondsToAdd);
+        }
+
+        // console.log("time seconds after: " + time.getSeconds());
+        // console.log(time.getSeconds());
+        secondsToAdd = parseInt(secondsToAdd);
+        console.log("seconds to add: " + secondsToAdd);
+
+
+
+
+        time.setSeconds(time.getSeconds() + secondsToAdd); // 10 minutes timer
 
         //Grab session storage for timer value and use if it exists.
         const TimerSeconds = window.sessionStorage.getItem(

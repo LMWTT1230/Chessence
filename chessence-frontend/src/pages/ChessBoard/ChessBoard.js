@@ -6,7 +6,7 @@ import ScoreboardComponent from "./Scoreboard";
 import { useNavigate } from "react-router-dom";
 import MyTimer from "./Timer";
 
-export default function Game() {
+export default function Game(props) {
     const chess = new Chess();
     const game_fen = chess.fen();
     const game_turn = chess.turn();
@@ -86,6 +86,7 @@ export default function Game() {
 
     return (
         <div id="ChessBoardPage">
+            <h1>{props.initTime}</h1>
             <div
                 className="board-container"
                 style={{
@@ -103,12 +104,12 @@ export default function Game() {
             <div id="scoreboard-container">
                 <div id="scoreboard">
                     <ScoreboardComponent this="b" turn={turn} />
-                    <MyTimer onExpire={onTimerExpire} turn={turn} player="b" />
+                    <MyTimer initTime={props.initTime} onExpire={onTimerExpire} turn={turn} player="b" />
                 </div>
                 <div id="chatbox"></div>
                 <div id="scoreboard2">
                     <ScoreboardComponent this="w" turn={turn} />
-                    <MyTimer onExpire={onTimerExpire} turn={turn} player="w" />
+                    <MyTimer initTime={props.initTime} onExpire={onTimerExpire} turn={turn} player="w" />
                 </div>
             </div>
         </div>

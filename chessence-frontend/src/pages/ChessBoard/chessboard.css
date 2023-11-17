@@ -12,6 +12,21 @@
     padding-right: 1rem;
 }
 
+#GameStartPage{
+    display: flex;
+    align-items:center;
+    flex-direction: row;
+    justify-content: center;
+    background-image: -webkit-linear-gradient(
+        30deg,
+        #593453 20%,
+        #6e2f78 40%,
+        rgb(255, 255, 255) 40%
+    );
+    padding: 2rem 2rem;
+
+}
+
 #GameResultPage {
     display: flex;
     align-items: stretch;
@@ -25,6 +40,33 @@
     );
 }
 
+#timeInput {
+    background-color: rgba(96, 108, 110, 0.9);
+    color: #ffffff;
+    font-size: 30px;
+    outline: 0 solid transparent;
+    border: 0 solid transparent;
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px 1px;
+    width: 150px;
+    font-family: "JetBrains Mono";
+    text-align: center;
+  }
+
+
+.settings-container {
+    background-color: #626262;
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-family: 'JetBrains Mono';
+    width: fit-content;
+    border-radius: 2rem;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    margin: 0 0 8rem;
+}
 #GameResultPage h1 {
     font-size: medium;
     font-family: "JetBrains Mono";
