@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./register.css";
+import axios from 'axios';
 
 export default function RegisterForm() {
     const [firstName, setFirstName] = useState("");
@@ -8,6 +9,7 @@ export default function RegisterForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    //const [error, setError] = useState("");
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -31,7 +33,7 @@ export default function RegisterForm() {
         }
     }
 
-    function submitForm() {
+    async function submitForm() {
         if (password != confirmPassword) {
             console.log("Password & Confirm Password Fields Do Not Match");
         } else {
@@ -42,7 +44,33 @@ export default function RegisterForm() {
                 email: email,
                 password: password,
             };
-            console.log(user);
+            try {
+                const response = makePostCall(user);
+                if(response) {
+                    setFirstName("");
+                    setLastName("");
+                    setUsername("");
+                    setEmail("");
+                    setPassword("");
+                    setConfirmPassword("");
+                    //setError("");
+                }
+            }
+            catch(error) {
+                console.log(error);
+            }
+            //console.log(user);
+        }
+    }
+
+    async function makePostCall(user){
+        try {
+           const response = await axios.post('http://localhost:8000/register', user);
+           return response;
+        }
+        catch (error) {
+           console.log(error);
+           return false;
         }
     }
 

@@ -53,4 +53,5 @@ export default function LoginPage() {
             <LoginContent loggedIn={loggedIn} />
         </div>
     );
+
 }
