@@ -1,4 +1,3 @@
-/* HomePage.css */
 body {
     font-family: "JetBrains Mono";
     text-align: center;
@@ -7,8 +6,8 @@ body {
     background-color: #f0f0f0;
     background-image: -webkit-linear-gradient(
         210deg,
-        #6e2f78 30%,
-        #593453 50%,
+        #6e2f78 31%,
+        #593453 49%,
         white 20%
     );
 }
@@ -24,7 +23,7 @@ body {
 }
   
 h1 {
-    color: #333; /* Set your desired text color */
+    color: #333;
 }
   
 .button-container {
@@ -43,12 +42,12 @@ h1 {
 }
   
 .login-button {
-    background-color: #8455D1; /* Set your desired login button color */
-    color: #fff; /* Set your desired login button text color */
+    background-color: #8455D1;
+    color: #fff;
 }
   
 .signup-button {
-    background-color: #8455D1; /* Set your desired sign-up button color */
-    color: #fff; /* Set your desired sign-up button text color */
+    background-color: #8455D1;
+    color: #fff;
 }
   
