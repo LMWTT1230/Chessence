@@ -35,7 +35,7 @@ async function deleteUser(username) {
 }
 
 async function existUsername(user) {
-    const exist = await userModel.findOne({ username : user.username });
+    const exist = await userModel.findOne({ username: user.username });
     if (exist) {
         return true;
     }
@@ -43,7 +43,7 @@ async function existUsername(user) {
 }
 
 async function existEmail(user) {
-    const exist = await userModel.findOne({ email : user.email });
+    const exist = await userModel.findOne({ email: user.email });
     if (exist) {
         return true;
     }
@@ -151,5 +151,5 @@ export default {
     login,
     updateProfile,
     existUsername,
-    existEmail
+    existEmail,
 };
