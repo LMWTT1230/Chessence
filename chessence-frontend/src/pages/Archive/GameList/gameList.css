@@ -1,0 +1,14 @@
+#gameList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #D6D6D6;
+    padding: 2rem;
+}
+
+#gameList h1{
+    font-family: "JetBrains Mono";
+    font-style: bold;
+    font-size: 3rem;
+    color: black;
+}
