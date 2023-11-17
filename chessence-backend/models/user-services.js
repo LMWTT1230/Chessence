@@ -21,6 +21,7 @@ async function deleteUser(username) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 async function existUsername(user) {
     const exist = await userModel.findOne({ username: user.username });
     if (exist) {
@@ -37,6 +38,8 @@ async function existEmail(user) {
     return false;
 }
 
+=======
+>>>>>>> parent of e94d9f0 (Frontend registration connected to backend and database successfully; backend crashes after successful registration though)
 =======
 >>>>>>> parent of e94d9f0 (Frontend registration connected to backend and database successfully; backend crashes after successful registration though)
 async function addUser(user) {
@@ -146,8 +149,11 @@ export default {
     login,
     updateProfile,
 <<<<<<< HEAD
+<<<<<<< HEAD
     existUsername,
     existEmail,
+=======
+>>>>>>> parent of e94d9f0 (Frontend registration connected to backend and database successfully; backend crashes after successful registration though)
 =======
 >>>>>>> parent of e94d9f0 (Frontend registration connected to backend and database successfully; backend crashes after successful registration though)
 };
