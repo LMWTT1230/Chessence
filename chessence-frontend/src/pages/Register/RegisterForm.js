@@ -9,8 +9,7 @@ export default function RegisterForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
+    //const [error, setError] = useState("");
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -46,57 +45,32 @@ export default function RegisterForm() {
                 password: password,
             };
             try {
-                const response = await makePostCall(user);
-                //console.log("Entire response: ", response);
-                //console.log("Response data: ", response.response.data.error);
-                if (response && response.data.error) {
-                    //console.log("Setting error state:", response.data.error)
-                    setError(response.data.error);
-                    //console.log("found response error");
-                }
-                else if(response) {
-                    //console.log("found response success");
+                const response = makePostCall(user);
+                if(response) {
                     setFirstName("");
                     setLastName("");
                     setUsername("");
                     setEmail("");
                     setPassword("");
                     setConfirmPassword("");
-                    setError("");
-                    setSuccess("Successfully registered!");
+                    //setError("");
                 }
             }
             catch(error) {
-                console.error('Error', error);
-                //console.log("Setting error state:", error)
-                //setError(error.data.error);
-                setSuccess("");
-                setError("An error occurred during registration.");
+                console.log(error);
             }
-        }
             //console.log(user);
+        }
     }
 
     async function makePostCall(user){
         try {
-            const response = await axios.post('http://localhost:8000/register', user);
-            //console.log("Response from makePostCall: ", response);
-            return response;
-            // if (response.data && response.data.error) {
-            //     setError(response.data.error);
-            //     console.log("Server returned an error:", response.data.error);
-            //     return response;
-            // }
-            // else if (response.data && response.data.success) {
-            //     return response;
-            // }
+           const response = await axios.post('http://localhost:8000/register', user);
+           return response;
         }
         catch (error) {
-           //console.log(error);
-           setSuccess("");
-           setError("An error occurred during registration.");
-           //console.log("Error from makePostCall: ", error);
-           return error.response;
+           console.log(error);
+           return false;
         }
     }
 
@@ -162,8 +136,6 @@ export default function RegisterForm() {
                     </button>
                 </div>
             </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
         </div>
     );
 }
