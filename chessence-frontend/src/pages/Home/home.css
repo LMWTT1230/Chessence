@@ -5,6 +5,12 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
+    background-image: -webkit-linear-gradient(
+        210deg,
+        #6e2f78 30%,
+        #593453 50%,
+        white 20%
+    );
 }
   
 .container {
@@ -13,6 +19,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-top: 10%;
+    margin-right: 50%;
 }
   
 h1 {
