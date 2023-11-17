@@ -11,9 +11,11 @@ import "./index.css";
 import LoginPage from "./pages/Login/LoginPage.js";
 import ProfilePage from "./pages/Profile/ProfilePage.js"
 import RegisterPage from "./pages/Register/RegisterPage.js";
+import HomePage from "./pages/Home/HomePage.js"
 import Navbar from "./components/Navbar/navbar.js";
 import { Chess } from "chess.js";
 import RedirectPage from "./pages/Redirect/LoginRedirectPage.jsx";
+import axios from 'axios';
 import GameResultPage from "./pages/ChessBoard/GameResultPage.js";
 
 // Set up MSAL
@@ -32,6 +34,7 @@ export default function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
+              <Route path="/" element={<HomePage />}/>
               <Route path="/play" element={<GamePage />}/>
               <Route path="/login" element={<LoginPage />}/>
               <Route path="/register" element={<RegisterPage />}/>
