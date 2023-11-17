@@ -20,6 +20,7 @@ async function deleteUser(username) {
     return await userModel.findOneAndDelete({ username });
 }
 
+<<<<<<< HEAD
 async function existUsername(user) {
     const exist = await userModel.findOne({ username: user.username });
     if (exist) {
@@ -36,13 +37,21 @@ async function existEmail(user) {
     return false;
 }
 
+=======
+>>>>>>> parent of e94d9f0 (Frontend registration connected to backend and database successfully; backend crashes after successful registration though)
 async function addUser(user) {
     // try {
+    const exist = await userModel.findOne({ username: user.username });
+
+    if (exist) {
+        return false;
+    }
+
     const hashedPwd = await bcrypt.hash(user.password, 10);
 
     const userToAdd = new userModel({
-        firstName: user.firstName,
-        lastName: user.lastName,
+        firstName: user.firstname,
+        lastName: user.lastname,
         username: user.username,
         password: hashedPwd,
         email: user.email,
@@ -136,6 +145,9 @@ export default {
     deleteUser,
     login,
     updateProfile,
+<<<<<<< HEAD
     existUsername,
     existEmail,
+=======
+>>>>>>> parent of e94d9f0 (Frontend registration connected to backend and database successfully; backend crashes after successful registration though)
 };
