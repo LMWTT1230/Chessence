@@ -7,9 +7,7 @@ export default function GameStartPage() {
     return (
         <div id="GameStartPage">
             <h1>Game Settings</h1>
-            <div className="settings-container">
-                <TimerInput/>
-            </div>
+            <TimerInput/>
         </div>
     )
 }
@@ -92,11 +90,13 @@ function TimerInput() {
             time: value,
         };
         console.log(settings);
+        sessionStorage.clear()
         navigate("/play", { state: { time : value } }); // Navigate to the "/results" route
     }
 
     return (
-        <div >
+        <div className="settings-container">
+            <h2>Match Timer</h2>
             <input id="timeInput"
                 type="text"
                 onChange={onChange}
@@ -106,6 +106,7 @@ function TimerInput() {
             <div >
                 <button
                     type="button"
+                    id="settingsSubmit"
                     onClick={submitForm}>
                     Save 
                 </button>

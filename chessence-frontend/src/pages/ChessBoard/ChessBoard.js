@@ -86,7 +86,6 @@ export default function Game(props) {
 
     return (
         <div id="ChessBoardPage">
-            <h1>{props.initTime}</h1>
             <div
                 className="board-container"
                 style={{
