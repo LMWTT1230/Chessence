@@ -25,7 +25,7 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a href="/">
+            <a href="/archive">
                 <img src={"/archive.png"} alt="Archive" id="archiveLogo" />
             </a>
           </li>
