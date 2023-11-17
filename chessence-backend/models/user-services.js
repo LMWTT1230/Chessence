@@ -45,8 +45,8 @@ async function addUser(user) {
     const hashedPwd = await bcrypt.hash(user.password, 10);
 
     const userToAdd = new userModel({
-        firstName: user.firstName,
-        lastName: user.lastName,
+        firstName: user.firstname,
+        lastName: user.lastname,
         username: user.username,
         password: hashedPwd,
         email: user.email,
