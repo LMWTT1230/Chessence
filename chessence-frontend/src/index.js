@@ -18,6 +18,7 @@ import { Chess } from "chess.js";
 import RedirectPage from "./pages/Redirect/LoginRedirectPage.jsx";
 import axios from 'axios';
 import GameResultPage from "./pages/ChessBoard/GameResultPage.js";
+import GameStartPage from "./pages/ChessBoard/GameStartPage.js";
 
 // Set up MSAL
 const msalInstance = new PublicClientApplication(msalConfig);
@@ -43,6 +44,7 @@ export default function App() {
               <Route path="/redirect" element={<RedirectPage />}/>
               <Route path="/results" element={<GameResultPage />}/>
               <Route path="/archive" element={<ArchivePage />}/>
+              <Route path="/start" element={<GameStartPage />}/>
             {/*<Route path="*" element={<NoPage />} />*/}
           </Routes>
         </BrowserRouter>
