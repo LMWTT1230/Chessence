@@ -9,21 +9,7 @@ dotenv.config();
 // uncomment the following line to view mongoose debug messages
 mongoose.set("debug", true);
 
-mongoose.connect(
-    "mongodb+srv://" +
-        process.env.MONGO_USER +
-        ":" +
-        process.env.MONGO_PWD +
-        "@" +
-        process.env.MONGO_CLUSTER +
-        "/" +
-        process.env.MONGO_DB +
-        "?retryWrites=true&w=majority",
-    {
-        useNewUrlParser: true, //useFindAndModify: false,
-        useUnifiedTopology: true,
-    }
-);
+mongoose.connect(process.env.MONGODB_URI);
 //.catch((error) => console.log(error));
 
 // async function findUserByUserName(username) {
