@@ -20,11 +20,9 @@ test("test getGames", async () => {
     await gameServices.addGame(game1);
     await gameServices.addGame(game2);
 
-    const games_list = { game1, game2 };
-
     const games = await gameServices.getGames();
 
-    expect(games).toBe(games_list);
+    expect(games.length).toBe(2);
 });
 
 test("test addGame", async () => {
