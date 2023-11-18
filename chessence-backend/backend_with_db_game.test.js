@@ -21,8 +21,9 @@ test("test getGames", async () => {
     await gameServices.addGame(game2);
 
     const games = await gameServices.getGames();
+    console.log(games);
 
-    expect(Object.keys(games).length).toBe(2);
+    expect(games.length).toBe(2);
 });
 
 test("test addGame", async () => {
