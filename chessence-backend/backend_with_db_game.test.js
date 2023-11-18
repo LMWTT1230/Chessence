@@ -17,13 +17,15 @@ test("test getGames", async () => {
         winner: "1234",
     };
 
-    await gameServices.addGame(game1);
-    await gameServices.addGame(game2);
+    const addedGame1 = await gameServices.addGame(game1);
+    const addedGame2 = await gameServices.addGame(game2);
 
     const games = await gameServices.getGames();
     console.log(games);
 
     expect(games.length).toBe(2);
+    await gameServices.deleteGame(addedGame1["_id"]);
+    await gameServices.deleteGame(addedGame2["_id"]);
 });
 
 test("test addGame", async () => {
@@ -40,6 +42,7 @@ test("test addGame", async () => {
     expect(addedGame).toBeTruthy();
     expect(addedGame.blackID).toBe("abcd");
     expect(addedGame.whiteID).toBe("1234");
+    await gameServices.deleteGame(addedGame["_id"]);
 });
 
 test("test deleteGame", async () => {
