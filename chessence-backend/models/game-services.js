@@ -7,21 +7,21 @@ dotenv.config();
 
 mongoose.set("debug", true);
 
-mongoose.connect(
-    "mongodb+srv://" +
-        process.env.MONGO_USER +
-        ":" +
-        process.env.MONGO_PWD +
-        "@" +
-        process.env.MONGO_CLUSTER +
-        "/" +
-        process.env.MONGO_DB +
-        "?retryWrites=true&w=majority",
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }
-);
+// mongoose.connect(
+//     "mongodb+srv://" +
+//         process.env.MONGO_USER +
+//         ":" +
+//         process.env.MONGO_PWD +
+//         "@" +
+//         process.env.MONGO_CLUSTER +
+//         "/" +
+//         process.env.MONGO_DB +
+//         "?retryWrites=true&w=majority",
+//     {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//     }
+// );
 
 async function getGames(id) {
     let result;
@@ -55,7 +55,7 @@ async function addGame(game) {
 
 async function deleteGame(id) {
     try {
-        await gameModel.findIdAndDelete(id);
+        await gameModel.findByIdAndDelete(id);
         return true;
     } catch (error) {
         console.log(error);
