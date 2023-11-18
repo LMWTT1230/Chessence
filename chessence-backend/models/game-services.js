@@ -7,6 +7,8 @@ dotenv.config();
 
 mongoose.set("debug", true);
 
+mongoose.connect(process.env.MONGODB_URI);
+
 // mongoose.connect(
 //     "mongodb+srv://" +
 //         process.env.MONGO_USER +
