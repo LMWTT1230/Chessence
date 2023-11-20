@@ -14,6 +14,9 @@ defaults:
   run: 
     working-directory: chessence-backend
 
+env:
+  AZURE_WEBAPP_PACKAGE_PATH: chessence-backend # set this to the path to your web app project, defaults to the repository root
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -61,4 +64,4 @@ jobs:
           app-name: 'chessence'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C0265BA4B50D4F09A06C046D84FE156C }}
-          package: .
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
