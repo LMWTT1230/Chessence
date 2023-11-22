@@ -15,7 +15,7 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a href="/play">
+            <a href="/start">
                 <img src={"/play.png"} alt="Play" id="playLogo" />
             </a>
           </li>
@@ -25,7 +25,7 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a href="/">
+            <a href="/archive">
                 <img src={"/archive.png"} alt="Archive" id="archiveLogo" />
             </a>
           </li>

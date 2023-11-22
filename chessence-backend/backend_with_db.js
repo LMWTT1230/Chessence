@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import userServices from "./models/user-services.js";
+import gameServices from "./models/game-services.js";
+
 import sessionEndpoints from "./routes/sessions.js";
 
 const app = express();
@@ -54,6 +56,33 @@ app.put("/profile/:id", async (req, res) => {
         res.status(200).send(result);
     } else {
         res.status(400).end();
+    }
+});
+
+app.get("/history", async (req, res) => {
+    const id = req.query["id"];
+    try {
+        const result = await gameServices.getGames(id);
+        res.send({ games_list: result });
+    } catch (error) {
+        res.status(500).send("An error ocurred in the server.");
+    }
+});
+
+app.post("/results", async (req, res) => {
+    const game = req.body;
+    const savedGame = await gameServices.addGame(game);
+    if (savedGame) res.status(201).send(savedGame);
+    else res.status(500).end();
+});
+
+app.delete("/history/:id", async (req, res) => {
+    const id = req.params["id"];
+    const result = await gameServices.deleteGame(id);
+    if (!result) {
+        res.status(404).send("Resource not found.");
+    } else {
+        res.status(204).end();
     }
 });
 
