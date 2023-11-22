@@ -41,6 +41,11 @@
     background-color: #d9d9d9;
 }
 
+.login-box .inputError {
+    font-size: 0.75rem;
+    color: rgb(255, 168, 211)
+}
+
 .login-box .loginLabel {
     font-size: 1rem;
     margin: 0;

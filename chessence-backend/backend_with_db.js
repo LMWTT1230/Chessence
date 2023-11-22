@@ -1,14 +1,24 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 
 import userServices from "./models/user-services.js";
 import gameServices from "./models/game-services.js";
 
+import sessionEndpoints from "./routes/sessions.js";
+
 const app = express();
 const port = 8000;
+dotenv.config();
 
-app.use(cors());
+var corsOptions = {
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
+
+app.use("/session", sessionEndpoints);
 
 app.get("/login", async (req, res) => {
     const email = req.query["email"];
