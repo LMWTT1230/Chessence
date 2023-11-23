@@ -128,6 +128,7 @@ export default function RegisterForm() {
                 />
                 <div id="registerFooter">
                     <button
+                        className="button"
                         type="button"
                         id="registerSubmit"
                         onClick={submitForm}
