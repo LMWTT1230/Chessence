@@ -4,3 +4,12 @@ body > #root > div {
 body {
     margin: 0;
 }
+
+/* all variables are accessible in the html element */
+html {
+    --BK-beige: #F6F1E8;
+    --BK-green: #4A7949;
+    --BK-brown: #774C3E;
+    --BK-dark-brown: #532C1F;
+    --BK-link: #2AB7F4;
+  }
