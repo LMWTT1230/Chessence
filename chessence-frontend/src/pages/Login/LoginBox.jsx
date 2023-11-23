@@ -58,7 +58,7 @@ export default function LoginBox() {
                 <div className="inputError">{passwordError}</div>
                 <div id="centeredLoginFooter">
                     <p id="loginCrown">👑</p>
-                    <button type="submit" id="loginSubmit">
+                    <button className="button" type="submit" id="loginSubmit">
                         Login
                     </button>
                     <Link to={createAccountPath} id="loginCreateAccount">
