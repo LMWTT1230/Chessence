@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./profile.css";
 
 export default function ProfileForm() {
@@ -11,7 +11,7 @@ export default function ProfileForm() {
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
     function handleChange(event) {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         if (name === "firstName") {
             setFirstName(value);
         }
@@ -36,7 +36,8 @@ export default function ProfileForm() {
     }
 
     function submitForm() {
-        const user = {
+        const user = 
+        {
             firstName: firstName,
             lastName: lastName,
             username: username,
@@ -48,12 +49,8 @@ export default function ProfileForm() {
 
     return (
         <div className="profile-container">
-            <img
-                id="profileImage"
-                src={
-                    "https://betacssjs.chesscomfiles.com/bundles/web/images/user-image.svg"
-                }
-            />
+            <img id="profileImage" 
+                src={'https://betacssjs.chesscomfiles.com/bundles/web/images/user-image.svg'}/>
             <form id="profileForm">
                 <p className="editLabel">edit profile</p>
                 <div className="nameRow">
@@ -65,8 +62,7 @@ export default function ProfileForm() {
                             name="firstName"
                             value={firstName}
                             onChange={handleChange}
-                            placeholder="First Name"
-                        />
+                            placeholder="First Name"/>
                     </div>
                     <div className="nameColumn">
                         <p className="profileLabel">Last Name</p>
@@ -75,8 +71,7 @@ export default function ProfileForm() {
                             name="lastName"
                             value={lastName}
                             onChange={handleChange}
-                            placeholder="Last Name"
-                        />
+                            placeholder="Last Name"/>
                     </div>
                 </div>
                 <p className="profileLabel">Username</p>
@@ -85,16 +80,14 @@ export default function ProfileForm() {
                     name="username"
                     value={username}
                     onChange={handleChange}
-                    placeholder="Username"
-                />
+                    placeholder="Username"/>
                 <p className="profileLabel">Email</p>
                 <input
                     type="email"
                     name="email"
                     value={email}
                     onChange={handleChange}
-                    placeholder="Email"
-                />
+                    placeholder="Email"/>
                 <div className="passwordColumn">
                     <p className="passwordLabel">change password</p>
                     <p className="profileLabel"> Current Password</p>
@@ -103,36 +96,33 @@ export default function ProfileForm() {
                         name="currentPassword"
                         value={currentPassword}
                         onChange={handleChange}
-                        placeholder="Current Password"
-                    />
+                        placeholder="Current Password"/>
                     <p className="profileLabel"> New Password</p>
                     <input
                         type="password"
                         name="newPassword"
                         value={newPassword}
                         onChange={handleChange}
-                        placeholder="New Password"
-                    />
+                        placeholder="New Password"/>
                     <p className="profileLabel">Confirm New Password</p>
                     <input
                         type="password"
                         name="confirmNewPassword"
                         value={confirmNewPassword}
                         onChange={handleChange}
-                        placeholder="Confirm New Password"
-                    />
+                        placeholder="Confirm New Password"/>
                 </div>
                 <div id="profileFooter">
                     <button
                         type="button"
                         className="button"
                         id="profileSubmit"
-                        onClick={submitForm}
-                    >
-                        Save
+                        onClick={submitForm}>
+                        Save 
                     </button>
                 </div>
             </form>
-        </div>
+        </div>    
     );
+
 }

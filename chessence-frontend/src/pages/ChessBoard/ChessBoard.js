@@ -113,22 +113,12 @@ export default function Game(props) {
             <div id="scoreboard-container">
                 <div id="black-score" className="scoreboard">
                     <ScoreboardComponent this="b" turn={turn} />
-                    <MyTimer
-                        initTime={props.initTime}
-                        onExpire={onTimerExpire}
-                        turn={turn}
-                        player="b"
-                    />
+                    <MyTimer initTime={props.initTime} onExpire={onTimerExpire} turn={turn} player="b" />
                 </div>
                 <div id="chatbox"></div>
                 <div id="white-score" className="scoreboard">
                     <ScoreboardComponent this="w" turn={turn} />
-                    <MyTimer
-                        initTime={props.initTime}
-                        onExpire={onTimerExpire}
-                        turn={turn}
-                        player="w"
-                    />
+                    <MyTimer initTime={props.initTime} onExpire={onTimerExpire} turn={turn} player="w" />
                 </div>
             </div>
         </div>

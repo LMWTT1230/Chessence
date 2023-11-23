@@ -58,37 +58,38 @@
 }
 
 .hamburger {
-    display: none;
+    display: none
 }
 
 #navLogo {
-    width: 72px;
-    height: 72px;
+  width: 72px;
+  height: 72px;
 }
 #homeLogo {
-    width: 36px;
-    height: 36px;
+  width: 36px;
+  height: 36px;
 }
 #playLogo {
-    width: 36px;
-    height: 24px;
+  width: 36px;
+  height: 24px;
 }
 #socialLogo {
-    width: 36px;
-    height: 27px;
+  width: 36px;
+  height: 27px;
 }
 #archiveLogo {
-    width: 36px;
-    height: 36px;
+  width: 36px;
+  height: 36px;
 }
 #loginLogo {
-    width: 36px;
-    height: 36px;
+  width: 36px;
+  height: 36px;
 }
 #iconLogo {
-    width: 48px;
-    height: 48px;
+  width: 48px;
+  height: 48px;
 }
+
 
 /*@media screen and (max-width: 768px) {
     .hamburger {

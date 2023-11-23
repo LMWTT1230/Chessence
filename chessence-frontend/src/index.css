@@ -7,12 +7,12 @@ body {
 
 /* all variables are accessible in the html element */
 html {
-    --BK-beige: #f6f1e8;
-    --BK-green: #4a7949;
-    --BK-brown: #774c3e;
-    --BK-dark-brown: #532c1f;
-    --BK-link: #2ab7f4;
-}
+    --BK-beige: #F6F1E8;
+    --BK-green: #4A7949;
+    --BK-brown: #774C3E;
+    --BK-dark-brown: #532C1F;
+    --BK-link: #2AB7F4;
+  }
 
 /* default page settings */
 body {

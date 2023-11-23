@@ -46,4 +46,4 @@ export const isAuthenticated = async () => {
     } catch (error) {
         return false;
     }
-};
+}
