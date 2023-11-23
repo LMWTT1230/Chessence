@@ -9,7 +9,8 @@ export default function RegisterForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    //const [error, setError] = useState("");
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -53,7 +54,8 @@ export default function RegisterForm() {
                     setEmail("");
                     setPassword("");
                     setConfirmPassword("");
-                    //setError("");
+                    setError("");
+                    setSuccess("");
                 }
             }
             catch(error) {
@@ -65,12 +67,16 @@ export default function RegisterForm() {
 
     async function makePostCall(user){
         try {
-           const response = await axios.post('http://localhost:8000/register', user);
-           return response;
+            //console.log(user);
+            const response = await axios.post('http://localhost:8000/register', user);
+            //console.log(response.data.success);
+            setSuccess(response.data.success);
+            return response;
         }
         catch (error) {
-           console.log(error);
-           return false;
+            //console.log(error.response.data.error);
+            setError(error.response.data.error);
+            return error;
         }
     }
 
@@ -136,6 +142,8 @@ export default function RegisterForm() {
                     </button>
                 </div>
             </form>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {success && <p style={{ color: 'green' }}>{success}</p>}
         </div>
     );
 }

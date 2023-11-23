@@ -29,6 +29,7 @@ app.get("/login", async (req, res) => {
 
 app.post("/register", async (req, res) => {
     const user = req.body;
+<<<<<<< HEAD
     const emailExist = await userServices.existEmail(user);
     const usernameExist = await userServices.existUsername(user);
     if (emailExist) {
@@ -42,13 +43,18 @@ app.post("/register", async (req, res) => {
             console.log("Successfully registered: ", savedUser);
             res.status(201)
                 .json({ success: "Successfully registered!" })
-                /*.send(savedUser)*/
+                .send(savedUser)
                 .end();
         } else {
             console.log("Failed to register savedUser");
             res.status(500).end();
         }
     }
+=======
+    const savedUser = await userServices.addUser(user);
+    if (savedUser) res.status(201).send(savedUser);
+    else res.status(500).end();
+>>>>>>> parent of e94d9f0 (Frontend registration connected to backend and database successfully; backend crashes after successful registration though)
 });
 
 app.put("/profile/:id", async (req, res) => {
