@@ -13,3 +13,17 @@ html {
     --BK-dark-brown: #532C1F;
     --BK-link: #2AB7F4;
   }
+
+/* default page settings */
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: var(--BK-beige);
+    color: var(--BK-dark-brown);
+    font-family: "Lexend";
+}
+
+h1 {
+    font-family: "Calistoga";
+}

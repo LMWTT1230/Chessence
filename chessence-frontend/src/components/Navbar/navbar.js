@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useLocation } from "react-router-dom";
 import "./navbar.css";
 
 export default function Navbar() {
+    // do not render navbar on home page
+    let location = useLocation();
+    if (location.pathname === "/") {
+        return null;
+    }
+
     return (
         <nav className="navigation">
             <div
