@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./register.css";
-import axios from 'axios';
+import axios from "axios";
 
 export default function RegisterForm() {
     const [firstName, setFirstName] = useState("");
@@ -46,7 +46,7 @@ export default function RegisterForm() {
             };
             try {
                 const response = makePostCall(user);
-                if(response) {
+                if (response) {
                     setFirstName("");
                     setLastName("");
                     setUsername("");
@@ -55,22 +55,23 @@ export default function RegisterForm() {
                     setConfirmPassword("");
                     //setError("");
                 }
-            }
-            catch(error) {
+            } catch (error) {
                 console.log(error);
             }
             //console.log(user);
         }
     }
 
-    async function makePostCall(user){
+    async function makePostCall(user) {
         try {
-           const response = await axios.post('http://localhost:8000/register', user);
-           return response;
-        }
-        catch (error) {
-           console.log(error);
-           return false;
+            const response = await axios.post(
+                "http://localhost:8000/register",
+                user
+            );
+            return response;
+        } catch (error) {
+            console.log(error);
+            return false;
         }
     }
 

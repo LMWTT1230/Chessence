@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useMsal } from "@azure/msal-react";
 import LoginBox from "./LoginBox";
-import { loginRequest } from '../../authConfig';
+import { loginRequest } from "../../authConfig";
 import { isAuthenticated, logoutUser } from "../../api/session";
 
 export default function LoginPage() {
@@ -53,5 +53,4 @@ export default function LoginPage() {
             <LoginContent loggedIn={loggedIn} />
         </div>
     );
-
 }
