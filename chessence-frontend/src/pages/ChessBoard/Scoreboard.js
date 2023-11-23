@@ -15,13 +15,13 @@ function ScoreboardComponent(props) {
 function ScoreboardHighlight(props) {
     if (props.highlight) {
         return (
-            <div id="highlightbox">
+            <div className="sb-textbox" id="highlightbox">
                 <p>Your turn.</p>
             </div>
         );
     }
     return (
-        <div id="unselectedbox">
+        <div className="sb-textbox" id="unselectedbox">
             <p>Waiting for opponent..</p>
         </div>
     );

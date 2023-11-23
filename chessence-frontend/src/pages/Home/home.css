@@ -1,4 +1,4 @@
-.container {
+.home-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,7 +6,7 @@
     height: 100%;
 }
   
-h1 {
+.home-container h1 {
     color: var(--BK-dark-brown);
     font-size: 5rem;
     margin-top: -5rem;

@@ -13,7 +13,7 @@ export default function HomePage() {
         history.push('/register');
     };*/
     return (
-        <div className="container">
+        <div className="home-container">
             <h1>chessence</h1>
             <div className="button-container">
                 <a href="/login">

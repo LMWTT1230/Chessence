@@ -7,7 +7,7 @@ export default function GamePage() {
     const { time } = state;
     return (
         <div>
-            <Board initTime={time}/>
+            <Board initTime={time} />
         </div>
     );
 }
