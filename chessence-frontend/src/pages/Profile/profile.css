@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    overflow: scroll;
 }
 
 #profilePage h1 {
@@ -97,4 +97,19 @@
     padding: .5rem 2rem;
     margin: 2rem 0 1rem 0;
     border-style: none;
+}
+
+@media (max-width:1150px) {
+    .profile-container .nameRow {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .profile-container #profileImage {
+        width: 5rem;
+        height: 5rem;
+        padding: 0.25rem;
+    }
+    #profilePage {
+        margin-right: 5rem;
+    }
 }
