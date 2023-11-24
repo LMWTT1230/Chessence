@@ -16,20 +16,3 @@
     margin-top: 20px;
 }
   
-.button {
-    padding: .5rem 1rem;
-    font-family: "Lexend";
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-
-    border-radius: 2rem;
-    background-color: var(--BK-green);
-    box-shadow: -0.1rem 0.2rem var(--BK-dark-brown);
-    color: var(--BK-beige);
-    text-align: center;
-}
-
-.button:hover {
-    background-color: var(--BK-dark-brown)
-}
