@@ -2,18 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    background-image: -webkit-linear-gradient(30deg,
-        #593453 20%, 
-        #6E2F78 40%, 
-        white 40%);
+    overflow: scroll;
 }
 
 #profilePage h1 {
-    font-family: 'JetBrains Mono';
-    font-style: bold;
-    font-size: 4rem;
-    margin: 0.5rem 0 4rem;
+    font-size: 5rem;
+    margin: 0.5rem 0;
 }
 
 .profile-container {
@@ -21,12 +15,11 @@
     color: white;
     display: flex;
     justify-content: center;
-    font-family: 'JetBrains Mono';
     width: fit-content;
     border-radius: 2rem;
     gap: 1rem;
     padding: 1rem 2rem;
-    margin: 0 0 8rem;
+    margin: 0;
 }
 
 .profile-container #profileImage {
@@ -73,6 +66,8 @@
 .profile-container .nameRow .nameColumn {
     display: flex;
     flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
 }
 
 .profile-container .passwordColumn {
@@ -82,7 +77,7 @@
     width: 100%;
     gap: 0.5rem;
     margin-top: 2rem;
-    
+    align-items: start;
 }
 
 .profile-container .passwordColumn .passwordLabel {
@@ -102,11 +97,19 @@
     padding: .5rem 2rem;
     margin: 2rem 0 1rem 0;
     border-style: none;
-    background-color: #8455D1;
-    color: white;
-    font-family: 'JetBrains Mono';
 }
 
-.profile-container #profileSubmit:hover {
-    background-color: #5b4283;
+@media (max-width:1150px) {
+    .profile-container .nameRow {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .profile-container #profileImage {
+        width: 5rem;
+        height: 5rem;
+        padding: 0.25rem;
+    }
+    #profilePage {
+        margin-right: 5rem;
+    }
 }

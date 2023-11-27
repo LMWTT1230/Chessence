@@ -1,32 +1,17 @@
-@media screen and (min-width: 1400px) {
-    #archivePage {
-        display: flex;
-        flex-direction: row;
-        gap: 20rem;
-        align-items: center;
-        justify-content: center;
-        background-image: -webkit-linear-gradient(
-            30deg,
-            #593453 20%,
-            #6e2f78 40%,
-            white 40%
-        );
-    }
-  }
-
-
-  @media screen and (max-width: 1400px) {
-    #archivePage {
-        display: flex;
-        flex-direction: row;
-        gap: 5rem;
-        align-items: center;
-        justify-content: center;
-        background-image: -webkit-linear-gradient(
-            30deg,
-            #593453 20%,
-            #6e2f78 40%,
-            white 40%
-        );
-    }
-  }
+#archivePage {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--BK-dark-brown);
+    overflow: scroll;
+    margin: 0 112px 0 0; /* account for the 112px navbar */
+}
+#archivePage h1 {
+    color: var(--BK-beige);
+    font-size: 5rem;
+}
+#archiveContent {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-around;
+}

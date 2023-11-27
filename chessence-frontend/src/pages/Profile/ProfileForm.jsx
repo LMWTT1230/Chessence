@@ -115,6 +115,7 @@ export default function ProfileForm() {
                 <div id="profileFooter">
                     <button
                         type="button"
+                        className="button"
                         id="profileSubmit"
                         onClick={submitForm}>
                         Save 
