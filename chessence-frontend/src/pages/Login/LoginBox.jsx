@@ -10,6 +10,7 @@ export default function LoginBox() {
         showPassword: false,
     });
     const [passwordError, setPasswordError] = useState("");
+    //const [userId, setUserId] = useState("");
 
     const navigate = useNavigate();
     const forgotPasswordPath = "/ForgotPassword";
@@ -25,6 +26,7 @@ export default function LoginBox() {
         try {
             setPasswordError("");
             const res = await loginUser(email, password);
+            //setUserId(res.data.id);
             navigate(playPath);
         } catch (error) {
             if (error.response?.data?.message) {

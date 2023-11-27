@@ -9,23 +9,18 @@ const endpoint = "http://localhost:8000/session";
  * @param {string} password a user's password
  */
 export const loginUser = async (email, password) => {
-    try {
-        const response = await axios.post(
-            endpoint + "/login",
-            {
-                email,
-                password,
-            },
-            {
-                withCredentials: true,
-            }
-        );
-        return response;
-    }
-    catch (error) {
-        console.error("Error in loginUser request: ", error);
-    }
-    return;
+    const response = await axios.post(
+        endpoint + "/login",
+        {
+            email,
+            password,
+        },
+        {
+            withCredentials: true,
+        }
+    );
+    //console.log(response.data.id);
+    return response;
 };
 
 /**
@@ -53,3 +48,5 @@ export const isAuthenticated = async () => {
         return false;
     }
 }
+
+//export const getUserId = () => userId;
