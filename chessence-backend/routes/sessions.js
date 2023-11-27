@@ -25,7 +25,9 @@ router.post("/login", async (req, res) => {
         try {
             const { email, password } = req.body;
             const result = await userServices.login(email, password);
-            if (result.success) {
+            console.log(result);
+            if (result) {
+                console.log("result success");
                 // set session to logged in
                 req.session.loggedIn = true;
                 req.session.email = email;

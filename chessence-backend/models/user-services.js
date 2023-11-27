@@ -48,7 +48,7 @@ async function addUser(user) {
 }
 
 async function login(email, password) {
-    //try {
+    // try {
     const user = await userModel.findOne({ email: email });
 
     if (!user) {
@@ -61,6 +61,7 @@ async function login(email, password) {
 
     if (passwordMatch) {
         // Passwords match
+        console.log("password match");
         return true;
     } else {
         // Passwords don't match

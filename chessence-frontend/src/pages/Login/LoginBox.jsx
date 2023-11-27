@@ -14,7 +14,7 @@ export default function LoginBox() {
     const navigate = useNavigate();
     const forgotPasswordPath = "/ForgotPassword";
     const createAccountPath = "/register";
-    const playPath = "/play";
+    const playPath = "/start";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
