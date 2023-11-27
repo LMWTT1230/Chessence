@@ -1,19 +1,17 @@
 .gameEntry {
     display: flex;
-    gap: 3rem;
-    background-color: purple;
-    padding: 0rem 1rem 0rem 1rem;
+    gap: 5rem;
+    background-color: var(--BK-brown);
+    padding: 0.25rem 5rem;
     border-radius: 1.5rem;
     justify-content: space-between
 }
 
-.gameEntry p{
-    font-family: "JetBrains Mono";
-    font-style: bold;
-    font-size: 1.5rem;
-    color: aliceblue;
+.gameEntry p {
+    font-size: 1rem;
+    color: var(--BK-beige);
 }
 
 .gameEntry:hover{
-    background-color: black;
+    background-color: var(--BK-green);
 }

@@ -2,24 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    background-image: -webkit-linear-gradient(
-        30deg,
-        #593453 20%,
-        #6e2f78 40%,
-        white 40%
-    );
+    overflow: scroll;
 }
 
 #registerPage h1 {
-    font-family: "JetBrains Mono";
     font-style: bold;
     font-size: 4rem;
     margin: 0.5rem 0 4rem;
 }
 
 #registerPage h2 {
-    font-family: "JetBrains Mono";
     font-style: bold;
     font-size: 3rem;
     margin: 2rem 0 2rem;
@@ -28,7 +20,6 @@
 .register-container {
     background-color: #626262;
     color: white;
-    font-family: "JetBrains Mono";
     width: fit-content;
     border-radius: 2rem;
     padding: 1rem;
@@ -68,11 +59,5 @@
     padding: 0.5rem 1rem;
     margin: 2rem 0 1rem 0;
     border-style: none;
-    background-color: #8455d1;
-    color: white;
-    font-family: "JetBrains Mono";
 }
 
-.register-container #registerSubmit:hover {
-    background-color: #5b4283;
-}

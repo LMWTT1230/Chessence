@@ -1,3 +1,4 @@
+[![Build and deploy Node.js app to Azure Web App - chessence](https://github.com/LMWTT1230/Chessence/actions/workflows/main_chessence.yml/badge.svg?branch=add-ci-backend)](https://github.com/LMWTT1230/Chessence/actions/workflows/main_chessence.yml)
 # Chessence
 
 Style Guides

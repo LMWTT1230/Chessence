@@ -9,7 +9,6 @@ export default function GameList(props) {
 
   return (
     <div id="gameList">
-      <h1>Games</h1>
       {games.map((game, index) => (
         <GameEntry
           gameId={index}

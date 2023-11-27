@@ -29,14 +29,20 @@ export default function ArchivePage() {
     const [gameId, setGameId] = useState(0);
 
     function toggleMove(newGId) {
-        setShowMove(!showMove);
+        if(newGId == gameId){
+            setShowMove(!showMove);
+        }
+        
         setGameId(newGId)
     }
 
     return (
         <div id="archivePage">
-        <GameList clickEvent={toggleMove}/>
-        {showMove && <GameMove />}
+            <h1>games</h1>
+            <div id="archiveContent">
+                <GameList clickEvent={toggleMove}/>
+                {showMove && <GameMove />}
+            </div>
         </div>
     );
 }
