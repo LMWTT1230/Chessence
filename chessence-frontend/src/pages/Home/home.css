@@ -5,14 +5,13 @@
     align-items: center;
     height: 100%;
 }
-  
+
 .home-container h1 {
     color: var(--BK-dark-brown);
     font-size: 5rem;
     margin-top: -5rem;
 }
-  
+
 .button-container {
     margin-top: 20px;
 }
-  
