@@ -19,18 +19,21 @@ export default function ArchivePage() {
     //     }
     //  }
 
-    // useEffect(() => {
-    //     fetchAll().then( result => {
-    //       if (result)
-    //           setGames(result);
-    //     });
-    //   }, [] );
+    //useEffect(() => {
+    //    fetchAll().then( result => {
+    //      if (result)
+    //          setGames(result);
+    //    });
+    //  }, [] );
+
     const [showMove, setShowMove] = useState(false);
     const [gameId, setGameId] = useState(0);
 
     function toggleMove(newGId) {
-        if (newGId == gameId) {
+        if (newGId === gameId) {
             setShowMove(!showMove);
+        } else {
+            setShowMove(true);
         }
 
         setGameId(newGId);
@@ -45,4 +48,7 @@ export default function ArchivePage() {
             </div>
         </div>
     );
+
+    //<GameList game={games} clickEvent={toggleMove}/>
+    //{showMove && <GameMove />}
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./profile.css";
-import axios from 'axios';
+import axios from "axios";
 
 export default function ProfileForm() {
     const [firstName, setFirstName] = useState("");
@@ -37,25 +37,25 @@ export default function ProfileForm() {
     }
 
     async function submitForm() {
-        const user = 
-        {
+        const user = {
             firstName: firstName,
             lastName: lastName,
             username: username,
             email: email,
             password: newPassword,
         };
+        console.log(user);
 
-        try {
-            const response = await axios.put('http://localhost:8000/profile', user);
-            if (response.status === 200) {
-                console.log("Profile updated successfully");
-            } else {
-                console.log("Profile update failed");
-            }
-        } catch (error) {
-            console.error("Error updating profile:", error);
-        }
+        // try {
+        //     const response = await axios.put(`http://localhost:8000/profile/${userId}`, user);
+        //     if (response.status === 200) {
+        //         console.log("Profile updated successfully");
+        //     } else {
+        //         console.log("Profile update failed");
+        //     }
+        // } catch (error) {
+        //     console.error("Error updating profile:", error);
+        // }
     }
 
     return (

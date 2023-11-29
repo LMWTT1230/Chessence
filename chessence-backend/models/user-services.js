@@ -20,22 +20,6 @@ async function deleteUser(username) {
     return await userModel.findOneAndDelete({ username });
 }
 
-async function existUsername(user) {
-    const exist = await userModel.findOne({ username: user.username });
-    if (exist) {
-        return true;
-    }
-    return false;
-}
-
-async function existEmail(user) {
-    const exist = await userModel.findOne({ email: user.email });
-    if (exist) {
-        return true;
-    }
-    return false;
-}
-
 async function addUser(user) {
     // try {
     const hashedPwd = await bcrypt.hash(user.password, 10);
@@ -58,7 +42,7 @@ async function addUser(user) {
 }
 
 async function login(email, password) {
-    //try {
+    // try {
     const user = await userModel.findOne({ email: email });
 
     if (!user) {
@@ -71,7 +55,9 @@ async function login(email, password) {
 
     if (passwordMatch) {
         // Passwords match
-        return true;
+        console.log("password match");
+        const userId = user._id;
+        return userId.toString();
     } else {
         // Passwords don't match
         return false;
@@ -80,6 +66,15 @@ async function login(email, password) {
     //     console.log(error);
     //     return false;
     // }
+}
+
+async function findID(email) {
+    const user = await userModel.findOne({ email: email });
+
+    if (!user) {
+        return false;
+    }
+    return user._id;
 }
 
 async function updateProfile(id, user, oldPwd) {
@@ -97,10 +92,10 @@ async function updateProfile(id, user, oldPwd) {
         const update = {};
 
         if (user.firstname) {
-            update.firstName = user.firstname;
+            update.firstName = user.firstName;
         }
         if (user.lastname) {
-            update.lastName = user.lastname;
+            update.lastName = user.lastName;
         }
         if (user.email) {
             update.email = user.email;
@@ -136,6 +131,5 @@ export default {
     deleteUser,
     login,
     updateProfile,
-    existUsername,
-    existEmail,
+    findID,
 };
