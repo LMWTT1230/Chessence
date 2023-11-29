@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
                 // set session to logged in
                 req.session.loggedIn = true;
                 req.session.email = email;
-                res.status(200).json({ message: result.message, id: result});
+                res.status(200).json({ message: result.message, id: result });
             } else {
                 res.status(401).json({ message: result.message });
             }

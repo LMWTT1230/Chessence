@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./profile.css";
-import axios from 'axios';
+import axios from "axios";
 
 export default function ProfileForm() {
     const [firstName, setFirstName] = useState("");
@@ -36,10 +36,8 @@ export default function ProfileForm() {
         }
     }
 
-
     async function submitForm() {
-        const user = 
-        {
+        const user = {
             firstName: firstName,
             lastName: lastName,
             username: username,

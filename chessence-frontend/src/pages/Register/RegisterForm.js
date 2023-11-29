@@ -67,12 +67,14 @@ export default function RegisterForm() {
     async function makePostCall(user) {
         try {
             console.log(user);
-            const response = await axios.post('http://localhost:8000/register', user);
+            const response = await axios.post(
+                "http://localhost:8000/register",
+                user
+            );
             console.log(response.data.success);
             setSuccess(response.data.success);
             return response;
-        }
-        catch (error) {
+        } catch (error) {
             setError(error.response.data.error);
             return error;
         }
@@ -141,8 +143,8 @@ export default function RegisterForm() {
                     </button>
                 </div>
             </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            {success && <p style={{ color: "green" }}>{success}</p>}
         </div>
     );
 }

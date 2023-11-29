@@ -18,27 +18,25 @@ export default function ArchivePage() {
     //        return false;
     //     }
     //  }
-  
-     //useEffect(() => {
+
+    //useEffect(() => {
     //    fetchAll().then( result => {
     //      if (result)
     //          setGames(result);
     //    });
     //  }, [] );
-  
 
     const [showMove, setShowMove] = useState(false);
     const [gameId, setGameId] = useState(0);
 
     function toggleMove(newGId) {
-        if(newGId === gameId){
+        if (newGId === gameId) {
             setShowMove(!showMove);
-        }
-        else {
+        } else {
             setShowMove(true);
         }
-        
-        setGameId(newGId)
+
+        setGameId(newGId);
     }
 
     return (
@@ -46,7 +44,7 @@ export default function ArchivePage() {
             <h1>games</h1>
             <div id="archiveContent">
                 <GameList clickEvent={toggleMove} />
-                {showMove && <GameMove/>}
+                {showMove && <GameMove />}
             </div>
         </div>
     );

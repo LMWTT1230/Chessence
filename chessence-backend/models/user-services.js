@@ -131,5 +131,5 @@ export default {
     deleteUser,
     login,
     updateProfile,
-    findID
+    findID,
 };
