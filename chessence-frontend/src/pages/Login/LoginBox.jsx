@@ -10,12 +10,11 @@ export default function LoginBox() {
         showPassword: false,
     });
     const [passwordError, setPasswordError] = useState("");
-    //const [userId, setUserId] = useState("");
 
     const navigate = useNavigate();
     const forgotPasswordPath = "/ForgotPassword";
     const createAccountPath = "/register";
-    const playPath = "/start";
+    const playPath = "/play";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +25,6 @@ export default function LoginBox() {
         try {
             setPasswordError("");
             const res = await loginUser(email, password);
-            //setUserId(res.data.id);
             navigate(playPath);
         } catch (error) {
             if (error.response?.data?.message) {

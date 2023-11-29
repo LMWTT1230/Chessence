@@ -28,8 +28,6 @@ app.get("/login", async (req, res) => {
         const result = await userServices.login(email, password);
 
         if (result) {
-            console.log(result);
-            // const userId = userServices.findID(email);
             res.status(200).end();
         } else {
             res.status(401).end();

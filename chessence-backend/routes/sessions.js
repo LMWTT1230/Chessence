@@ -25,15 +25,11 @@ router.post("/login", async (req, res) => {
         try {
             const { email, password } = req.body;
             const result = await userServices.login(email, password);
-            console.log(result);
-            if (result) {
-                //const userId = await userServices.findID(email);
-                console.log("result success");
-                //console.log(userId.toString());
+            if (result.success) {
                 // set session to logged in
                 req.session.loggedIn = true;
                 req.session.email = email;
-                res.status(200).json({ message: result.message, id: result });
+                res.status(200).json({ message: result.message });
             } else {
                 res.status(401).json({ message: result.message });
             }
