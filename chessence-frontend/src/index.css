@@ -4,3 +4,45 @@ body > #root > div {
 body {
     margin: 0;
 }
+
+/* all variables are accessible in the html element */
+html {
+    --BK-beige: #f6f1e8;
+    --BK-green: #4a7949;
+    --BK-brown: #774c3e;
+    --BK-dark-brown: #532c1f;
+    --BK-link: #2ab7f4;
+}
+
+/* default page settings */
+body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: var(--BK-beige);
+    color: var(--BK-dark-brown);
+    font-family: "Lexend";
+}
+
+h1 {
+    font-family: "Calistoga";
+}
+
+/* use className="button" for button styling */
+.button {
+    padding: 0.5rem 1rem;
+    font-family: "Lexend";
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+
+    border-radius: 2rem;
+    background-color: var(--BK-green);
+    box-shadow: -0.1rem 0.2rem var(--BK-dark-brown);
+    color: var(--BK-beige);
+    text-align: center;
+}
+
+.button:hover {
+    background-color: var(--BK-dark-brown);
+}

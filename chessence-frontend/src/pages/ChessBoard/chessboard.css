@@ -3,29 +3,18 @@
     align-items: stretch;
     flex-direction: row;
     justify-content: flex-start;
-    background-image: -webkit-linear-gradient(
-        30deg,
-        #593453 20%,
-        #6e2f78 40%,
-        rgb(255, 255, 255) 40%
-    );
+    align-items: center;
+    overflow: scroll;
     padding-right: 1rem;
+    background-color: var(--BK-dark-brown);
 }
 
-#GameStartPage{
+#GameStartPage {
     display: flex;
-    align-items:center;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
-    background-image: -webkit-linear-gradient(
-        30deg,
-        #593453 20%,
-        #6e2f78 40%,
-        rgb(255, 255, 255) 40%
-    );
     padding: 2rem 2rem;
-    font-family: "JetBrains Mono";
-
 }
 
 #GameResultPage {
@@ -33,12 +22,6 @@
     align-items: stretch;
     flex-direction: row;
     justify-content: flex-start;
-    background-image: -webkit-linear-gradient(
-        30deg,
-        #593453 20%,
-        #6e2f78 40%,
-        white 40%
-    );
 }
 
 #timeInput {
@@ -51,10 +34,8 @@
     border-radius: 4px;
     padding: 10px 1px;
     width: 150px;
-    font-family: "JetBrains Mono";
     text-align: center;
-  }
-
+}
 
 .settings-container {
     background-color: #626262;
@@ -62,7 +43,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: 'JetBrains Mono';
     width: fit-content;
     border-radius: 2rem;
     gap: 0rem;
@@ -74,30 +54,23 @@
     font-size: 1rem;
     width: fit-content;
     border-radius: 2rem;
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     margin: 2rem 0 1rem 0;
-    border-style: none;
-    background-color: #8455D1;
-    color: white;
-    font-family: 'JetBrains Mono';
 }
 #GameResultPage h1 {
     font-size: medium;
-    font-family: "JetBrains Mono";
     font-style: bold;
     font-size: 4rem;
     margin: 10rem 10rem 4rem;
 }
 
 #ChessBoardPage h1 {
-    font-family: "JetBrains Mono";
     font-style: bold;
     font-size: 4rem;
-    margin: 0.5rem 0 4rem;
+    margin: 0;
 }
 
 #ChessBoardPage h2 {
-    font-family: "JetBrains Mono";
     font-style: bold;
     font-size: 3rem;
     margin: 2rem 0 0 0;
@@ -112,13 +85,18 @@
 
 .board-container {
     flex-shrink: 1;
-    background-color: #818181;
+    background-color: transparent;
     color: white;
-    font-family: "JetBrains Mono";
-    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
     border-radius: 0.5rem;
     padding: 0rem 0rem;
-    margin: 2rem;
+    margin: 5rem 2rem;
+}
+.board-container h1 {
+    color: var(--BK-beige);
 }
 
 #scoreboard-container {
@@ -139,6 +117,7 @@
     margin: 2rem 7.8rem 2rem 0rem;
     padding-left: 0%;
     border-radius: 0.5rem;
+    gap: 1rem;
 }
 
 #chatbox {
@@ -148,74 +127,35 @@
     margin: 0rem 1rem;
     border-radius: 0.5rem;
 }
-#scoreboard,
-#scoreboard2 {
+.scoreboard {
     display: flex;
     flex-grow: 1;
     flex-shrink: 1;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-size: small;
-    font-family: 'Lato', sans-serif;
-    background-color: #6e2f78; /* Gray color (adjust the shade if needed) */
+    font-size: 1rem;
     border-radius: 0.5rem;
-    margin: 1rem;
     flex-direction: column;
+    padding: 0 2rem;
 }
 
-#highlightbox {
+.game-timer {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+}
+#black-score {
+    color: var(--BK-beige);
+    background-color: var(
+        --BK-brown
+    ); /* Gray color (adjust the shade if needed) */
+}
+#white-score {
+    color: var(--BK-dark-brown);
+    background-color: var(--BK-beige);
+}
+.sb-textbox {
     flex-grow: 1;
     flex-shrink: 1;
-    margin: 1rem;
     background-color: transparent; /* Gray color (adjust the shade if needed) */
     border-radius: 0.5rem;
-}
-#unselectedbox {
-    flex-grow: 1;
-    flex-shrink: 1;
-    margin: 1rem;
-    background-color: transparent; /* Gray color (adjust the shade if needed) */
-    border-radius: 0.5rem;
-}
-.register-container #registerForm {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
-}
-
-.register-container input {
-    height: 1rem;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #d9d9d9;
-}
-
-.register-container .registerLabel {
-    font-size: 1rem;
-    margin: 0;
-}
-
-.register-container #registerFooter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.register-container #registerSubmit {
-    font-size: 1rem;
-    width: fit-content;
-    border-radius: 2rem;
-    padding: 0.5rem 1rem;
-    margin: 2rem 0 1rem 0;
-    border-style: none;
-    background-color: #8455d1;
-    color: white;
-    font-family: "JetBrains Mono";
-}
-
-.register-container #registerSubmit:hover {
-    background-color: #5b4283;
 }

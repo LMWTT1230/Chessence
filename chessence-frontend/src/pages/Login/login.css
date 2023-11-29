@@ -3,24 +3,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: -webkit-linear-gradient(
-        30deg,
-        #593453 20%,
-        #6e2f78 40%,
-        white 40%
-    );
 }
 #loginPage h1 {
-    font-family: "JetBrains Mono";
-    font-style: bold;
     font-size: 4rem;
     margin: 0 0 2rem 0rem;
 }
 
 .login-box {
     background-color: #626262;
-    color: white;
-    font-family: "JetBrains Mono";
     width: fit-content;
     border-radius: 2rem;
     padding: 1rem 0rem;
@@ -32,6 +22,7 @@
     flex-direction: column;
     gap: 0.5rem;
     padding: 1rem 2rem;
+    color: var(--BK-beige);
 }
 
 .login-box input {
@@ -43,7 +34,7 @@
 
 .login-box .inputError {
     font-size: 0.75rem;
-    color: rgb(255, 168, 211)
+    color: rgb(255, 168, 211);
 }
 
 .login-box .loginLabel {
@@ -52,8 +43,9 @@
 }
 
 .login-box #loginForgotPassword {
-    font-size: 0.5rem;
-    color: #2ab7f4;
+    font-size: 0.75rem;
+    color: var(--BK-link);
+    text-align: right;
 }
 
 .login-box #centeredLoginFooter {
@@ -70,17 +62,11 @@
     margin: 1rem 0 2rem 0;
     /*box-shadow: -1px 1px 5px black;*/
     border-style: none;
-    background-color: #8455d1;
-    color: white;
-    font-family: "JetBrains Mono";
-}
-.login-box #loginSubmit:hover {
-    background-color: #5b4283;
 }
 .login-box #loginCreateAccount {
-    font-size: 0.5rem;
+    font-size: 0.75rem;
     margin: 0;
-    color: #2ab7f4;
+    color: var(--BK-link);
 }
 .login-box #loginCrown {
     font-size: 3rem;

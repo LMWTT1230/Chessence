@@ -4,8 +4,7 @@ import SignUpForm from "./RegisterForm";
 export default function RegisterPage() {
     return (
         <div id="registerPage">
-            <h1>chessence</h1>
-            <h2>sign up</h2>
+            <h1>sign up</h1>
             <SignUpForm />
         </div>
     );

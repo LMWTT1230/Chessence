@@ -1,53 +1,17 @@
-body {
-    font-family: "JetBrains Mono";
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-    background-image: -webkit-linear-gradient(
-        210deg,
-        #6e2f78 30%,
-        #593453 50%,
-        white 20%
-    );
-}
-  
-.container {
+.home-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin-top: 10%;
-    margin-right: 50%;
+    height: 100%;
 }
-  
-h1 {
-    color: #333;
+
+.home-container h1 {
+    color: var(--BK-dark-brown);
+    font-size: 5rem;
+    margin-top: -5rem;
 }
-  
+
 .button-container {
     margin-top: 20px;
 }
-  
-.button {
-    padding: 10px 20px;
-    font-family: "JetBrains Mono";
-    font-size: 16px;
-    margin: 5px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-}
-  
-.login-button {
-    background-color: #8455D1;
-    color: #fff;
-}
-  
-.signup-button {
-    background-color: #8455D1;
-    color: #fff;
-}
-  

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./gameMove.css";
 
 export default function GameMove(props) {
@@ -103,7 +103,7 @@ export default function GameMove(props) {
         h5;square;h5;type;GreatFind;persistent;true]} 63. Kf1 Be5 64. g4 hxg4 65. h5 Qf5
         66. Qd5 g3 67. f4 a2 68. Qxa2 Bxf4 0-1
     `;
-    
+
     return (
         <div id="gameMove">
             <p>{move}</p>
