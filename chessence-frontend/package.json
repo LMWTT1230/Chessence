@@ -27,7 +27,8 @@
         "check": "prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
         "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
         "test": "jest",
-        "coverage": "jest --collectCoverage"
+        "coverage": "jest --collectCoverage",
+        "build": "CI=false react-scripts build"
     },
     "browserslist": {
         "production": [

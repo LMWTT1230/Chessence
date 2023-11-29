@@ -1,4 +1,5 @@
 import React from "react";
+import React from "react";
 import "./gameEntry.css";
 
 export default function GameEntry(props) {
@@ -17,3 +18,4 @@ export default function GameEntry(props) {
         </div>
     );
 }
+
