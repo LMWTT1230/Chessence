@@ -20,19 +20,29 @@ async function deleteUser(username) {
     return await userModel.findOneAndDelete({ username });
 }
 
+async function existUsername(user) {
+    const exist = await userModel.findOne({ username: user.username });
+    if (exist) {
+        return true;
+    }
+    return false;
+}
+
+async function existEmail(user) {
+    const exist = await userModel.findOne({ email: user.email });
+    if (exist) {
+        return true;
+    }
+    return false;
+}
+
 async function addUser(user) {
     // try {
-    const exist = await userModel.findOne({ username: user.username });
-
-    if (exist) {
-        return false;
-    }
-
     const hashedPwd = await bcrypt.hash(user.password, 10);
 
     const userToAdd = new userModel({
-        firstName: user.firstname,
-        lastName: user.lastname,
+        firstName: user.firstName,
+        lastName: user.lastName,
         username: user.username,
         password: hashedPwd,
         email: user.email,
@@ -126,4 +136,6 @@ export default {
     deleteUser,
     login,
     updateProfile,
+    existUsername,
+    existEmail,
 };

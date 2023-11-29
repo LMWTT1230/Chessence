@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 
 test("test addUser", async () => {
     let user = {
-        firstname: "Will",
-        lastname: "Kang",
+        firstName: "Will",
+        lastName: "Kang",
         username: "LMWTT",
         password: "test",
         email: "ykang08@calpoly.edu",
@@ -20,16 +20,16 @@ test("test addUser", async () => {
 
 test("test addUser already exist", async () => {
     let user1 = {
-        firstname: "Will",
-        lastname: "Kang",
+        firstName: "Will",
+        lastName: "Kang",
         username: "LMWTT",
         password: "test",
         email: "ykang08@calpoly.edu",
     };
 
     let user2 = {
-        firstname: "John",
-        lastname: "Doe",
+        firstName: "John",
+        lastName: "Doe",
         username: "LMWTT",
         password: "1234",
         email: "hello@test.com",
@@ -43,8 +43,8 @@ test("test addUser already exist", async () => {
 
 test("test login", async () => {
     let user = {
-        firstname: "Will",
-        lastname: "Kang",
+        firstName: "Will",
+        lastName: "Kang",
         username: "LMWTT",
         password: "test",
         email: "ykang08@calpoly.edu",
@@ -61,8 +61,8 @@ test("test login", async () => {
 
 test("test login user not found", async () => {
     let user = {
-        firstname: "Will",
-        lastname: "Kang",
+        firstName: "Will",
+        lastName: "Kang",
         username: "LMWTT",
         password: "test",
         email: "ykang08@calpoly.edu",
@@ -79,8 +79,8 @@ test("test login user not found", async () => {
 
 test("test login password don't match", async () => {
     let user = {
-        firstname: "Will",
-        lastname: "Kang",
+        firstName: "Will",
+        lastName: "Kang",
         username: "LMWTT",
         password: "test",
         email: "ykang08@calpoly.edu",
@@ -97,8 +97,8 @@ test("test login password don't match", async () => {
 
 test("test updateProfile", async () => {
     let user1 = {
-        firstname: "Will",
-        lastname: "Kang",
+        firstName: "Will",
+        lastName: "Kang",
         username: "LMWTT",
         password: "test",
         email: "ykang08@calpoly.edu",
@@ -107,8 +107,8 @@ test("test updateProfile", async () => {
     const savedUser = await userServices.addUser(user1);
 
     let user2 = {
-        firstname: "John",
-        lastname: "Doe",
+        firstName: "John",
+        lastName: "Doe",
         username: "test",
         password: "1234",
         email: "hello@test.com",
@@ -140,8 +140,8 @@ test("test updateProfile not exist", async () => {
 
 test("test updateProfile null", async () => {
     let user1 = {
-        firstname: "Will",
-        lastname: "Kang",
+        firstName: "Will",
+        lastName: "Kang",
         username: "LMWTT",
         password: "test",
         email: "ykang08@calpoly.edu",
@@ -165,8 +165,8 @@ test("test updateProfile null", async () => {
 
 test("test updateProfile pwd fail", async () => {
     let user1 = {
-        firstname: "Will",
-        lastname: "Kang",
+        firstName: "Will",
+        lastName: "Kang",
         username: "LMWTT",
         password: "test",
         email: "ykang08@calpoly.edu",
@@ -175,8 +175,8 @@ test("test updateProfile pwd fail", async () => {
     const savedUser = await userServices.addUser(user1);
 
     let user2 = {
-        firstname: "John",
-        lastname: "Doe",
+        firstName: "John",
+        lastName: "Doe",
         username: "test",
         password: "1234",
         email: "hello@test.com",
