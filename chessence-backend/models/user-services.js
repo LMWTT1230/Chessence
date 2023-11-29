@@ -9,8 +9,6 @@ dotenv.config();
 // uncomment the following line to view mongoose debug messages
 mongoose.set("debug", true);
 
-//console.log(process.env);
-
 mongoose.connect(process.env.MONGODB_URI);
 //.catch((error) => console.log(error));
 
