@@ -43,8 +43,6 @@ export default function ArchivePage() {
 
     return (
         <div id="archivePage">
-        //<GameList game={games} clickEvent={toggleMove}/>
-        //{showMove && <GameMove />}
             <h1>games</h1>
             <div id="archiveContent">
                 <GameList clickEvent={toggleMove} />
@@ -52,4 +50,7 @@ export default function ArchivePage() {
             </div>
         </div>
     );
+
+    //<GameList game={games} clickEvent={toggleMove}/>
+    //{showMove && <GameMove />}
 }
