@@ -12,6 +12,6 @@
     color: var(--BK-beige);
 }
 
-.gameEntry:hover{
+.gameEntry:hover {
     background-color: var(--BK-green);
 }
