@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./profile.css";
-import axios from 'axios';
+import axios from "axios";
 
 export default function ProfileForm() {
     const [firstName, setFirstName] = useState("");
@@ -37,8 +37,7 @@ export default function ProfileForm() {
     }
 
     async function submitForm() {
-        const user = 
-        {
+        const user = {
             firstName: firstName,
             lastName: lastName,
             username: username,
@@ -47,7 +46,10 @@ export default function ProfileForm() {
         };
 
         try {
-            const response = await axios.put('http://localhost:8000/profile', user);
+            const response = await axios.put(
+                "http://localhost:8000/profile",
+                user
+            );
             if (response.status === 200) {
                 console.log("Profile updated successfully");
             } else {

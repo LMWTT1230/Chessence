@@ -52,4 +52,3 @@ export default function GameList(props) {
         </div>
     );
 }
-

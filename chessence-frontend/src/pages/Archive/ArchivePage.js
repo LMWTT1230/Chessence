@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
 import "./archive.css";
 import GameList from "./GameList/GameList.js";
-import GameMove from "./Moves/GameMove.js";
 import GameMove from "./Moves/GameMove.js";
 
 export default function ArchivePage() {
@@ -33,11 +30,8 @@ export default function ArchivePage() {
 
     function toggleMove(newGId) {
         if (newGId == gameId) {
-        if (newGId == gameId) {
             setShowMove(!showMove);
         }
-
-        setGameId(newGId);
 
         setGameId(newGId);
     }
@@ -54,4 +48,3 @@ export default function ArchivePage() {
         </div>
     );
 }
-
