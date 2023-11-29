@@ -1,0 +1,17 @@
+.gameEntry {
+    display: flex;
+    gap: 5rem;
+    background-color: var(--BK-brown);
+    padding: 0.25rem 5rem;
+    border-radius: 1.5rem;
+    justify-content: space-between
+}
+
+.gameEntry p {
+    font-size: 1rem;
+    color: var(--BK-beige);
+}
+
+.gameEntry:hover {
+    background-color: var(--BK-green);
+}
