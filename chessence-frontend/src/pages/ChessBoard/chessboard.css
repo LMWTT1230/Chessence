@@ -1,13 +1,13 @@
 #ChessBoardPage {
+    height: 100%;
     display: flex;
-    align-items: stretch;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content:flex-start;
     overflow: scroll;
-    padding-right: 1rem;
+    padding-right: 112px;
     background-color: var(--BK-dark-brown);
 }
+
 
 #GameStartPage{
     display: flex;
@@ -15,6 +15,18 @@
     flex-direction: column;
     justify-content: center;
     padding: 2rem 2rem;
+}
+
+#board{
+    height: 10px;
+}
+
+#test{
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    aspect-ratio: 1 / 1 ;
+    background-color: #555;
 }
 
 #GameResultPage {
@@ -85,16 +97,20 @@
 }
 
 .board-container {
-    flex-shrink: 1;
+    /* flex-shrink: 1; */
+    /* flex-grow: .5; */
+    overflow-y: scroll;
+
+    height: 100%;
     background-color: transparent;
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: center;
+    align-items: flex-start;
+    /* justify-content: center; */
     border-radius: 0.5rem;
-    padding: 0rem 0rem;
-    margin: 5rem 2rem;
+    padding: 0rem 2rem;
+    /* margin: 5rem 2rem; */
 }
 .board-container h1 {
     color: var(--BK-beige);
@@ -102,7 +118,7 @@
 
 #scoreboard-container {
     display: flex;
-    flex-shrink: 1;
+    flex-shrink: 2;
     flex-grow: 1;
     flex-direction: column;
     justify-content: center;
@@ -115,10 +131,7 @@
         0,
         0
     ); /* Gray color (adjust the shade if needed) */
-    margin: 2rem 7.8rem 2rem 0rem;
-    padding-left: 0%;
-    border-radius: 0.5rem;
-    gap: 1rem;
+    padding: 5.2rem 2rem 0rem 0rem;
 }
 
 #chatbox {

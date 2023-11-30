@@ -34,7 +34,8 @@ export default function Game(props) {
         };
     }, []);
 
-    const height_string = windowDimension.winHeight - 63.5 + "px"; // Convert to a string with 'px' appended
+    const height_string = windowDimension.winHeight - 110 + "px"; // Convert to a string with 'px' appended
+    console.log(height_string);
 
     /// GAME LOGIC ///
     useEffect(() => {
@@ -90,13 +91,18 @@ export default function Game(props) {
                 className="board-container"
                 style={{
                     paddingTop: "0px",
-                    height: height_string,
-                    width: height_string,
+                    // width: height_string,
                 }}
             >
                 <h1>chessence</h1>
-                <Chessboard
-                    id="BasicBoard"
+                {/* <div id="test"></div> */}
+                <div id="test" 
+                    style={{
+                        // height: height_string,
+                        width: height_string,
+                    }}>
+                    <Chessboard
+                    id="board"
                     position={fen}
                     onPieceDrop={onDrop}
                     customBoardStyle={{
@@ -109,8 +115,13 @@ export default function Game(props) {
                         backgroundColor: "var(--BK-beige)",
                     }}
                 />
+                </div>
             </div>
-            <div id="scoreboard-container">
+            <div id="scoreboard-container"
+                    style={{
+                        // height: height_string,
+                        height: height_string,
+                    }}>
                 <div id="black-score" className="scoreboard">
                     <ScoreboardComponent this="b" turn={turn} />
                     <MyTimer initTime={props.initTime} onExpire={onTimerExpire} turn={turn} player="b" />
