@@ -29,8 +29,10 @@ export default function ArchivePage() {
     }, []);
 
     function toggleMove(newGId) {
-        if (newGId == gameId) {
+        if (newGId === gameId) {
             setShowMove(!showMove);
+        } else {
+            setShowMove(true);
         }
 
         setGameId(newGId);
@@ -47,4 +49,7 @@ export default function ArchivePage() {
             </div>
         </div>
     );
+
+    //<GameList game={games} clickEvent={toggleMove}/>
+    //{showMove && <GameMove />}
 }

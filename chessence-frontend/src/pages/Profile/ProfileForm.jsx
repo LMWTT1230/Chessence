@@ -44,6 +44,7 @@ export default function ProfileForm() {
             email: email,
             password: newPassword,
         };
+        console.log(user);
 
         try {
             const response = await axios.put(
@@ -57,7 +58,7 @@ export default function ProfileForm() {
             }
         } catch (error) {
             console.error("Error updating profile:", error);
-        }
+        }  
     }
 
     return (

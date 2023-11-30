@@ -19,6 +19,7 @@ export const loginUser = async (email, password) => {
             withCredentials: true,
         }
     );
+    //console.log(response.data.id);
     return response;
 };
 
