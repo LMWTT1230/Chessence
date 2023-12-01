@@ -21,11 +21,25 @@ test("test getGames", async () => {
     const addedGame2 = await gameServices.addGame(game2);
 
     const games = await gameServices.getGames();
-    console.log(games);
 
     expect(games.length).toBe(2);
     await gameServices.deleteGame(addedGame1["_id"]);
     await gameServices.deleteGame(addedGame2["_id"]);
+});
+
+test("test getGamesById", async () => {
+    const game = {
+        blackID: "abcd",
+        whiteID: "1234",
+        gameHistory: "a1b2c3",
+        date: "2023-11-17T20:00:00Z",
+        winner: "abcd",
+    };
+    const addedGame = await gameServices.addGame(game);
+    const addedGameByID = await gameServices.getGames(addedGame["_id"]);
+
+    expect(addedGameByID).toBeTruthy;
+    await gameServices.deleteGame(addedGame["_id"]);
 });
 
 test("test addGame", async () => {
