@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
 import GameEntry from "../Games/GameEntry";
 import "./gameList.css";
 
 export default function GameList(props) {
     const [usernames, setUserNames] = useState([]);
+    const [startIndex, setStartIndex] = useState(0);
 
     async function getUserName(id) {
         try {
@@ -13,7 +15,7 @@ export default function GameList(props) {
             );
             return response.data.username;
         } catch (error) {
-            //We're not handling errors. Just logging into the console.
+            // Handle errors. Logging into the console for now.
             console.log(error);
             return false;
         }
@@ -25,7 +27,7 @@ export default function GameList(props) {
                 const black = await getUserName(row.whiteID);
                 const white = await getUserName(row.blackID);
                 const winner = await getUserName(row.winner);
-                return [black, white, winner];
+                return { black, white, winner };
             });
 
             const resolvedUsernames = await Promise.all(usernamePromises);
@@ -35,9 +37,27 @@ export default function GameList(props) {
         fetchUsernames();
     }, [props.gameData]);
 
+    const pageSize = 6;
+    const totalPages = Math.ceil(props.gameData.length / pageSize);
+
+    const handleNextPage = () => {
+        setStartIndex((prevIndex) =>
+            Math.min(prevIndex + pageSize, props.gameData.length - pageSize)
+        );
+    };
+
+    const handlePrevPage = () => {
+        setStartIndex((prevIndex) => Math.max(prevIndex - pageSize, 0));
+    };
+
+    const displayedGames = props.gameData.slice(
+        startIndex,
+        startIndex + pageSize
+    );
+
     return (
         <div id="gameList">
-            {props.gameData.map((row, index) => (
+            {displayedGames.map((row, index) => (
                 <GameEntry
                     gameId={row._id}
                     key={index}
@@ -49,6 +69,17 @@ export default function GameList(props) {
                     onClick={props.clickEvent}
                 />
             ))}
+            <div className="pagination">
+                <button onClick={handlePrevPage} disabled={startIndex === 0}>
+                    <FaArrowCircleLeft />
+                </button>
+                <button
+                    onClick={handleNextPage}
+                    disabled={startIndex + pageSize >= props.gameData.length}
+                >
+                    <FaArrowCircleRight />
+                </button>
+            </div>
         </div>
     );
 }

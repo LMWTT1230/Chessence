@@ -4,3 +4,31 @@
     gap: 1rem;
     padding: 0 2rem;
 }
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 3rem;
+    transition: color 0.3s ease;
+}
+
+.pagination button:hover {
+    color: grey;
+}
+
+.pagination button:first-child {
+    margin-right: 2rem;
+}
+
+.pagination button:last-child {
+    margin-left: 2rem;
+}

@@ -5,7 +5,5 @@ import { useLocation } from "react-router-dom";
 export default function GamePage() {
     const { state } = useLocation();
     const { time } = state;
-    return (
-            <Board initTime={time} />
-    );
+    return <Board initTime={time} />;
 }

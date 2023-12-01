@@ -58,7 +58,7 @@ export default function ProfileForm() {
             }
         } catch (error) {
             console.error("Error updating profile:", error);
-        }  
+        }
     }
 
     return (
