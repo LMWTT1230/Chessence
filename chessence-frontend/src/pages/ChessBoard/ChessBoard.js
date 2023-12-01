@@ -35,7 +35,6 @@ export default function Game(props) {
     }, []);
 
     const height_string = windowDimension.winHeight - 110 + "px"; // Convert to a string with 'px' appended
-    console.log(height_string);
 
     /// GAME LOGIC ///
     useEffect(() => {
