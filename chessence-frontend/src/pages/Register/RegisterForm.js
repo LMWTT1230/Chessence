@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./register.css";
-import axios from 'axios';
+import axios from "axios";
 
 export default function RegisterForm() {
     const [firstName, setFirstName] = useState("");
@@ -9,7 +9,8 @@ export default function RegisterForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    //const [error, setError] = useState("");
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -46,31 +47,36 @@ export default function RegisterForm() {
             };
             try {
                 const response = makePostCall(user);
-                if(response) {
+                if (response) {
                     setFirstName("");
                     setLastName("");
                     setUsername("");
                     setEmail("");
                     setPassword("");
                     setConfirmPassword("");
-                    //setError("");
+                    setError("");
+                    setSuccess("");
                 }
-            }
-            catch(error) {
+            } catch (error) {
                 console.log(error);
             }
             //console.log(user);
         }
     }
 
-    async function makePostCall(user){
+    async function makePostCall(user) {
         try {
-           const response = await axios.post('http://localhost:8000/register', user);
-           return response;
-        }
-        catch (error) {
-           console.log(error);
-           return false;
+            console.log(user);
+            const response = await axios.post(
+                "http://localhost:8000/register",
+                user
+            );
+            console.log(response.data.success);
+            setSuccess(response.data.success);
+            return response;
+        } catch (error) {
+            setError(error.response.data.error);
+            return error;
         }
     }
 
@@ -137,6 +143,8 @@ export default function RegisterForm() {
                     </button>
                 </div>
             </form>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            {success && <p style={{ color: "green" }}>{success}</p>}
         </div>
     );
 }

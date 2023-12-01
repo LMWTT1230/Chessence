@@ -4,6 +4,7 @@
     background-color: var(--BK-brown);
     padding: 0.25rem 5rem;
     border-radius: 1.5rem;
+    justify-content: space-between;
 }
 
 .gameEntry p {
@@ -11,6 +12,6 @@
     color: var(--BK-beige);
 }
 
-.gameEntry:hover{
+.gameEntry:hover {
     background-color: var(--BK-green);
 }

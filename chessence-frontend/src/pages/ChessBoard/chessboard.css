@@ -11,7 +11,7 @@
 
 #GameStartPage{
     display: flex;
-    align-items:center;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
     padding: 2rem 2rem;
@@ -47,8 +47,7 @@
     padding: 10px 1px;
     width: 150px;
     text-align: center;
-  }
-
+}
 
 .settings-container {
     background-color: #626262;
@@ -67,7 +66,7 @@
     font-size: 1rem;
     width: fit-content;
     border-radius: 2rem;
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     margin: 2rem 0 1rem 0;
 }
 #GameResultPage h1 {
@@ -159,7 +158,9 @@
 }
 #black-score {
     color: var(--BK-beige);
-    background-color: var(--BK-brown); /* Gray color (adjust the shade if needed) */
+    background-color: var(
+        --BK-brown
+    ); /* Gray color (adjust the shade if needed) */
 }
 #white-score {
     color: var(--BK-dark-brown);

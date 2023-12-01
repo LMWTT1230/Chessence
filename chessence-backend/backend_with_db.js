@@ -28,6 +28,8 @@ app.get("/login", async (req, res) => {
         const result = await userServices.login(email, password);
 
         if (result) {
+            console.log(result);
+            // const userId = userServices.findID(email);
             res.status(200).end();
         } else {
             res.status(401).end();
@@ -40,9 +42,26 @@ app.get("/login", async (req, res) => {
 
 app.post("/register", async (req, res) => {
     const user = req.body;
-    const savedUser = await userServices.addUser(user);
-    if (savedUser) res.status(201).send(savedUser);
-    else res.status(500).end();
+    const emailExist = await userServices.existEmail(user);
+    const usernameExist = await userServices.existUsername(user);
+    if (emailExist) {
+        res.status(400).json({ error: "Email already exists" }).end();
+    } else if (usernameExist) {
+        res.status(400).json({ error: "Username already exists" }).end();
+    } else {
+        const savedUser = await userServices.addUser(user);
+        console.log(savedUser);
+        if (savedUser) {
+            console.log("Successfully registered: ", savedUser);
+            res.status(201)
+                .json({ success: "Successfully registered!" })
+                /*.send(savedUser)*/
+                .end();
+        } else {
+            console.log("Failed to register savedUser");
+            res.status(500).end();
+        }
+    }
 });
 
 app.put("/profile/:id", async (req, res) => {
