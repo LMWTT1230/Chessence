@@ -109,7 +109,7 @@ test("test updateProfile", async () => {
     let user2 = {
         firstName: "John",
         lastName: "Doe",
-        username: "test",
+        username: "newname",
         password: "1234",
         email: "hello@test.com",
     };
