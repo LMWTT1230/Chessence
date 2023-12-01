@@ -28,16 +28,18 @@ mongoose.connect(process.env.MONGODB_URI);
 async function getGames(id) {
     let result;
     if (id) {
-        result = await findGameById(id);
+        result = await findGamesByUserId(id);
     } else {
         result = await gameModel.find();
     }
     return result;
 }
 
-async function findGameById(id) {
+async function findGamesByUserId(userId) {
     try {
-        return await gameModel.findById(id);
+        return await gameModel.find({
+            $or: [{ blackID: userId }, { whiteID: userId }],
+        });
     } catch (error) {
         console.log(error);
         return undefined;
