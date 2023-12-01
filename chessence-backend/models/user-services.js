@@ -20,24 +20,14 @@ async function deleteUser(username) {
     return await userModel.findOneAndDelete({ username });
 }
 
-async function existUsername(user) {
-    const exist = await userModel.findOne({ username: user.username });
-    if (exist) {
-        return true;
-    }
-    return false;
-}
-
-async function existEmail(user) {
-    const exist = await userModel.findOne({ email: user.email });
-    if (exist) {
-        return true;
-    }
-    return false;
-}
-
 async function addUser(user) {
     // try {
+    const exist = await userModel.findOne({ username: user.username });
+
+    if (exist) {
+        return false;
+    }
+
     const hashedPwd = await bcrypt.hash(user.password, 10);
 
     const userToAdd = new userModel({
@@ -84,14 +74,14 @@ async function login(email, password) {
     // }
 }
 
-async function findID(email) {
-    const user = await userModel.findOne({ email: email });
+// async function findID(email) {
+//     const user = await userModel.findOne({ email: email });
 
-    if (!user) {
-        return false;
-    }
-    return user._id;
-}
+//     if (!user) {
+//         return false;
+//     }
+//     return user._id;
+// }
 
 async function updateProfile(id, user, oldPwd) {
     //try {
@@ -107,10 +97,10 @@ async function updateProfile(id, user, oldPwd) {
         const filter = { _id: id };
         const update = {};
 
-        if (user.firstname) {
+        if (user.firstName) {
             update.firstName = user.firstName;
         }
-        if (user.lastname) {
+        if (user.lastName) {
             update.lastName = user.lastName;
         }
         if (user.email) {
@@ -162,7 +152,4 @@ export default {
     deleteUser,
     login,
     updateProfile,
-    findID,
-    existUsername,
-    existEmail,
 };
