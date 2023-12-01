@@ -142,6 +142,21 @@ async function updateProfile(id, user, oldPwd) {
     // }
 }
 
+async function getUsernameById(userId) {
+    //try {
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+        return null;
+    }
+
+    return user.username;
+    // } catch (error) {
+    //     console.error("Error fetching username by ID:", error);
+    //     throw error;
+    // }
+}
+
 export default {
     addUser,
     deleteUser,
