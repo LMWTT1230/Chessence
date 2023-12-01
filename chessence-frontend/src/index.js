@@ -33,7 +33,7 @@ const root = ReactDOMClient.createRoot(container);
 export default function App() {
     return (
         <MsalProvider instance={msalInstance}>
-            <BrowserRouter>
+            <BrowserRouter basename="/">
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
