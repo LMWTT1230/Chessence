@@ -95,32 +95,36 @@ export default function Game(props) {
             >
                 <h1>chessence</h1>
                 {/* <div id="test"></div> */}
-                <div id="test" 
+                <div
+                    id="test"
                     style={{
                         // height: height_string,
                         width: height_string,
-                    }}>
+                    }}
+                >
                     <Chessboard
-                    id="board"
-                    position={fen}
-                    onPieceDrop={onDrop}
-                    customBoardStyle={{
-                        borderRadius: ".5rem",
-                    }}
-                    customDarkSquareStyle={{
-                        backgroundColor: "var(--BK-green)",
-                    }}
-                    customLightSquareStyle={{
-                        backgroundColor: "var(--BK-beige)",
-                    }}
-                />
+                        id="board"
+                        position={fen}
+                        onPieceDrop={onDrop}
+                        customBoardStyle={{
+                            borderRadius: ".5rem",
+                        }}
+                        customDarkSquareStyle={{
+                            backgroundColor: "var(--BK-green)",
+                        }}
+                        customLightSquareStyle={{
+                            backgroundColor: "var(--BK-beige)",
+                        }}
+                    />
                 </div>
             </div>
-            <div id="scoreboard-container"
-                    style={{
-                        // height: height_string,
-                        height: height_string,
-                    }}>
+            <div
+                id="scoreboard-container"
+                style={{
+                    // height: height_string,
+                    height: height_string,
+                }}
+            >
                 <div id="black-score" className="scoreboard">
                     <ScoreboardComponent this="b" turn={turn} />
                     <MyTimer
