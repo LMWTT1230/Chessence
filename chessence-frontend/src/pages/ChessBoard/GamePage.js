@@ -6,8 +6,6 @@ export default function GamePage() {
     const { state } = useLocation();
     const { time } = state;
     return (
-        <div>
             <Board initTime={time} />
-        </div>
     );
 }
