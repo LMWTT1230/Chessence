@@ -31,6 +31,10 @@ io.on("connection", (socket) => {
     socket.on("move", (move) => {
         console.log(`move ${JSON.stringify(move)} (${socket.id})`);
     });
+    socket.on("join", (roomId) => {
+        console.log("Joined " + roomId);
+        socket.join(roomId);
+    });
 });
 
 var corsOptions = {

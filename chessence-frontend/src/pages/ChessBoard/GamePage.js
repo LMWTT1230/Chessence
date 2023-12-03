@@ -4,6 +4,8 @@ import { socket } from "../../api/socket";
 import { useLocation } from "react-router-dom";
 
 export default function GamePage() {
+    const { state } = useLocation();
+    const { time, roomId } = state;
     const [isConnected, setIsConnected] = useState(socket.connected);
     /// Socket Functions ///
     useEffect(() => {
@@ -25,9 +27,8 @@ export default function GamePage() {
     const sendMove = (move) => {
         socket.emit("move", move);
     };
+    socket.emit("join", roomId);
 
-    const { state } = useLocation();
-    const { time } = state;
     if (isConnected) {
         return <Board initTime={time} sendMove={sendMove} />;
     } else {

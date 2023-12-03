@@ -35,7 +35,7 @@
     justify-content: flex-start;
 }
 
-#timeInput {
+.gameSettingsInput {
     background-color: rgba(96, 108, 110, 0.9);
     color: #ffffff;
     font-size: 30px;
