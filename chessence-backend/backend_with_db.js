@@ -7,9 +7,19 @@ import gameServices from "./models/game-services.js";
 
 import sessionEndpoints from "./routes/sessions.js";
 
+import { Server } from "socket.io";
+import * as http from "http";
+
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
 const port = 8000;
 dotenv.config();
+
+io.on("connection", (socket) => {
+    console.log("a user connected");
+});
 
 var corsOptions = {
     origin: process.env.CORS_ORIGIN,
@@ -115,6 +125,6 @@ app.delete("/history/:id", async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || port, () => {
+server.listen(process.env.PORT || port, () => {
     console.log("REST API is listening.");
 });
