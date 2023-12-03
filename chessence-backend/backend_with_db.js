@@ -24,9 +24,12 @@ dotenv.config();
 // websocket code
 io.listen(4000); // us
 io.on("connection", (socket) => {
-    console.log("a user connected");
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
+    console.log(`a user connected (${socket.id})`);
+    socket.on("disconnect", () => {
+        console.log(`user disconnected (${socket.id})`);
+    });
+    socket.on("move", (move) => {
+        console.log(`move ${JSON.stringify(move)} (${socket.id})`);
     });
 });
 
