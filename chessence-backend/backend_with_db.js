@@ -8,17 +8,26 @@ import gameServices from "./models/game-services.js";
 import sessionEndpoints from "./routes/sessions.js";
 
 import { Server } from "socket.io";
-import * as http from "http";
+import { createServer } from "http";
 
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
+const server = createServer();
+const io = new Server(server, {
+    cors: {
+        origin: process.env.CORS_ORIGIN,
+    },
+});
 
 const port = 8000;
 dotenv.config();
 
+// websocket code
+io.listen(4000); // us
 io.on("connection", (socket) => {
     console.log("a user connected");
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
 });
 
 var corsOptions = {

@@ -6,6 +6,8 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
 import { msalConfig } from "./authConfig.js";
 
+import {io} from "socket.io-client";
+
 import GamePage from "./pages/ChessBoard/GamePage.js";
 import "./index.css";
 import LoginPage from "./pages/Login/LoginPage.js";
@@ -30,6 +32,9 @@ const container = document.getElementById("root");
 // Create a root
 const root = ReactDOMClient.createRoot(container);
 
+// connect
+const socket = io("http://localhost:4000"); // CHANGE TO EMPTY IN DEPLOYMENT
+
 export default function App() {
     return (
         <MsalProvider instance={msalInstance}>
@@ -37,7 +42,7 @@ export default function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/play" element={<GamePage />} />
+                    <Route path="/play" element={<GamePage socket={socket} />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
