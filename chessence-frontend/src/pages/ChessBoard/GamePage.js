@@ -7,6 +7,7 @@ export default function GamePage() {
     const { state } = useLocation();
     const { time, roomId } = state;
     const [isConnected, setIsConnected] = useState(socket.connected);
+    const [hasSecondPlayer, setHasSecondPlayer] = useState(false);
     /// Socket Functions ///
     useEffect(() => {
         function onConnect() {
@@ -15,8 +16,19 @@ export default function GamePage() {
         function onDisconnect() {
             setIsConnected(false);
         }
+        function onStart() {
+            setHasSecondPlayer(true);
+        }
+        function onWait() {
+            setHasSecondPlayer(false);
+            console.log("has " + hasSecondPlayer);
+        }
         socket.on("connect", onConnect);
         socket.on("disconnect", onDisconnect);
+        socket.on("waiting", onWait);
+        socket.on("starting", onStart);
+        // join a room
+        socket.emit("join", roomId);
         return () => {
             socket.off("connect", onConnect);
             socket.off("disconnect", onDisconnect);
@@ -27,11 +39,11 @@ export default function GamePage() {
     const sendMove = (move) => {
         socket.emit("move", move);
     };
-    socket.emit("join", roomId);
-
-    if (isConnected) {
-        return <Board initTime={time} sendMove={sendMove} />;
-    } else {
+    if (!isConnected) {
         return <p>Connecting...</p>;
+    } else if (!hasSecondPlayer) {
+        return <p>Waiting for second player to join room {roomId}</p>;
+    } else {
+        return <Board initTime={time} sendMove={sendMove} />;
     }
 }

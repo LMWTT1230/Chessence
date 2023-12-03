@@ -21,19 +21,58 @@ const io = new Server(server, {
 const port = 8000;
 dotenv.config();
 
-// websocket code
-io.listen(4000); // us
+/** websocket code **/
+io.listen(4000); // use this port for ws connections
+// rooms is a dict of roomId : player array
+const rooms = {};
+const joinRoom = (socketId, roomId) => {
+    if (roomId in rooms) {
+        if (rooms[roomId].indexOf(socketId) === -1) {
+            rooms[roomId].push(socketId);
+        }
+    } else {
+        rooms[roomId] = [socketId];
+    }
+}
 io.on("connection", (socket) => {
     console.log(`a user connected (${socket.id})`);
-    socket.on("disconnect", () => {
+    socket.on("disconnecting", () => {
+        // remove user from the room they were in
+        const currentRooms = socket.rooms;
+        if (currentRooms.size >= 2) {
+            const roomId = [...currentRooms].filter(
+                (rId) => rId !== socket.id
+            )[0];
+            rooms[roomId] = rooms[roomId].filter(
+                (player) => player !== socket.id
+            );
+            // if only one person in room, emit wait
+            let players = rooms[roomId];
+            if (players.length === 1) {
+                io.to(roomId).emit("waiting");
+            }
+        }
         console.log(`user disconnected (${socket.id})`);
     });
+
     socket.on("move", (move) => {
         console.log(`move ${JSON.stringify(move)} (${socket.id})`);
     });
+
     socket.on("join", (roomId) => {
-        console.log("Joined " + roomId);
+        joinRoom(socket.id, roomId);
+        console.log("Joined " + roomId + JSON.stringify(rooms[roomId]));
         socket.join(roomId);
+
+        // emit start if start
+        let players = rooms[roomId];
+        if (players.length === 1) {
+            console.log("w");
+            io.to(roomId).emit("waiting");
+        } else if (players.length === 2) {
+            console.log("s");
+            io.to(roomId).emit("starting");
+        }
     });
 });
 
