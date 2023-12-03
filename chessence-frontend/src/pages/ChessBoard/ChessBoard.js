@@ -4,7 +4,6 @@ import "./chessboard.css"; // Import your custom CSS file
 import { Chessboard } from "react-chessboard";
 import ScoreboardComponent from "./Scoreboard";
 import { useNavigate } from "react-router-dom";
-import { socket } from "../../api/socket";
 import MyTimer from "./Timer";
 
 export default function Game(props) {
@@ -14,13 +13,6 @@ export default function Game(props) {
     const [fen, setFen] = useState(game_fen);
     const [turn, setTurn] = useState(game_turn);
     const navigate = useNavigate(); // Get the history object for navigation
-
-    /// Socket Functions ///
-
-    // send a move to the socket
-    const sendMove = (move) => {
-        socket.emit("move", move);
-    };
 
     //// Window resizing ///
     const [windowDimension, detectHW] = useState({
@@ -63,7 +55,7 @@ export default function Game(props) {
             to: targetSquare,
             promotion: "q", // always promote to a queen for example simplicity
         };
-        sendMove(move);
+        props.sendMove(move);
         try {
             const newChess = new Chess(fen);
             newChess.move(move);
