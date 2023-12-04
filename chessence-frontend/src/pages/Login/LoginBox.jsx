@@ -25,7 +25,6 @@ export default function LoginBox(props) {
         try {
             setPasswordError("");
             const res = await loginUser(email, password);
-            console.log("ID from LoginBox: ", res.data.id);
             props.setUserId(res.data.id);
             navigate(playPath);
         } catch (error) {
