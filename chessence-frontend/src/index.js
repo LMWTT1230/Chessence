@@ -34,6 +34,7 @@ const root = ReactDOMClient.createRoot(container);
 export default function App() {
     const [userId, setId] = useSessionStorage("", 0);
 
+    // Sets userID for communication across frontend pages
     function setUserID(user) {
         setId(user);
         console.log("index.js: ", userId);

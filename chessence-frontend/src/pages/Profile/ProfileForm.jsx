@@ -57,6 +57,7 @@ export default function ProfileForm(props) {
         };
         const userID = props.userId.userId;
 
+        //call backend to update profile
         try {
             const response = await axios.put(
                 `http://localhost:8000/profile/${userID}`,
