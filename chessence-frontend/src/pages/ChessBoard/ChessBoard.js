@@ -136,10 +136,6 @@ export default function Game(props) {
                     id={props.color === "b" ? "white-score" : "black-score"}
                     className="scoreboard"
                 >
-                    <ScoreboardComponent
-                        this={props.color === "w" ? "b" : "w"}
-                        turn={props.serverChess.turn()}
-                    />
                     <MyTimer
                         initTime={props.initTime}
                         onExpire={onTimerExpire}
@@ -147,15 +143,14 @@ export default function Game(props) {
                         player={props.color === "w" ? "b" : "w"}
                     />
                 </div>
-                <div id="chatbox"></div>
+                <ScoreboardComponent
+                    this={props.color}
+                    turn={props.serverChess.turn()}
+                />
                 <div
                     id={props.color === "w" ? "white-score" : "black-score"}
                     className="scoreboard"
                 >
-                    <ScoreboardComponent
-                        this={props.color}
-                        turn={props.serverChess.turn()}
-                    />
                     <MyTimer
                         initTime={props.initTime}
                         onExpire={onTimerExpire}

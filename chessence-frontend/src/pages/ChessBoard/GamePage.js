@@ -63,7 +63,7 @@ export default function GamePage() {
     } else if (joinError) {
         return (
             <p>
-                Join error, room has 2 people!
+                Join error, room has 2 people!{" "}
                 <Link to="/start">Join another room.</Link>
             </p>
         );

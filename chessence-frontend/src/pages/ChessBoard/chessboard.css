@@ -170,4 +170,5 @@
     flex-shrink: 1;
     background-color: transparent; /* Gray color (adjust the shade if needed) */
     border-radius: 0.5rem;
+    color: var(--BK-beige);
 }
