@@ -83,7 +83,7 @@ app.get("/users/:id", async (req, res) => {
     const id = req.query["id"];
     try {
         const result = await userServices.getUsernameById(id);
-        res.send({ username: result , id});
+        res.send({ username: result, id });
     } catch (error) {
         res.status(500).send("An error ocurred in the server.");
     }
