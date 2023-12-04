@@ -13,7 +13,7 @@ export default function ArchivePage() {
     async function fetchAll() {
         try {
             const response = await axios.get(
-                "http://localhost:8000/history"
+                "https://chessence.azurewebsites.net/history"
             );
             console.log("hello")
             console.log(response.data.games_list)
