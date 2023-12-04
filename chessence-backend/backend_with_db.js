@@ -9,6 +9,7 @@ import sessionEndpoints from "./routes/sessions.js";
 
 import { Server } from "socket.io";
 import { createServer } from "http";
+import { Chess } from 'chess.js'
 
 const app = express();
 const server = createServer();
@@ -23,15 +24,16 @@ dotenv.config();
 
 /** websocket code **/
 io.listen(4000); // use this port for ws connections
-// rooms is a dict of roomId : player array
+// rooms is a dict of roomId : { players:  array, chess: Chess }
 const rooms = {};
 const joinRoom = (socketId, roomId) => {
     if (roomId in rooms) {
-        if (rooms[roomId].indexOf(socketId) === -1) {
-            rooms[roomId].push(socketId);
+        if (rooms[roomId].players.indexOf(socketId) === -1) {
+            rooms[roomId].players.push(socketId);
         }
     } else {
-        rooms[roomId] = [socketId];
+        // create room
+        rooms[roomId] = { players: [socketId] };
     }
 }
 io.on("connection", (socket) => {
@@ -43,13 +45,14 @@ io.on("connection", (socket) => {
             const roomId = [...currentRooms].filter(
                 (rId) => rId !== socket.id
             )[0];
-            rooms[roomId] = rooms[roomId].filter(
-                (player) => player !== socket.id
-            );
+            let players = rooms[roomId].players;
+            players = players.filter((player) => player !== socket.id);
             // if only one person in room, emit wait
-            let players = rooms[roomId];
             if (players.length === 1) {
                 io.to(roomId).emit("waiting");
+            } else if (players.length === 0) {
+                // delete room if no one in it
+                delete rooms[roomId];
             }
         }
         console.log(`user disconnected (${socket.id})`);
@@ -65,17 +68,20 @@ io.on("connection", (socket) => {
         socket.join(roomId);
 
         // emit start if start
-        let players = rooms[roomId];
+        let players = rooms[roomId].players;
         if (players.length === 1) {
             console.log("w");
             io.to(roomId).emit("waiting");
         } else if (players.length === 2) {
-            console.log("s");
+            // reset chessboard if 2nd player joins
+            rooms[roomId].chess = new Chess();
+            io.to(roomId).emit("updateBoard", rooms[roomId].chess.pgn());
             io.to(roomId).emit("starting");
         }
     });
 });
 
+/** REST API code **/
 var corsOptions = {
     origin: process.env.CORS_ORIGIN,
     credentials: true,

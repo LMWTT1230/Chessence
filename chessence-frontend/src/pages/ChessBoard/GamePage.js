@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Board from "./ChessBoard.js";
+import { Chess } from "chess.js";
 import { socket } from "../../api/socket";
 import { useLocation } from "react-router-dom";
 
@@ -8,6 +9,7 @@ export default function GamePage() {
     const { time, roomId } = state;
     const [isConnected, setIsConnected] = useState(socket.connected);
     const [hasSecondPlayer, setHasSecondPlayer] = useState(false);
+    const [serverChess, setServerChess] = useState(undefined);
     /// Socket Functions ///
     useEffect(() => {
         function onConnect() {
@@ -23,10 +25,17 @@ export default function GamePage() {
             setHasSecondPlayer(false);
             console.log("has " + hasSecondPlayer);
         }
+        function onUpdateBoard(pgnStr) {
+            let newChess = new Chess();
+            newChess.loadPgn(pgnStr);
+            setServerChess(newChess);
+            console.log("AAA" + pgnStr);
+        }
         socket.on("connect", onConnect);
         socket.on("disconnect", onDisconnect);
         socket.on("waiting", onWait);
         socket.on("starting", onStart);
+        socket.on("updateBoard", onUpdateBoard);
         // join a room
         socket.emit("join", roomId);
         return () => {
