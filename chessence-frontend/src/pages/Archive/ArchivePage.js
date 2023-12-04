@@ -14,7 +14,7 @@ export default function ArchivePage() {
             const response = await axios.get(
                 "https://chessence.azurewebsites.net/history"
             );
-            return response.data.game_list;
+            return response.data.games_list;
         } catch (error) {
             //We're not handling errors. Just logging into the console.
             console.log(error);
