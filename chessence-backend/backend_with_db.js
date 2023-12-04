@@ -24,18 +24,23 @@ dotenv.config();
 
 /** websocket code **/
 io.listen(4000); // use this port for ws connections
-// rooms is a dict of roomId : { players:  array, chess: Chess }
+// rooms is a dict of roomId : { white: id || undef, black: id || undef, chess: Chess }
 const rooms = {};
 const joinRoom = (socketId, roomId) => {
     if (roomId in rooms) {
-        if (rooms[roomId].players.indexOf(socketId) === -1) {
-            rooms[roomId].players.push(socketId);
+        if (rooms[roomId].white === undefined) {
+            rooms[roomId].white = socketId;
+        } else if (rooms[roomId].black === undefined) {
+            rooms[roomId].black = socketId;
+        } else {
+            return false;
         }
     } else {
         // create room
-        rooms[roomId] = { players: [socketId] };
+        rooms[roomId] = { white: socketId, black: undefined };
     }
-}
+    return true;
+};
 io.on("connection", (socket) => {
     console.log(`a user connected (${socket.id})`);
     socket.on("disconnecting", () => {
@@ -45,12 +50,19 @@ io.on("connection", (socket) => {
             const roomId = [...currentRooms].filter(
                 (rId) => rId !== socket.id
             )[0];
-            let players = rooms[roomId].players;
-            players = players.filter((player) => player !== socket.id);
+            // remove user
+            if (rooms[roomId].white === socket.id) {
+                rooms[roomId].white = undefined;
+            } else if (rooms[roomId].black === socket.id) {
+                rooms[roomId].black = undefined;
+            }
             // if only one person in room, emit wait
-            if (players.length === 1) {
+            if (
+                rooms[roomId].white === undefined ||
+                rooms[roomId].black === undefined
+            ) {
                 io.to(roomId).emit("waiting");
-            } else if (players.length === 0) {
+            } else {
                 // delete room if no one in it
                 delete rooms[roomId];
             }
@@ -63,16 +75,20 @@ io.on("connection", (socket) => {
     });
 
     socket.on("join", (roomId) => {
-        joinRoom(socket.id, roomId);
+        if (!joinRoom(socket.id, roomId)) {
+            io.to(socket.id).emit("joinError");
+        }
         console.log("Joined " + roomId + JSON.stringify(rooms[roomId]));
         socket.join(roomId);
 
         // emit start if start
-        let players = rooms[roomId].players;
-        if (players.length === 1) {
+        if (
+            rooms[roomId].white === undefined ||
+            rooms[roomId].black === undefined
+        ) {
             console.log("w");
             io.to(roomId).emit("waiting");
-        } else if (players.length === 2) {
+        } else {
             // reset chessboard if 2nd player joins
             rooms[roomId].chess = new Chess();
             io.to(roomId).emit("updateBoard", rooms[roomId].chess.pgn());
