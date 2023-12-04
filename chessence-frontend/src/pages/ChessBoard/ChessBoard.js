@@ -9,9 +9,7 @@ import MyTimer from "./Timer";
 export default function Game(props) {
     const chess = new Chess();
     const game_fen = chess.fen();
-    const game_turn = chess.turn();
     const [fen, setFen] = useState(game_fen);
-    const [turn, setTurn] = useState(game_turn);
     const navigate = useNavigate(); // Get the history object for navigation
 
     //// Window resizing ///
@@ -41,12 +39,12 @@ export default function Game(props) {
         const getFenState = window.sessionStorage.getItem("fenState");
         if (getFenState !== null) setFen(getFenState);
         const getTurnState = window.sessionStorage.getItem("turnState");
-        if (getTurnState !== null) setTurn(getTurnState);
+        //if (getTurnState !== null) setTurn(getTurnState);
     }, []);
 
     useEffect(() => {
         window.sessionStorage.setItem("fenState", fen);
-        window.sessionStorage.setItem("turnState", turn);
+        window.sessionStorage.setItem("turnState", props.serverChess.turn());
     }, [fen]);
 
     function onDrop(sourceSquare, targetSquare) {
@@ -61,11 +59,11 @@ export default function Game(props) {
             newChess.move(move);
             const newFen = newChess.fen();
             if (newChess.isGameOver()) {
-                endGame(turn);
+                endGame(props.serverChess.turn());
             }
             setFen(newFen); // Update the state with the new FEN
             const newTurn = newChess.turn();
-            setTurn(newTurn);
+            // setTurn(newTurn);
         } catch (error) {
             console.log("Illegal move.");
         }
@@ -77,7 +75,7 @@ export default function Game(props) {
     }
 
     function onTimerExpire() {
-        if (turn === "w") {
+        if (props.serverChess.turn() === "w") {
             endGame("b");
         } else {
             endGame("w");
@@ -126,21 +124,27 @@ export default function Game(props) {
                 }}
             >
                 <div id="black-score" className="scoreboard">
-                    <ScoreboardComponent this="b" turn={turn} />
+                    <ScoreboardComponent
+                        this="b"
+                        turn={props.serverChess.turn()}
+                    />
                     <MyTimer
                         initTime={props.initTime}
                         onExpire={onTimerExpire}
-                        turn={turn}
+                        turn={props.serverChess.turn()}
                         player="b"
                     />
                 </div>
                 <div id="chatbox"></div>
                 <div id="white-score" className="scoreboard">
-                    <ScoreboardComponent this="w" turn={turn} />
+                    <ScoreboardComponent
+                        this="w"
+                        turn={props.serverChess.turn()}
+                    />
                     <MyTimer
                         initTime={props.initTime}
                         onExpire={onTimerExpire}
-                        turn={turn}
+                        turn={props.serverChess.turn()}
                         player="w"
                     />
                 </div>
