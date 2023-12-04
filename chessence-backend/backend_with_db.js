@@ -80,6 +80,7 @@ app.put("/profile/:id", async (req, res) => {
 
 app.get("/users/:id", async (req, res) => {
     const id = req.query["id"];
+    console.log(id)
     try {
         const result = await userServices.getUsernameById(id);
         res.send({ username: result });
@@ -89,7 +90,8 @@ app.get("/users/:id", async (req, res) => {
 });
 
 app.get("/history", async (req, res) => {
-    const id = req.session.id;
+    //const id = req.session.userId;
+    const id = "abcd";
     try {
         const result = await gameServices.getGames(id);
         res.send({ games_list: result });

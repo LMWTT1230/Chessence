@@ -11,8 +11,9 @@ export default function GameList(props) {
     async function getUserName(id) {
         try {
             const response = await axios.get(
-                "https://chessence.azurewebsites.net/users/" + id
+                "http://localhost:8000/users/" + id
             );
+            console.log(response.data.username)
             return response.data.username;
         } catch (error) {
             // Handle errors. Logging into the console for now.
@@ -23,14 +24,16 @@ export default function GameList(props) {
 
     useEffect(() => {
         const fetchUsernames = async () => {
+            
             const usernamePromises = props.gameData.map(async (row) => {
                 const black = await getUserName(row.whiteID);
                 const white = await getUserName(row.blackID);
                 const winner = await getUserName(row.winner);
-                return { black, white, winner };
+                return { white, black, winner };
             });
 
             const resolvedUsernames = await Promise.all(usernamePromises);
+            console.log(resolvedUsernames)
             setUserNames(resolvedUsernames);
         };
 
@@ -38,7 +41,6 @@ export default function GameList(props) {
     }, [props.gameData]);
 
     const pageSize = 6;
-    const totalPages = Math.ceil(props.gameData.length / pageSize);
 
     const handleNextPage = () => {
         setStartIndex((prevIndex) =>
@@ -55,31 +57,31 @@ export default function GameList(props) {
         startIndex + pageSize
     );
 
-    return (
-        <div id="gameList">
-            {displayedGames.map((row, index) => (
-                <GameEntry
-                    gameId={row._id}
-                    key={index}
-                    score={row.score}
-                    player1={usernames[index].white}
-                    player2={usernames[index].black}
-                    winner={usernames[index].winner}
-                    date={row.date}
-                    onClick={props.clickEvent}
-                />
-            ))}
-            <div className="pagination">
-                <button onClick={handlePrevPage} disabled={startIndex === 0}>
-                    <FaArrowCircleLeft />
-                </button>
-                <button
-                    onClick={handleNextPage}
-                    disabled={startIndex + pageSize >= props.gameData.length}
-                >
-                    <FaArrowCircleRight />
-                </button>
-            </div>
-        </div>
-    );
+    // return (
+    //     <div id="gameList">
+    //         {displayedGames.map((row, index) => (
+    //             <GameEntry
+    //                 gameId={row._id}
+    //                 key={index}
+    //                 score={row.score}
+    //                 player1={usernames[index].white}
+    //                 player2={usernames[index].black}
+    //                 winner={usernames[index].winner}
+    //                 date={row.date}
+    //                 onClick={props.clickEvent}
+    //             />
+    //         ))}
+    //         <div className="pagination">
+    //             <button onClick={handlePrevPage} disabled={startIndex === 0}>
+    //                 <FaArrowCircleLeft />
+    //             </button>
+    //             <button
+    //                 onClick={handleNextPage}
+    //                 disabled={startIndex + pageSize >= props.gameData.length}
+    //             >
+    //                 <FaArrowCircleRight />
+    //             </button>
+    //         </div>
+    //     </div>
+    // );
 }

@@ -9,12 +9,15 @@ export default function ArchivePage() {
     const [showMove, setShowMove] = useState(false);
     const [gameId, setGameId] = useState(0);
 
+    //"https://chessence.azurewebsites.net/history"
     async function fetchAll() {
         try {
             const response = await axios.get(
-                "https://chessence.azurewebsites.net/history"
+                "http://localhost:8000/history"
             );
-            return response.data.game_list;
+            console.log("hello")
+            console.log(response.data.games_list)
+            return response.data.games_list;
         } catch (error) {
             //We're not handling errors. Just logging into the console.
             console.log(error);
