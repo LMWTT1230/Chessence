@@ -40,7 +40,9 @@ export default function ProfileForm(props) {
 
     async function submitForm() {
         if (confirmNewPassword != newPassword) {
-            setError("New password and confirm new password inputs are different.");
+            setError(
+                "New password and confirm new password inputs are different."
+            );
             return;
         }
         if (newPassword === currentPassword) {
@@ -68,11 +70,13 @@ export default function ProfileForm(props) {
                 setSuccess("Profile updated successfully!");
             } else {
                 setSuccess("");
-                setError("Profile update failed.")
+                setError("Profile update failed.");
             }
         } catch (error) {
             setSuccess("");
-            setError("Error updating profile. Check input data, and ensure current password is correct.")
+            setError(
+                "Error updating profile. Check input data, and ensure current password is correct."
+            );
         }
     }
 

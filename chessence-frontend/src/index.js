@@ -47,12 +47,17 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/play" element={<GamePage />} />
-                    <Route path="/login" element={<LoginPage 
-                    userId = {userId}
-                    setId = {setUserID}/>} />
+                    <Route
+                        path="/login"
+                        element={
+                            <LoginPage userId={userId} setId={setUserID} />
+                        }
+                    />
                     <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/profile" element={<ProfilePage
-                    userId = {userId} />} />
+                    <Route
+                        path="/profile"
+                        element={<ProfilePage userId={userId} />}
+                    />
                     <Route path="/redirect" element={<RedirectPage />} />
                     <Route path="/results" element={<GameResultPage />} />
                     <Route path="/archive" element={<ArchivePage />} />
