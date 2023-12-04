@@ -3,30 +3,31 @@ import React, { useState, useEffect } from "react";
 import "./archive.css";
 import GameList from "./GameList/GameList.js";
 import GameMove from "./Moves/GameMove.js";
+import ArchiveBoard from "./ArchiveBoard/ArchiveBoard.js";
 
 export default function ArchivePage() {
     const [games, setGames] = useState([]);
     const [showMove, setShowMove] = useState(false);
     const [gameId, setGameId] = useState(0);
 
-    async function fetchAll() {
-        try {
-            const response = await axios.get(
-                "https://chessence.azurewebsites.net/history"
-            );
-            return response.data.game_list;
-        } catch (error) {
-            //We're not handling errors. Just logging into the console.
-            console.log(error);
-            return false;
-        }
-    }
+    // async function fetchAll() {
+    //     try {
+    //         const response = await axios.get(
+    //             "https://chessence.azurewebsites.net/history"
+    //         );
+    //         return response.data.game_list;
+    //     } catch (error) {
+    //         //We're not handling errors. Just logging into the console.
+    //         console.log(error);
+    //         return false;
+    //     }
+    // }
 
-    useEffect(() => {
-        fetchAll().then((result) => {
-            if (result) setGames(result);
-        });
-    }, []);
+    // useEffect(() => {
+    //     fetchAll().then((result) => {
+    //         if (result) setGames(result);
+    //     });
+    // }, []);
 
     function toggleMove(newGId) {
         if (newGId === gameId) {
@@ -45,7 +46,7 @@ export default function ArchivePage() {
             <h1>games</h1>
             <div id="archiveContent">
                 <GameList gameData={games} clickEvent={toggleMove} />
-                {showMove && <GameMove moves={selectedGame.gameHistory} />}
+                {showMove && <ArchiveBoard />}
             </div>
         </div>
     );
