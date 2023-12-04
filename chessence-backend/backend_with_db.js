@@ -9,7 +9,7 @@ import sessionEndpoints from "./routes/sessions.js";
 
 import { Server } from "socket.io";
 import { createServer } from "http";
-import { Chess } from 'chess.js'
+import { Chess } from "chess.js";
 
 const app = express();
 const server = createServer();
