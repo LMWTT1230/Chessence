@@ -26,7 +26,7 @@ dotenv.config();
 io.listen(4000); // use this port for ws connections
 // rooms is a dict of roomId : { white: id || undef, black: id || undef, chess: Chess }
 const rooms = {};
-const joinRoom = (socketId, roomId) => {
+const joinRoom = (socketId, roomId, time) => {
     if (roomId in rooms) {
         if (rooms[roomId].white === undefined) {
             rooms[roomId].white = socketId;
@@ -37,7 +37,7 @@ const joinRoom = (socketId, roomId) => {
         }
     } else {
         // create room
-        rooms[roomId] = { white: socketId, black: undefined };
+        rooms[roomId] = { white: socketId, black: undefined, timer: time };
     }
     return true;
 };
@@ -86,8 +86,8 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("join", (roomId) => {
-        if (!joinRoom(socket.id, roomId)) {
+    socket.on("join", ({ roomId, time }) => {
+        if (!joinRoom(socket.id, roomId, time)) {
             io.to(socket.id).emit("joinError");
         }
         console.log("Joined " + roomId + JSON.stringify(rooms[roomId]));
@@ -104,8 +104,14 @@ io.on("connection", (socket) => {
             // reset chessboard if 2nd player joins
             rooms[roomId].chess = new Chess();
             io.to(roomId).emit("updateBoard", rooms[roomId].chess.pgn());
-            io.to(rooms[roomId].white).emit("starting", "w");
-            io.to(rooms[roomId].black).emit("starting", "b");
+            io.to(rooms[roomId].white).emit("starting", {
+                color: "w",
+                timer: rooms[roomId].timer,
+            });
+            io.to(rooms[roomId].black).emit("starting", {
+                color: "b",
+                timer: rooms[roomId].timer,
+            });
         }
     });
 });

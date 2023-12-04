@@ -7,6 +7,7 @@ import { useLocation, Link } from "react-router-dom";
 export default function GamePage() {
     const { state } = useLocation();
     const { time, roomId } = state;
+    const [timer, setTimer] = useState(time);
     const [isConnected, setIsConnected] = useState(socket.connected);
     const [hasSecondPlayer, setHasSecondPlayer] = useState(false);
     const [joinError, setJoinError] = useState(false);
@@ -20,8 +21,9 @@ export default function GamePage() {
         function onDisconnect() {
             setIsConnected(false);
         }
-        function onStart(color) {
+        function onStart({ color, timer }) {
             setColor(color);
+            setTimer(timer);
             setHasSecondPlayer(true);
         }
         function onWait() {
@@ -43,7 +45,7 @@ export default function GamePage() {
         socket.on("starting", onStart);
         socket.on("updateBoard", onUpdateBoard);
         // join a room
-        socket.emit("join", roomId);
+        socket.emit("join", { roomId, time });
         return () => {
             socket.off("connect", onConnect);
             socket.off("disconnect", onDisconnect);
@@ -68,7 +70,7 @@ export default function GamePage() {
     } else {
         return (
             <Board
-                initTime={time}
+                initTime={timer}
                 sendMove={sendMove}
                 serverChess={serverChess}
                 color={color}
