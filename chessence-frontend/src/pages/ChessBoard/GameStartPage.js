@@ -11,12 +11,20 @@ export default function GameStartPage() {
     );
 }
 
+// generates a random string of length len consisting of values
+function randomRoomId(len) {
+    const values = "qwertyuiopasdfghjklzxcvbnm1234567890";
+    let ans = "";
+    for (let i = 0; i < len; i++) {
+        let idx = Math.floor(Math.random() * values.length);
+        ans += values[idx];
+    }
+    return ans;
+}
 function SettingsForm() {
     const navigate = useNavigate(); // Get the history object for navigation
-    const [timer, setTimer] = React.useState("0:00");
-    const [roomId, setRoomId] = React.useState(
-        "A" + Math.floor(Math.random() * 1000)
-    );
+    const [timer, setTimer] = React.useState("5:00");
+    const [roomId, setRoomId] = React.useState(randomRoomId(5));
 
     const onTimerChange = (event) => {
         setTimer(event.target.value);

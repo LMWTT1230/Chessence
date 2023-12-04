@@ -59,7 +59,9 @@ export default function GamePage() {
     if (!isConnected) {
         return <p>Connecting...</p>;
     } else if (!hasSecondPlayer) {
-        return <p>Waiting for second player to join room {roomId}</p>;
+        return (
+            <p>Waiting for second player to join room &apos;{roomId}&apos;</p>
+        );
     } else if (joinError) {
         return (
             <p>
