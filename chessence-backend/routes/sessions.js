@@ -27,11 +27,10 @@ router.post("/login", async (req, res) => {
             const result = await userServices.login(email, password);
             console.log(result);
             if (result) {
-                const userId = await userServices.findID(email);
+                //const userId = await userServices.findID(email);
                 console.log("result success");
                 //console.log(userId.toString());
                 // set session to logged in
-                req.session.id = userId;
                 req.session.loggedIn = true;
                 req.session.email = email;
                 res.status(200).json({ message: result.message, id: result });

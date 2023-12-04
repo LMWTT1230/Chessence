@@ -89,7 +89,7 @@ app.get("/users/:id", async (req, res) => {
 });
 
 app.get("/history", async (req, res) => {
-    const id = req.session.id;
+    const id = req.query["id"];
     try {
         const result = await gameServices.getGames(id);
         res.send({ games_list: result });
