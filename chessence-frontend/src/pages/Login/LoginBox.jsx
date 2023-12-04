@@ -3,14 +3,13 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/session";
 
-export default function LoginBox() {
+export default function LoginBox(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState({
         value: "",
         showPassword: false,
     });
     const [passwordError, setPasswordError] = useState("");
-    //const [userId, setUserId] = useState("");
 
     const navigate = useNavigate();
     const forgotPasswordPath = "/ForgotPassword";
@@ -26,7 +25,8 @@ export default function LoginBox() {
         try {
             setPasswordError("");
             const res = await loginUser(email, password);
-            //setUserId(res.data.id);
+            console.log("ID from LoginBox: ", res.data.id);
+            props.setUserId(res.data.id);
             navigate(playPath);
         } catch (error) {
             if (error.response?.data?.message) {

@@ -4,7 +4,7 @@ import LoginBox from "./LoginBox";
 import { loginRequest } from "../../authConfig";
 import { isAuthenticated, logoutUser } from "../../api/session";
 
-export default function LoginPage() {
+export default function LoginPage(props) {
     const { instance, accounts, inProgress } = useMsal();
     const redir = async () => {
         try {
@@ -41,7 +41,7 @@ export default function LoginPage() {
         } else {
             return (
                 <>
-                    <LoginBox />
+                    <LoginBox setUserId = {props.setId}/>
                     <img src="/msft-login.svg" onClick={redir} />
                 </>
             );

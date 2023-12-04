@@ -15,7 +15,7 @@ var corsOptions = {
     origin: process.env.CORS_ORIGIN,
     credentials: true,
 };
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/session", sessionEndpoints);
@@ -68,6 +68,7 @@ app.put("/profile/:id", async (req, res) => {
     const id = req.params["id"];
     const user = req.body;
     const oldPwd = req.body.oldPwd;
+    delete user["oldPwd"];
 
     const result = await userServices.updateProfile(id, user, oldPwd);
 
@@ -82,7 +83,7 @@ app.get("/users/:id", async (req, res) => {
     const id = req.query["id"];
     try {
         const result = await userServices.getUsernameById(id);
-        res.send({ username: result });
+        res.send({ username: result , id});
     } catch (error) {
         res.status(500).send("An error ocurred in the server.");
     }

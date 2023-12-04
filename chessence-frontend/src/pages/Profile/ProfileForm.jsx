@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./profile.css";
 import axios from "axios";
 
-export default function ProfileForm() {
+export default function ProfileForm(props) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
@@ -10,6 +10,8 @@ export default function ProfileForm() {
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -37,27 +39,39 @@ export default function ProfileForm() {
     }
 
     async function submitForm() {
+        if (confirmNewPassword != newPassword) {
+            setError("New password and confirm new password inputs are different.");
+            return;
+        }
+        if (newPassword === currentPassword) {
+            setError("Cannot update password to your current password.");
+            return;
+        }
         const user = {
             firstName: firstName,
             lastName: lastName,
             username: username,
             email: email,
+            oldPwd: currentPassword,
             password: newPassword,
         };
-        console.log(user);
+        const userID = props.userId.userId;
 
         try {
             const response = await axios.put(
-                "http://localhost:8000/profile",
+                `http://localhost:8000/profile/${userID}`,
                 user
             );
             if (response.status === 200) {
-                console.log("Profile updated successfully");
+                setError("");
+                setSuccess("Profile updated successfully!");
             } else {
-                console.log("Profile update failed");
+                setSuccess("");
+                setError("Profile update failed.")
             }
         } catch (error) {
-            console.error("Error updating profile:", error);
+            setSuccess("");
+            setError("Error updating profile. Check input data, and ensure current password is correct.")
         }
     }
 
@@ -147,6 +161,8 @@ export default function ProfileForm() {
                         Save
                     </button>
                 </div>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                {success && <p style={{ color: "green" }}>{success}</p>}
             </form>
         </div>
     );
