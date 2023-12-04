@@ -22,7 +22,6 @@ export default function GamePage() {
         }
         function onStart(color) {
             setColor(color);
-            console.log(color);
             setHasSecondPlayer(true);
         }
         function onWait() {
@@ -72,6 +71,7 @@ export default function GamePage() {
                 initTime={time}
                 sendMove={sendMove}
                 serverChess={serverChess}
+                color={color}
             />
         );
     }

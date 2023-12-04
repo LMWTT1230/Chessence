@@ -110,6 +110,9 @@ export default function Game(props) {
                         id="board"
                         position={props.serverChess.fen()}
                         onPieceDrop={onDrop}
+                        boardOrientation={
+                            props.color === "b" ? "black" : "white"
+                        }
                         customBoardStyle={{
                             borderRadius: ".5rem",
                         }}
@@ -129,29 +132,35 @@ export default function Game(props) {
                     height: height_string,
                 }}
             >
-                <div id="black-score" className="scoreboard">
+                <div
+                    id={props.color === "b" ? "white-score" : "black-score"}
+                    className="scoreboard"
+                >
                     <ScoreboardComponent
-                        this="b"
+                        this={props.color === "w" ? "b" : "w"}
                         turn={props.serverChess.turn()}
                     />
                     <MyTimer
                         initTime={props.initTime}
                         onExpire={onTimerExpire}
                         turn={props.serverChess.turn()}
-                        player="b"
+                        player={props.color === "w" ? "b" : "w"}
                     />
                 </div>
                 <div id="chatbox"></div>
-                <div id="white-score" className="scoreboard">
+                <div
+                    id={props.color === "w" ? "white-score" : "black-score"}
+                    className="scoreboard"
+                >
                     <ScoreboardComponent
-                        this="w"
+                        this={props.color}
                         turn={props.serverChess.turn()}
                     />
                     <MyTimer
                         initTime={props.initTime}
                         onExpire={onTimerExpire}
                         turn={props.serverChess.turn()}
-                        player="w"
+                        player={props.color}
                     />
                 </div>
             </div>
