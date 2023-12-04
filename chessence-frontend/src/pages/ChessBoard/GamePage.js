@@ -30,7 +30,6 @@ export default function GamePage() {
             let newChess = new Chess();
             newChess.loadPgn(pgnStr);
             setServerChess(newChess);
-            console.log("AAA" + pgnStr);
         }
         function onJoinError() {
             setJoinError(true);
@@ -65,6 +64,12 @@ export default function GamePage() {
             </p>
         );
     } else {
-        return <Board initTime={time} sendMove={sendMove} />;
+        return (
+            <Board
+                initTime={time}
+                sendMove={sendMove}
+                serverChess={serverChess}
+            />
+        );
     }
 }

@@ -71,7 +71,19 @@ io.on("connection", (socket) => {
     });
 
     socket.on("move", (move) => {
-        console.log(`move ${JSON.stringify(move)} (${socket.id})`);
+        const roomId = [...socket.rooms].filter((rId) => rId !== socket.id)[0];
+        const currRoom = rooms[roomId];
+        const playerColor = currRoom.white === socket.id ? "w" : "b";
+        console.log(playerColor + move);
+        if (currRoom.chess.turn() === playerColor) {
+            try {
+                console.log(move);
+                currRoom.chess.move(move);
+                io.to(roomId).emit("updateBoard", rooms[roomId].chess.pgn());
+            } catch (e) {
+                console.log(e);
+            }
+        }
     });
 
     socket.on("join", (roomId) => {

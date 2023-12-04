@@ -104,7 +104,7 @@ export default function Game(props) {
                 >
                     <Chessboard
                         id="board"
-                        position={fen}
+                        position={props.serverChess.fen()}
                         onPieceDrop={onDrop}
                         customBoardStyle={{
                             borderRadius: ".5rem",
