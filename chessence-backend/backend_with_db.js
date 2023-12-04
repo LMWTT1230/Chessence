@@ -104,7 +104,8 @@ io.on("connection", (socket) => {
             // reset chessboard if 2nd player joins
             rooms[roomId].chess = new Chess();
             io.to(roomId).emit("updateBoard", rooms[roomId].chess.pgn());
-            io.to(roomId).emit("starting");
+            io.to(rooms[roomId].white).emit("starting", "w");
+            io.to(rooms[roomId].black).emit("starting", "b");
         }
     });
 });

@@ -47,6 +47,12 @@ export default function Game(props) {
         window.sessionStorage.setItem("turnState", props.serverChess.turn());
     }, [fen]);
 
+    useEffect(() => {
+        if (props.serverChess.isGameOver()) {
+            endGame(props.serverChess.turn());
+        }
+    }, [props.serverChess]);
+
     function onDrop(sourceSquare, targetSquare) {
         const move = {
             from: sourceSquare,

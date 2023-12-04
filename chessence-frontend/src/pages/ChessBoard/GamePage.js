@@ -11,6 +11,7 @@ export default function GamePage() {
     const [hasSecondPlayer, setHasSecondPlayer] = useState(false);
     const [joinError, setJoinError] = useState(false);
     const [serverChess, setServerChess] = useState(undefined);
+    const [color, setColor] = useState(undefined);
     /// Socket Functions ///
     useEffect(() => {
         function onConnect() {
@@ -19,7 +20,9 @@ export default function GamePage() {
         function onDisconnect() {
             setIsConnected(false);
         }
-        function onStart() {
+        function onStart(color) {
+            setColor(color);
+            console.log(color);
             setHasSecondPlayer(true);
         }
         function onWait() {
