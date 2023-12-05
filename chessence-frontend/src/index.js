@@ -1,4 +1,5 @@
-import React from "react";
+import { React } from "react";
+import { useSessionStorage } from "usehooks-ts";
 import ReactDOMClient from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -31,6 +32,14 @@ const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container);
 
 export default function App() {
+    const [userId, setId] = useSessionStorage("", 0);
+
+    // Sets userID for communication across frontend pages
+    function setUserID(user) {
+        setId(user);
+        console.log("index.js: ", userId);
+    }
+
     return (
         <MsalProvider instance={msalInstance}>
             <BrowserRouter>
@@ -38,9 +47,17 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/play" element={<GamePage />} />
-                    <Route path="/login" element={<LoginPage />} />
+                    <Route
+                        path="/login"
+                        element={
+                            <LoginPage userId={userId} setId={setUserID} />
+                        }
+                    />
                     <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route
+                        path="/profile"
+                        element={<ProfilePage userId={userId} />}
+                    />
                     <Route path="/redirect" element={<RedirectPage />} />
                     <Route path="/results" element={<GameResultPage />} />
                     <Route path="/archive" element={<ArchivePage />} />
