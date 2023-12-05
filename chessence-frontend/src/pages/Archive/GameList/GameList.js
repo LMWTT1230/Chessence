@@ -25,11 +25,11 @@ export default function GameList(props) {
         const users = [];
     
         for (const row of props.gameData) {
-            const black = await getUserName(row.whiteID);
-            const white = await getUserName(row.blackID);
+            const white = await getUserName(row.whiteID);
+            const black = await getUserName(row.blackID);
             const winner = await getUserName(row.winner);
     
-            users.push({ black, white, winner });
+            users.push({ white, black, winner });
         }
     
         return users;
