@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const endpoint = "http://localhost:8000/session";
+const endpoint = "https://chessence.azurewebsites.net/session";
 
 /**
  * Tries to log in a user with a given email and password.
@@ -16,7 +16,7 @@ export const loginUser = async (email, password) => {
             password,
         },
         {
-            withCredentials: true,
+            withCredentials: false,
         }
     );
     //console.log(response.data.id);
@@ -29,7 +29,7 @@ export const loginUser = async (email, password) => {
  */
 export const logoutUser = async () => {
     const response = await axios.get(endpoint + "/logout", {
-        withCredentials: true,
+        withCredentials: false,
     });
     return response;
 };
@@ -41,7 +41,7 @@ export const logoutUser = async () => {
 export const isAuthenticated = async () => {
     try {
         const response = await axios.get(endpoint + "/authenticated", {
-            withCredentials: true,
+            withCredentials: false,
         });
         return true;
     } catch (error) {
