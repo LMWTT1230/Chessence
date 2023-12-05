@@ -29,61 +29,69 @@ export default function ArchiveBoard() {
     const height_string = windowDimension.winHeight / 1.75 + "px";
     const width_string = windowDimension.winWidth / 1.75 + "px";
 
+    // const history = [
+    //     {
+    //         before: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    //         after: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+    //         color: "w",
+    //         piece: "p",
+    //         from: "e2",
+    //         to: "e4",
+    //         san: "e4",
+    //         lan: "e2e4",
+    //         flags: "b",
+    //     },
+    //     {
+    //         before: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+    //         after: "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+    //         color: "b",
+    //         piece: "p",
+    //         from: "e7",
+    //         to: "e5",
+    //         san: "e5",
+    //         lan: "e7e5",
+    //         flags: "b",
+    //     },
+    //     {
+    //         before: "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+    //         after: "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 2",
+    //         color: "w",
+    //         piece: "p",
+    //         from: "f2",
+    //         to: "f4",
+    //         san: "f4",
+    //         lan: "f2f4",
+    //         flags: "b",
+    //     },
+    //     {
+    //         before: "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 2",
+    //         after: "rnbqkbnr/pppp1ppp/8/8/4Pp2/8/PPPP2PP/RNBQKBNR w KQkq - 0 3",
+    //         color: "b",
+    //         piece: "p",
+    //         from: "e5",
+    //         to: "f4",
+    //         san: "exf4",
+    //         lan: "e5f4",
+    //         flags: "c",
+    //         captured: "p",
+    //     },
+    // ];
+
     const history = [
-        {
-            before: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-            after: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            color: "w",
-            piece: "p",
-            from: "e2",
-            to: "e4",
-            san: "e4",
-            lan: "e2e4",
-            flags: "b",
-        },
-        {
-            before: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-            after: "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
-            color: "b",
-            piece: "p",
-            from: "e7",
-            to: "e5",
-            san: "e5",
-            lan: "e7e5",
-            flags: "b",
-        },
-        {
-            before: "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
-            after: "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 2",
-            color: "w",
-            piece: "p",
-            from: "f2",
-            to: "f4",
-            san: "f4",
-            lan: "f2f4",
-            flags: "b",
-        },
-        {
-            before: "rnbqkbnr/pppp1ppp/8/4p3/4PP2/8/PPPP2PP/RNBQKBNR b KQkq - 0 2",
-            after: "rnbqkbnr/pppp1ppp/8/8/4Pp2/8/PPPP2PP/RNBQKBNR w KQkq - 0 3",
-            color: "b",
-            piece: "p",
-            from: "e5",
-            to: "f4",
-            san: "exf4",
-            lan: "e5f4",
-            flags: "c",
-            captured: "p",
-        },
+        "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR b KQkq - 0 1",
+        "rnbqkbnr/pppp1ppp/8/4p3/8/5P2/PPPPP1PP/RNBQKBNR w KQkq - 0 2",
+        "rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2",
+        "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
     ];
 
     const handlePreviousTurn = () => {
-        setArchiveBoard(history[turnNumber - 1].before);
+        setArchiveBoard(history[turnNumber - 1]);
         setTurnNumber(turnNumber - 1);
     };
 
     const handleNextTurn = () => {
-        setArchiveBoard(history[turnNumber].after);
+        setArchiveBoard(history[turnNumber + 1]);
         setTurnNumber(turnNumber + 1);
     };
 
@@ -120,7 +128,7 @@ export default function ArchiveBoard() {
                 <button
                     className="arrow"
                     onClick={handleNextTurn}
-                    disabled={turnNumber === history.length}
+                    disabled={turnNumber === history.length - 1}
                 >
                     <HiArrowSmRight />
                 </button>

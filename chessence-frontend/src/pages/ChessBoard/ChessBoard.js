@@ -13,6 +13,9 @@ export default function Game(props) {
     const [fen, setFen] = useState(game_fen);
     const [turn, setTurn] = useState(game_turn);
     const navigate = useNavigate(); // Get the history object for navigation
+    const [gameHistory] = useState([
+        "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    ]);
 
     //// Window resizing ///
     const [windowDimension, detectHW] = useState({
@@ -60,6 +63,7 @@ export default function Game(props) {
             const newChess = new Chess(fen);
             newChess.move(move);
             const newFen = newChess.fen();
+            gameHistory.push(newFen);
             if (newChess.isGameOver()) {
                 endGame(turn);
             }
@@ -72,6 +76,7 @@ export default function Game(props) {
     }
 
     function endGame(winnerColor) {
+        console.log(gameHistory);
         sessionStorage.clear();
         navigate("/results", { state: { winner: winnerColor } }); // Navigate to the "/results" route
     }
