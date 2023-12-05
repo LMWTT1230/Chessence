@@ -3,7 +3,7 @@ import { Chessboard } from "react-chessboard";
 import { HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
 import "./archiveboard.css";
 
-export default function ArchiveBoard() {
+export default function ArchiveBoard(props) {
     const [archiveBoard, setArchiveBoard] = useState("start");
     const [turnNumber, setTurnNumber] = useState(0);
 
@@ -77,21 +77,21 @@ export default function ArchiveBoard() {
     //     },
     // ];
 
-    const history = [
-        "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-        "rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR b KQkq - 0 1",
-        "rnbqkbnr/pppp1ppp/8/4p3/8/5P2/PPPPP1PP/RNBQKBNR w KQkq - 0 2",
-        "rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2",
-        "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
-    ];
+    // const history = [
+    //     "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    //     "rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR b KQkq - 0 1",
+    //     "rnbqkbnr/pppp1ppp/8/4p3/8/5P2/PPPPP1PP/RNBQKBNR w KQkq - 0 2",
+    //     "rnbqkbnr/pppp1ppp/8/4p3/6P1/5P2/PPPPP2P/RNBQKBNR b KQkq - 0 2",
+    //     "rnb1kbnr/pppp1ppp/8/4p3/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+    // ];
 
     const handlePreviousTurn = () => {
-        setArchiveBoard(history[turnNumber - 1]);
+        setArchiveBoard(props.history[turnNumber - 1]);
         setTurnNumber(turnNumber - 1);
     };
 
     const handleNextTurn = () => {
-        setArchiveBoard(history[turnNumber + 1]);
+        setArchiveBoard(props.history[turnNumber + 1]);
         setTurnNumber(turnNumber + 1);
     };
 
@@ -128,7 +128,7 @@ export default function ArchiveBoard() {
                 <button
                     className="arrow"
                     onClick={handleNextTurn}
-                    disabled={turnNumber === history.length - 1}
+                    disabled={turnNumber === props.history.length - 1}
                 >
                     <HiArrowSmRight />
                 </button>
