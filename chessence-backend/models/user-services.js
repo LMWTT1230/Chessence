@@ -20,6 +20,22 @@ async function deleteUser(username) {
     return await userModel.findOneAndDelete({ username });
 }
 
+async function existUsername(user) {
+    const exist = await userModel.findOne({ username: user.username });
+    if (exist) {
+        return true;
+    }
+    return false;
+}
+
+async function existEmail(user) {
+    const exist = await userModel.findOne({ email: user.email });
+    if (exist) {
+        return true;
+    }
+    return false;
+}
+
 async function addUser(user) {
     // try {
     const exist = await userModel.findOne({ username: user.username });
@@ -74,14 +90,14 @@ async function login(email, password) {
     // }
 }
 
-// async function findID(email) {
-//     const user = await userModel.findOne({ email: email });
+async function findID(email) {
+    const user = await userModel.findOne({ email: email });
 
-//     if (!user) {
-//         return false;
-//     }
-//     return user._id;
-// }
+    if (!user) {
+        return false;
+    }
+    return user._id;
+}
 
 async function updateProfile(id, user, oldPwd) {
     //try {
@@ -152,4 +168,7 @@ export default {
     deleteUser,
     login,
     updateProfile,
+    findID,
+    existUsername,
+    existEmail,
 };

@@ -18,11 +18,6 @@ export default function Navbar() {
                 </a>
                 <ul>
                     <li>
-                        <a href="/">
-                            <img src={"/home.png"} alt="Home" id="homeLogo" />
-                        </a>
-                    </li>
-                    <li>
                         <a href="/start">
                             <img src={"/play.png"} alt="Play" id="playLogo" />
                         </a>
