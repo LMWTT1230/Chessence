@@ -169,6 +169,7 @@ export default {
     login,
     updateProfile,
     findID,
+    getUsernameById,
     existUsername,
     existEmail,
 };
