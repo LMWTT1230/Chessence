@@ -62,7 +62,7 @@ export default function ProfileForm(props) {
         //call backend to update profile
         try {
             const response = await axios.put(
-                `http://localhost:8000/profile/${userID}`,
+                process.env.REACT_APP_BACKEND + `/profile/${userID}`,
                 user
             );
             if (response.status === 200) {

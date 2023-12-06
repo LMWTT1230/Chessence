@@ -222,6 +222,6 @@ app.delete("/history/:id", async (req, res) => {
     }
 });
 
-server.listen(process.env.PORT || port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log("REST API is listening.");
 });

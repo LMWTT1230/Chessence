@@ -13,7 +13,7 @@ export default function ArchivePage() {
     async function fetchAll() {
         try {
             const response = await axios.get(
-                "https://chessence.azurewebsites.net/history"
+                process.env.REACT_APP_BACKEND + "/history"
             );
             return response.data.games_list;
         } catch (error) {

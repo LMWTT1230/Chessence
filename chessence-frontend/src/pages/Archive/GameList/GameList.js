@@ -11,7 +11,7 @@ export default function GameList(props) {
     async function getUserName(id) {
         try {
             const response = await axios.get(
-                "https://chessence.azurewebsites.net/users/" + id
+                process.env.REACT_APP_BACKEND + "/users/" + id
             );
             return response.data.username;
         } catch (error) {
