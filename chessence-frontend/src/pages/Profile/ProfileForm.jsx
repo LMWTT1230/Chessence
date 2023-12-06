@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./profile.css";
-import axios from "axios";
 
 export default function ProfileForm() {
     const [firstName, setFirstName] = useState("");
@@ -60,53 +59,62 @@ export default function ProfileForm() {
 
     return (
         <div className="profile-container">
-            <img
-                id="profileImage"
-                src={
-                    "https://betacssjs.chesscomfiles.com/bundles/web/images/user-image.svg"
-                }
-            />
             <form id="profileForm">
-                <p className="editLabel">edit profile</p>
-                <div className="nameRow">
-                    <div className="nameColumn">
-                        <p className="profileLabel">First Name</p>
-                        <input
-                            className="profileInput"
-                            type="text"
-                            name="firstName"
-                            value={firstName}
-                            onChange={handleChange}
-                            placeholder="First Name"
-                        />
-                    </div>
-                    <div className="nameColumn">
-                        <p className="profileLabel">Last Name</p>
-                        <input
-                            type="text"
-                            name="lastName"
-                            value={lastName}
-                            onChange={handleChange}
-                            placeholder="Last Name"
-                        />
+                <div className="imageColumn">
+                    <img
+                        id="profileImage"
+                        src={
+                            "https://betacssjs.chesscomfiles.com/bundles/web/images/user-image.svg"
+                        }
+                    />
+                </div>
+                <div className="profileColumn">
+                    <p className="editLabel">edit profile</p>
+                    <div className="nameRow">
+                        <div className="nameColumn">
+                            <p className="profileLabel">First Name</p>
+                            <input
+                                className="profileInput"
+                                type="text"
+                                name="firstName"
+                                value={firstName}
+                                onChange={handleChange}
+                                placeholder="First Name"
+                            />
+                        </div>
+                        <div className="nameColumn">
+                            <p className="profileLabel">Last Name</p>
+                            <input
+                                type="text"
+                                name="lastName"
+                                value={lastName}
+                                onChange={handleChange}
+                                placeholder="Last Name"
+                            />
+                        </div>
+                        <div className="nameColumn">
+                            <p className="profileLabel">Username</p>
+                            <input
+                                type="text"
+                                name="username"
+                                value={username}
+                                onChange={handleChange}
+                                placeholder="Username"
+                            />
+                        </div>
+                        <div className="nameColumn">
+                            <p className="profileLabel">Email</p>
+                            <input
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={handleChange}
+                                placeholder="Email"
+                            />
+
+                        </div>
                     </div>
                 </div>
-                <p className="profileLabel">Username</p>
-                <input
-                    type="text"
-                    name="username"
-                    value={username}
-                    onChange={handleChange}
-                    placeholder="Username"
-                />
-                <p className="profileLabel">Email</p>
-                <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                    placeholder="Email"
-                />
                 <div className="passwordColumn">
                     <p className="passwordLabel">change password</p>
                     <p className="profileLabel"> Current Password</p>
@@ -134,17 +142,17 @@ export default function ProfileForm() {
                         placeholder="Confirm New Password"
                     />
                 </div>
-                <div id="profileFooter">
-                    <button
-                        type="button"
-                        className="button"
-                        id="profileSubmit"
-                        onClick={submitForm}
-                    >
-                        Save
-                    </button>
-                </div>
             </form>
+            <div id="profileFooter">
+                <button
+                    type="button"
+                    className="button"
+                    id="profileSubmit"
+                    onClick={submitForm}
+                >
+                    Save
+                </button>
+            </div>
         </div>
     );
 }
