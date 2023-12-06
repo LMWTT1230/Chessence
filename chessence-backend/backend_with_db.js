@@ -12,7 +12,7 @@ import { createServer } from "http";
 import { Chess } from "chess.js";
 
 const app = express();
-const server = createServer();
+const server = createServer(app);
 const io = new Server(server, {
     cors: {
         origin: process.env.CORS_ORIGIN,
@@ -23,7 +23,6 @@ const port = 8000;
 dotenv.config();
 
 /** websocket code **/
-io.listen(4000); // use this port for ws connections
 // rooms is a dict of roomId : { white: id || undef, black: id || undef, chess: Chess }
 const rooms = {};
 const joinRoom = (socketId, roomId, time) => {
@@ -222,6 +221,6 @@ app.delete("/history/:id", async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || port, () => {
+server.listen(process.env.PORT || port, () => {
     console.log("REST API is listening.");
 });
