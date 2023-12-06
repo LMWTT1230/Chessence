@@ -21,6 +21,7 @@ export default function LoginPage(props) {
         const fetchData = async () => {
             const res = await isAuthenticated();
             setLoggedIn(res);
+            props.updateStatus(res);
         };
         fetchData().catch(console.error);
     });
@@ -28,6 +29,7 @@ export default function LoginPage(props) {
         const res = await logoutUser();
         console.log(res);
         setLoggedIn(false);
+        props.updateStatus(false);
     };
 
     function LoginContent() {

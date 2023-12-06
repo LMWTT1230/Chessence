@@ -1,4 +1,4 @@
-import { React } from "react";
+import React, { useState } from "react";
 import { useSessionStorage } from "usehooks-ts";
 import ReactDOMClient from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -42,8 +42,8 @@ export default function App() {
         console.log("index.js: ", userId);
     }
 
-    function updateStatus() {
-        setIsLoggedIn(!isLoggedIn);
+    function updateStatus(status) {
+        setIsLoggedIn(status);
     }
 
     return (
@@ -60,15 +60,15 @@ export default function App() {
                         }
                     />
                     <Route element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
-                        <Route path="/play" element={<GamePage />} />
+                        <Route path="/start" element={<GameStartPage />} />
                         <Route
                             path="/profile"
                             element={<ProfilePage userId={userId} />}
                         />
                         <Route path="/redirect" element={<RedirectPage />} />
+                        <Route path="/play" element={<GamePage />} />
                         <Route path="/results" element={<GameResultPage />} />
                         <Route path="/archive" element={<ArchivePage />} />
-                        <Route path="/start" element={<GameStartPage />} />
                     </Route>
                     {/*<Route path="*" element={<NoPage />} />*/}
                 </Routes>
