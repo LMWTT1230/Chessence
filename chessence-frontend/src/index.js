@@ -20,6 +20,7 @@ import RedirectPage from "./pages/Redirect/LoginRedirectPage.jsx";
 import axios from "axios";
 import GameResultPage from "./pages/ChessBoard/GameResultPage.js";
 import GameStartPage from "./pages/ChessBoard/GameStartPage.js";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 // Set up MSAL
 const msalInstance = new PublicClientApplication(msalConfig);
@@ -33,11 +34,16 @@ const root = ReactDOMClient.createRoot(container);
 
 export default function App() {
     const [userId, setId] = useSessionStorage("", 0);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     // Sets userID for communication across frontend pages
     function setUserID(user) {
         setId(user);
         console.log("index.js: ", userId);
+    }
+
+    function updateStatus() {
+        setIsLoggedIn(!isLoggedIn);
     }
 
     return (
@@ -46,22 +52,24 @@ export default function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/play" element={<GamePage />} />
+                    <Route path="/register" element={<RegisterPage />} />
                     <Route
                         path="/login"
                         element={
-                            <LoginPage userId={userId} setId={setUserID} />
+                            <LoginPage userId={userId} setId={setUserID} updateStatus={updateStatus}/>
                         }
                     />
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route
-                        path="/profile"
-                        element={<ProfilePage userId={userId} />}
-                    />
-                    <Route path="/redirect" element={<RedirectPage />} />
-                    <Route path="/results" element={<GameResultPage />} />
-                    <Route path="/archive" element={<ArchivePage />} />
-                    <Route path="/start" element={<GameStartPage />} />
+                    <Route element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
+                        <Route path="/play" element={<GamePage />} />
+                        <Route
+                            path="/profile"
+                            element={<ProfilePage userId={userId} />}
+                        />
+                        <Route path="/redirect" element={<RedirectPage />} />
+                        <Route path="/results" element={<GameResultPage />} />
+                        <Route path="/archive" element={<ArchivePage />} />
+                        <Route path="/start" element={<GameStartPage />} />
+                    </Route>
                     {/*<Route path="*" element={<NoPage />} />*/}
                 </Routes>
             </BrowserRouter>
