@@ -18,12 +18,14 @@
 }
 
 .register-container {
+    display: flex;
     background-color: #626262;
     color: white;
     width: fit-content;
     border-radius: 2rem;
     padding: 1rem;
-    margin: 0 0 8rem;
+    margin: 0 0 0rem;
+    overflow: scroll;
 }
 
 .register-container #registerForm {
