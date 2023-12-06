@@ -68,7 +68,7 @@ export default function RegisterForm() {
         try {
             console.log(user);
             const response = await axios.post(
-                "http://localhost:8000/register",
+                process.env.REACT_APP_BACKEND + "/register",
                 user
             );
             console.log(response.data.success);

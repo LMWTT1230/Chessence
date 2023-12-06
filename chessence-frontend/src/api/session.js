@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const endpoint = "https://chessence.azurewebsites.net/session";
+const endpoint = process.env.REACT_APP_BACKEND + "/session";
 
 /**
  * Tries to log in a user with a given email and password.
@@ -16,10 +16,9 @@ export const loginUser = async (email, password) => {
             password,
         },
         {
-            withCredentials: false,
+            withCredentials: true,
         }
     );
-    //console.log(response.data.id);
     return response;
 };
 
@@ -29,7 +28,7 @@ export const loginUser = async (email, password) => {
  */
 export const logoutUser = async () => {
     const response = await axios.get(endpoint + "/logout", {
-        withCredentials: false,
+        withCredentials: true,
     });
     return response;
 };
@@ -41,7 +40,7 @@ export const logoutUser = async () => {
 export const isAuthenticated = async () => {
     try {
         const response = await axios.get(endpoint + "/authenticated", {
-            withCredentials: false,
+            withCredentials: true,
         });
         return true;
     } catch (error) {
