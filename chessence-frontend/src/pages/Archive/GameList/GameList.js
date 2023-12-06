@@ -21,24 +21,27 @@ export default function GameList(props) {
         }
     }
 
+    async function fetchUsernames() {
+        const users = [];
+    
+        for (const row of props.gameData) {
+            const white = await getUserName(row.whiteID);
+            const black = await getUserName(row.blackID);
+            const winner = await getUserName(row.winner);
+    
+            users.push({ white, black, winner });
+        }
+    
+        return users;
+    }
+
     useEffect(() => {
-        const fetchUsernames = async () => {
-            const usernamePromises = props.gameData.map(async (row) => {
-                const black = await getUserName(row.whiteID);
-                const white = await getUserName(row.blackID);
-                const winner = await getUserName(row.winner);
-                return { black, white, winner };
-            });
-
-            const resolvedUsernames = await Promise.all(usernamePromises);
-            setUserNames(resolvedUsernames);
-        };
-
-        fetchUsernames();
-    }, [props.gameData]);
+        fetchUsernames().then((result) => {
+            if (result) setUserNames(result);
+        });
+    }, []);
 
     const pageSize = 6;
-    const totalPages = Math.ceil(props.gameData.length / pageSize);
 
     const handleNextPage = () => {
         setStartIndex((prevIndex) =>
@@ -61,11 +64,10 @@ export default function GameList(props) {
                 <GameEntry
                     gameId={row._id}
                     key={index}
-                    score={row.score}
-                    player1={usernames[index].white}
-                    player2={usernames[index].black}
-                    winner={usernames[index].winner}
-                    date={row.date}
+                    player1={usernames[index] ? usernames[index].white : 'Will'}
+                    player2={usernames[index] ? usernames[index].black : 'Frank'}
+                    winner={usernames[index] ? usernames[index].winner : 'Will'}
+                    date={new Date(row.date).toLocaleDateString()}
                     onClick={props.clickEvent}
                 />
             ))}
