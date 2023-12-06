@@ -38,6 +38,12 @@ async function existEmail(user) {
 
 async function addUser(user) {
     // try {
+    const exist = await userModel.findOne({ username: user.username });
+
+    if (exist) {
+        return false;
+    }
+
     const hashedPwd = await bcrypt.hash(user.password, 10);
 
     const userToAdd = new userModel({
@@ -107,10 +113,10 @@ async function updateProfile(id, user, oldPwd) {
         const filter = { _id: id };
         const update = {};
 
-        if (user.firstname) {
+        if (user.firstName) {
             update.firstName = user.firstName;
         }
-        if (user.lastname) {
+        if (user.lastName) {
             update.lastName = user.lastName;
         }
         if (user.email) {
@@ -139,6 +145,21 @@ async function updateProfile(id, user, oldPwd) {
     // } catch (error) {
     //     console.error("Error updating user profile:", error);
     //     return false;
+    // }
+}
+
+async function getUsernameById(userId) {
+    //try {
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+        return null;
+    }
+
+    return user.username;
+    // } catch (error) {
+    //     console.error("Error fetching username by ID:", error);
+    //     throw error;
     // }
 }
 

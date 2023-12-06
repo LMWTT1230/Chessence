@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: space-between;
     /*align-items: center;*/
-    position: fixed; /*fixed?*/
+    position: fixed;
     top: 0;
     right: 0;
     padding: 0.5rem 0rem;
@@ -27,7 +27,11 @@
     text-decoration: none;
     color: white;
     font-size: 1.3rem;
+
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    align-items: center;
     padding: 2rem 0;
 }
 
@@ -63,10 +67,6 @@
 #navLogo {
     width: 72px;
     height: 72px;
-}
-#homeLogo {
-    width: 36px;
-    height: 36px;
 }
 #playLogo {
     width: 36px;

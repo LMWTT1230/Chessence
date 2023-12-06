@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Code coverage report for user.js</title>
+        <title>Code coverage report for game.js</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="prettify.css" />
         <link rel="stylesheet" href="base.css" />
@@ -17,7 +17,7 @@
     <body>
         <div class="wrapper">
             <div class="pad1">
-                <h1><a href="index.html">All files</a> user.js</h1>
+                <h1><a href="index.html">All files</a> game.js</h1>
                 <div class="clearfix">
                     <div class="fl pad1y space-right2">
                         <span class="strong">100% </span>
@@ -131,38 +131,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import mongoose from "mongoose";
 &nbsp;
-const UserSchema = new mongoose.Schema(
+const GameSchema = new mongoose.Schema(
     {
-        firstName: {
+        blackID: {
             type: String,
             required: true,
             trim: true,
         },
-        lastName: {
+        whiteID: {
             type: String,
             required: true,
             trim: true,
         },
-        username: {
+        gameHistory: {
             type: String,
             required: true,
             trim: true,
         },
-        password: {
-            type: String,
+        date: {
+            type: Date,
             required: true,
             trim: true,
         },
-        email: {
+        winner: {
             type: String,
             required: true,
             trim: true,
         },
     },
-    { collection: "user" }
+    { collection: "game" }
 );
 &nbsp;
-export default mongoose.model("User", UserSchema);
+export default mongoose.model("Game", GameSchema);
 &nbsp;</pre></td></tr></table></pre>
 
             <div class="push"></div>

@@ -1,14 +1,11 @@
 import React from "react";
 import SignUpForm from "./ProfileForm";
 
-export default function ProfilePage() {
+export default function ProfilePage(props) {
     return (
         <div id="profilePage">
             <h1>settings</h1>
-            {/* <div id="tester" style={{width: "100px", height: "100px", backgroundColor: "Black"}}>
-            </div> */}
-
-            <SignUpForm />
+            <SignUpForm userId={props} />
         </div>
     );
 }

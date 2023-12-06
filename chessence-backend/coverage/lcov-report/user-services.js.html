@@ -22,7 +22,7 @@
                     <div class="fl pad1y space-right2">
                         <span class="strong">100% </span>
                         <span class="quiet">Statements</span>
-                        <span class="fraction">42/42</span>
+                        <span class="fraction">44/44</span>
                     </div>
 
                     <div class="fl pad1y space-right2">
@@ -40,7 +40,7 @@
                     <div class="fl pad1y space-right2">
                         <span class="strong">100% </span>
                         <span class="quiet">Lines</span>
-                        <span class="fraction">42/42</span>
+                        <span class="fraction">44/44</span>
                     </div>
                 </div>
                 <p class="quiet">
@@ -201,10 +201,7 @@
 <a name='L138'></a><a href='#L138'>138</a>
 <a name='L139'></a><a href='#L139'>139</a>
 <a name='L140'></a><a href='#L140'>140</a>
-<a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a>
-<a name='L144'></a><a href='#L144'>144</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L141'></a><a href='#L141'>141</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -216,20 +213,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -282,9 +265,20 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -358,21 +352,7 @@ dotenv.config();
 // uncomment the following line to view mongoose debug messages
 mongoose.set("debug", true);
 &nbsp;
-mongoose.connect(
-    "mongodb+srv://" +
-        process.env.MONGO_USER +
-        ":" +
-        process.env.MONGO_PWD +
-        "@" +
-        process.env.MONGO_CLUSTER +
-        "/" +
-        process.env.MONGO_DB +
-        "?retryWrites=true&amp;w=majority",
-    {
-        useNewUrlParser: true, //useFindAndModify: false,
-        useUnifiedTopology: true,
-    }
-);
+mongoose.connect(process.env.MONGODB_URI);
 //.catch((error) =&gt; console.log(error));
 &nbsp;
 // async function findUserByUserName(username) {
@@ -394,8 +374,8 @@ async function addUser(user) {
     const hashedPwd = await bcrypt.hash(user.password, 10);
 &nbsp;
     const userToAdd = new userModel({
-        firstName: user.firstname,
-        lastName: user.lastname,
+        firstName: user.firstName,
+        lastName: user.lastName,
         username: user.username,
         password: hashedPwd,
         email: user.email,
@@ -411,7 +391,7 @@ async function addUser(user) {
 }
 &nbsp;
 async function login(email, password) {
-    //try {
+    // try {
     const user = await userModel.findOne({ email: email });
 &nbsp;
     if (!user) {
@@ -424,7 +404,9 @@ async function login(email, password) {
 &nbsp;
     if (passwordMatch) {
         // Passwords match
-        return true;
+        console.log("password match");
+        const userId = user._id;
+        return userId.toString();
     } else {
         // Passwords don't match
         return false;
@@ -434,6 +416,15 @@ async function login(email, password) {
     //     return false;
     // }
 }
+&nbsp;
+// async function findID(email) {
+//     const user = await userModel.findOne({ email: email });
+&nbsp;
+//     if (!user) {
+//         return false;
+//     }
+//     return user._id;
+// }
 &nbsp;
 async function updateProfile(id, user, oldPwd) {
     //try {
@@ -449,11 +440,11 @@ async function updateProfile(id, user, oldPwd) {
         const filter = { _id: id };
         const update = {};
 &nbsp;
-        if (user.firstname) {
-            update.firstName = user.firstname;
+        if (user.firstName) {
+            update.firstName = user.firstName;
         }
-        if (user.lastname) {
-            update.lastName = user.lastname;
+        if (user.lastName) {
+            update.lastName = user.lastName;
         }
         if (user.email) {
             update.email = user.email;
@@ -504,7 +495,7 @@ export default {
                 rel="noopener noreferrer"
                 >istanbul</a
             >
-            at 2023-11-13T00:39:38.962Z
+            at 2023-12-01T19:34:03.567Z
         </div>
         <script src="prettify.js"></script>
         <script>

@@ -9,9 +9,7 @@ import MyTimer from "./Timer";
 export default function Game(props) {
     const chess = new Chess();
     const game_fen = chess.fen();
-    const game_turn = chess.turn();
     const [fen, setFen] = useState(game_fen);
-    const [turn, setTurn] = useState(game_turn);
     const navigate = useNavigate(); // Get the history object for navigation
 
     //// Window resizing ///
@@ -41,13 +39,19 @@ export default function Game(props) {
         const getFenState = window.sessionStorage.getItem("fenState");
         if (getFenState !== null) setFen(getFenState);
         const getTurnState = window.sessionStorage.getItem("turnState");
-        if (getTurnState !== null) setTurn(getTurnState);
+        //if (getTurnState !== null) setTurn(getTurnState);
     }, []);
 
     useEffect(() => {
         window.sessionStorage.setItem("fenState", fen);
-        window.sessionStorage.setItem("turnState", turn);
+        window.sessionStorage.setItem("turnState", props.serverChess.turn());
     }, [fen]);
+
+    useEffect(() => {
+        if (props.serverChess.isGameOver()) {
+            endGame(props.serverChess.turn());
+        }
+    }, [props.serverChess]);
 
     function onDrop(sourceSquare, targetSquare) {
         const move = {
@@ -55,17 +59,17 @@ export default function Game(props) {
             to: targetSquare,
             promotion: "q", // always promote to a queen for example simplicity
         };
-
+        props.sendMove(move);
         try {
             const newChess = new Chess(fen);
             newChess.move(move);
             const newFen = newChess.fen();
             if (newChess.isGameOver()) {
-                endGame(turn);
+                endGame(props.serverChess.turn());
             }
             setFen(newFen); // Update the state with the new FEN
             const newTurn = newChess.turn();
-            setTurn(newTurn);
+            // setTurn(newTurn);
         } catch (error) {
             console.log("Illegal move.");
         }
@@ -77,7 +81,7 @@ export default function Game(props) {
     }
 
     function onTimerExpire() {
-        if (turn === "w") {
+        if (props.serverChess.turn() === "w") {
             endGame("b");
         } else {
             endGame("w");
@@ -95,49 +99,63 @@ export default function Game(props) {
             >
                 <h1>chessence</h1>
                 {/* <div id="test"></div> */}
-                <div id="test" 
+                <div
+                    id="test"
                     style={{
                         // height: height_string,
                         width: height_string,
-                    }}>
+                    }}
+                >
                     <Chessboard
-                    id="board"
-                    position={fen}
-                    onPieceDrop={onDrop}
-                    customBoardStyle={{
-                        borderRadius: ".5rem",
-                    }}
-                    customDarkSquareStyle={{
-                        backgroundColor: "var(--BK-green)",
-                    }}
-                    customLightSquareStyle={{
-                        backgroundColor: "var(--BK-beige)",
-                    }}
-                />
-                </div>
-            </div>
-            <div id="scoreboard-container"
-                    style={{
-                        // height: height_string,
-                        height: height_string,
-                    }}>
-                <div id="black-score" className="scoreboard">
-                    <ScoreboardComponent this="b" turn={turn} />
-                    <MyTimer
-                        initTime={props.initTime}
-                        onExpire={onTimerExpire}
-                        turn={turn}
-                        player="b"
+                        id="board"
+                        position={props.serverChess.fen()}
+                        onPieceDrop={onDrop}
+                        boardOrientation={
+                            props.color === "b" ? "black" : "white"
+                        }
+                        customBoardStyle={{
+                            borderRadius: ".5rem",
+                        }}
+                        customDarkSquareStyle={{
+                            backgroundColor: "var(--BK-green)",
+                        }}
+                        customLightSquareStyle={{
+                            backgroundColor: "var(--BK-beige)",
+                        }}
                     />
                 </div>
-                <div id="chatbox"></div>
-                <div id="white-score" className="scoreboard">
-                    <ScoreboardComponent this="w" turn={turn} />
+            </div>
+            <div
+                id="scoreboard-container"
+                style={{
+                    // height: height_string,
+                    height: height_string,
+                }}
+            >
+                <div
+                    id={props.color === "b" ? "white-score" : "black-score"}
+                    className="scoreboard"
+                >
                     <MyTimer
                         initTime={props.initTime}
                         onExpire={onTimerExpire}
-                        turn={turn}
-                        player="w"
+                        turn={props.serverChess.turn()}
+                        player={props.color === "w" ? "b" : "w"}
+                    />
+                </div>
+                <ScoreboardComponent
+                    this={props.color}
+                    turn={props.serverChess.turn()}
+                />
+                <div
+                    id={props.color === "w" ? "white-score" : "black-score"}
+                    className="scoreboard"
+                >
+                    <MyTimer
+                        initTime={props.initTime}
+                        onExpire={onTimerExpire}
+                        turn={props.serverChess.turn()}
+                        player={props.color}
                     />
                 </div>
             </div>

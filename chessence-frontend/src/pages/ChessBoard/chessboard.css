@@ -2,14 +2,13 @@
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content:flex-start;
+    justify-content: flex-start;
     overflow: scroll;
     padding-right: 112px;
     background-color: var(--BK-dark-brown);
 }
 
-
-#GameStartPage{
+#GameStartPage {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -17,15 +16,15 @@
     padding: 2rem 2rem;
 }
 
-#board{
+#board {
     height: 10px;
 }
 
-#test{
+#test {
     display: flex;
     flex-shrink: 0;
     width: 100%;
-    aspect-ratio: 1 / 1 ;
+    aspect-ratio: 1 / 1;
     background-color: #555;
 }
 
@@ -36,7 +35,7 @@
     justify-content: flex-start;
 }
 
-#timeInput {
+.gameSettingsInput {
     background-color: rgba(96, 108, 110, 0.9);
     color: #ffffff;
     font-size: 30px;
@@ -171,4 +170,5 @@
     flex-shrink: 1;
     background-color: transparent; /* Gray color (adjust the shade if needed) */
     border-radius: 0.5rem;
+    color: var(--BK-beige);
 }
