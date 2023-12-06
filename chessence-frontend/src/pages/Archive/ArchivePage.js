@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./archive.css";
 import GameList from "./GameList/GameList.js";
 import GameMove from "./Moves/GameMove.js";
+import ArchiveBoard from "./ArchiveBoard/ArchiveBoard.js";
 
 export default function ArchivePage() {
     const [games, setGames] = useState([]);
@@ -45,7 +46,9 @@ export default function ArchivePage() {
             <h1>games</h1>
             <div id="archiveContent">
                 <GameList gameData={games} clickEvent={toggleMove} />
-                {showMove && <GameMove moves={selectedGame.gameHistory} />}
+                {showMove && (
+                    <ArchiveBoard history={selectedGame.gameHistory} />
+                )}
             </div>
         </div>
     );

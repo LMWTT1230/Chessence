@@ -1,0 +1,41 @@
+.archiveboard-container {
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: "center";
+    gap: 1.5rem;
+}
+
+.archiveboard-container #archiveboard {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.archiveboard-container #boardFooter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.archiveboard-container .arrow {
+    background-color: var(--BK-green);
+    box-shadow: -0.1rem 0.2rem var(--BK-dark-brown);
+    color: var(--BK-beige);
+    font-size: 1.5rem;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.archiveboard-container .arrow:hover {
+    background-color: #6fb56d;
+}
+
+.archiveboard-container .arrow:disabled {
+    background-color: #335332;
+    color: #a3a099;
+}

@@ -12,11 +12,13 @@ const GameSchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
-        gameHistory: {
-            type: String,
-            required: true,
-            trim: true,
-        },
+        gameHistory: [
+            {
+                type: String,
+                required: true,
+                trim: true,
+            },
+        ],
         date: {
             type: Date,
             required: true,
