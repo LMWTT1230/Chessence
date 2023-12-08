@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import gameModel from "./game.js";
 
 import dotenv from "dotenv";
-import game from "./game.js";
 
 dotenv.config();
 
