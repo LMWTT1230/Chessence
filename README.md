@@ -6,9 +6,11 @@ Our product is for casual chess players who want an enhanced online chess experi
 Chessence is an online chess site that caters to casual users. Unlike the more popular app Chess.com, our product caters to chess players who want a more customizable, less serious chess experience while still competing with others. 
 
 UML Diagram
+<img width="1055" alt="Screenshot 2023-12-08 at 2 50 32 PM" src="https://github.com/LMWTT1230/Chessence/assets/73969622/800a5c78-39ac-4eb8-9612-dd5204db5331">
 https://drive.google.com/file/d/1Ohh3l2WMND3x-i7hWuiCtmCx0l6SYfDy/view?ts=653feee5
 
 Figma UI Prototype
+<img width="1425" alt="Screenshot 2023-12-08 at 2 52 54 PM" src="https://github.com/LMWTT1230/Chessence/assets/73969622/23a5a6f5-a838-4cad-8e97-6dfea170cc4e">
 https://www.figma.com/proto/98LP3uYAvb0aoLcIm7rUK7/Chessence?type=design&node-id=30-487&t=Iwxwkk0KOaWT6nEF-0&scaling=scale-down&page-id=30%3A426&starting-point-node-id=30%3A487
 
 Install Dependencies
@@ -31,3 +33,4 @@ Scripts for Eslint and Prettier
     "format --write": "npx prettier . --write"
 
 Code Coverage Report 
+<img width="595" alt="Screenshot 2023-12-08 at 2 47 12 PM" src="https://github.com/LMWTT1230/Chessence/assets/73969622/c000b165-2c07-4f30-ba71-fdb467ddea12">
