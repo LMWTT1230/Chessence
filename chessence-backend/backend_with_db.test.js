@@ -5,7 +5,7 @@ test("test addUser", async () => {
     let user = {
         firstName: "Will",
         lastName: "Kang",
-        username: "LMWTT",
+        username: "LMWTT1",
         password: "test",
         email: "ykang08@calpoly.edu",
     };
@@ -191,4 +191,127 @@ test("test updateProfile pwd fail", async () => {
 
     expect(update).toBeFalsy();
     await userServices.deleteUser(savedUser.username);
+});
+
+test("test username exists", async () => {
+    let user = {
+        firstName: "Will",
+        lastName: "Kang",
+        username: "LMWTT",
+        password: "test",
+        email: "ykang08@calpoly.edu",
+    };
+
+    const savedUser = await userServices.addUser(user);
+    const exists = await userServices.existUsername(user);
+
+    expect(exists).toBeTruthy;
+    await userServices.deleteUser(savedUser.username);
+});
+
+test("test username doesn' exists", async () => {
+    let user = {
+        firstName: "Will",
+        lastName: "Kang",
+        username: "LMWTT12",
+        password: "test",
+        email: "ykang08@calpoly.edu",
+    };
+
+    const exists = await userServices.existUsername(user);
+
+    expect(exists).toBeFalsy;
+});
+
+test("test email exists", async () => {
+    let user = {
+        firstName: "Will",
+        lastName: "Kang",
+        username: "LMWTT",
+        password: "test",
+        email: "ykang08@calpoly.edu",
+    };
+
+    const savedUser = await userServices.addUser(user);
+    const exists = await userServices.existEmail(user);
+
+    expect(exists).toBeTruthy;
+    await userServices.deleteUser(savedUser.username);
+});
+
+test("test email doesn' exists", async () => {
+    let user = {
+        firstName: "Will",
+        lastName: "Kang",
+        username: "LMWTT12",
+        password: "test",
+        email: "ykang09@calpoly.edu",
+    };
+
+    const exists = await userServices.existEmail(user);
+
+    expect(exists).toBeFalsy;
+});
+
+test("test findID exists", async () => {
+    let user = {
+        firstName: "Will",
+        lastName: "Kang",
+        username: "LMWTT",
+        password: "test",
+        email: "ykang10@calpoly.edu",
+    };
+
+    const savedUser = await userServices.addUser(user);
+    const exists = await userServices.findID(user.email);
+
+    expect(exists).toBeTruthy;
+    await userServices.deleteUser(savedUser.username);
+});
+
+test("test findID doesn't exists", async () => {
+    let user = {
+        firstName: "Will",
+        lastName: "Kang",
+        username: "LMWTT",
+        password: "test",
+        email: "ykang11@calpoly.edu",
+    };
+
+    const exists = await userServices.findID(user.email);
+
+    expect(exists).toBeFalsy;
+});
+
+test("test get username by id exists", async () => {
+    let user = {
+        firstName: "Will",
+        lastName: "Kang",
+        username: "LMWTT",
+        password: "test",
+        email: "ykang10@calpoly.edu",
+    };
+
+    const savedUser = await userServices.addUser(user);
+    const expected = await userServices.getUsernameById(savedUser["_id"]);
+
+    expect(expected).toBe(user.username);
+    await userServices.deleteUser(savedUser.username);
+});
+
+test("test get username by id doesn't exists", async () => {
+    let user = {
+        firstName: "Will",
+        lastName: "Kang",
+        username: "LMWTT",
+        password: "test",
+        email: "ykang10@calpoly.edu",
+    };
+    const savedUser = await userServices.addUser(user);
+    const userId = savedUser["_id"];
+    await userServices.deleteUser(savedUser.username);
+
+    const expected = await userServices.getUsernameById(userId);
+
+    expect(expected).toBe(null);
 });

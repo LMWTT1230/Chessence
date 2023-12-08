@@ -20,12 +20,12 @@ async function getGames(id) {
 }
 
 async function findGameById(id) {
-    // try {
-    return await gameModel.findById(id);
-    // } catch (error) {
-    //     console.log(error);
-    //     return undefined;
-    // }
+    const game = await gameModel.findById(id);
+
+    if (!game) {
+        return false;
+    }
+    return game;
 }
 
 async function addGame(game) {
@@ -40,13 +40,7 @@ async function addGame(game) {
 }
 
 async function deleteGame(id) {
-    // try {
-    await gameModel.findByIdAndDelete(id);
-    return true;
-    // } catch (error) {
-    //     console.log(error);
-    //     return false;
-    // }
+    return await gameModel.findByIdAndDelete(id);
 }
 
 export default {
