@@ -32,6 +32,7 @@ https://www.figma.com/proto/98LP3uYAvb0aoLcIm7rUK7/Chessence?type=design&node-id
 1. Tab Width of 4 Spaces
 2. Double Quotations
 3. K&R Style for Curly Braces (Same Line)
+
 (Default Eslint and Prettier Styles)
 
 Scripts for Eslint and Prettier
@@ -48,7 +49,7 @@ Execute by typing "npm run {script_name}" in terminal
    
     "format --write": "npx prettier . --write"
 
-Code Coverage Report
+# Code Coverage Report
 
 Generated At: 2023-12-08 03:01PM PST
 
