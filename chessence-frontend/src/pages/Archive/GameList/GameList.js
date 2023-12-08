@@ -23,15 +23,15 @@ export default function GameList(props) {
 
     async function fetchUsernames() {
         const users = [];
-    
+
         for (const row of props.gameData) {
             const white = await getUserName(row.whiteID);
             const black = await getUserName(row.blackID);
             const winner = await getUserName(row.winner);
-    
+
             users.push({ white, black, winner });
         }
-    
+
         return users;
     }
 
@@ -64,9 +64,11 @@ export default function GameList(props) {
                 <GameEntry
                     gameId={row._id}
                     key={index}
-                    player1={usernames[index] ? usernames[index].white : 'Will'}
-                    player2={usernames[index] ? usernames[index].black : 'Frank'}
-                    winner={usernames[index] ? usernames[index].winner : 'Will'}
+                    player1={usernames[index] ? usernames[index].white : "Will"}
+                    player2={
+                        usernames[index] ? usernames[index].black : "Frank"
+                    }
+                    winner={usernames[index] ? usernames[index].winner : "Will"}
                     date={new Date(row.date).toLocaleDateString()}
                     onClick={props.clickEvent}
                 />

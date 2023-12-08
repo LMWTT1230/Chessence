@@ -2,7 +2,7 @@ import React from "react";
 import "./gameEntry.css";
 
 export default function GameEntry(props) {
-    console.log(props.player1)
+    console.log(props.player1);
     return (
         <div
             className="gameEntry"
