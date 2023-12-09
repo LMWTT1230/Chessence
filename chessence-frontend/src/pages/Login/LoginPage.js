@@ -44,7 +44,10 @@ export default function LoginPage(props) {
         } else {
             return (
                 <>
-                    <LoginBox setUserId={props.setId} updateStatus={props.updateStatus} />
+                    <LoginBox
+                        setUserId={props.setId}
+                        updateStatus={props.updateStatus}
+                    />
                     <img src="/msft-login.svg" onClick={redir} />
                 </>
             );
