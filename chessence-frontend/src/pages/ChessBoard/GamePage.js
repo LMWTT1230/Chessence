@@ -4,7 +4,7 @@ import { Chess } from "chess.js";
 import { socket } from "../../api/socket";
 import { useLocation, Link } from "react-router-dom";
 
-export default function GamePage(props) {
+export default function GamePage() {
     const { state } = useLocation();
     const { time, roomId } = state;
     const [timer, setTimer] = useState(time);
@@ -38,15 +38,7 @@ export default function GamePage(props) {
         function onJoinError() {
             setJoinError(true);
         }
-        const cleanup = () => {
-            socket.off("connect", onConnect);
-            socket.off("disconnect", onDisconnect);
-            if(!hasSecondPlayer) {
-                props.updateInGame(false);
-            }
-        };
 
-        window.addEventListener("beforeunload", cleanup);
         socket.on("connect", onConnect);
         socket.on("disconnect", onDisconnect);
         socket.on("joinError", onJoinError);
@@ -57,8 +49,8 @@ export default function GamePage(props) {
         socket.emit("join", { roomId, time });
 
         return () => {
-            window.removeEventListener("beforeunload", cleanup);
-            cleanup();
+            socket.off("connect", onConnect);
+            socket.off("disconnect", onDisconnect);
         };
     }, []);
 

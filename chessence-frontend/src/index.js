@@ -36,7 +36,6 @@ const root = ReactDOMClient.createRoot(container);
 export default function App() {
     const [userId, setId] = useSessionStorage("userId", 0);
     const [isLoggedIn, setIsLoggedIn] = useSessionStorage("isLoggedIn", false);
-    const [isInGame, setIsInGame] = useSessionStorage("isInGame", false);
 
     // Sets userID for communication across frontend pages
     function setUserID(user) {
@@ -48,10 +47,6 @@ export default function App() {
         setIsLoggedIn(status);
     }
 
-    // Sets inGame status for communication across frontend pages
-    function updateInGame(status) {
-        setIsInGame(status);
-    }
 
     return (
         <MsalProvider instance={msalInstance}>
@@ -67,16 +62,14 @@ export default function App() {
                         }
                     />
                     <Route element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
-                        <Route path="/start" element={<GameStartPage updateInGame={updateInGame}/>} />
+                        <Route path="/start" element={<GameStartPage />} />
                         <Route
                             path="/profile"
                             element={<ProfilePage userId={userId} />}
                         />
                         <Route path="/redirect" element={<RedirectPage />} />
-                        <Route element={<ProtectedGame isInGame={isInGame}/>}>
-                            <Route path="/play" element={<GamePage updateInGame={updateInGame}/>} />
-                            <Route path="/results" element={<GameResultPage />} />
-                        </Route>
+                        <Route path="/play" element={<GamePage />} />
+                        <Route path="/results" element={<GameResultPage />} />
                         <Route path="/archive" element={<ArchivePage />} />
                     </Route>
                     {/*<Route path="*" element={<NoPage />} />*/}

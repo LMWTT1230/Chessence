@@ -2,11 +2,11 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export default function GameStartPage(props) {
+export default function GameStartPage() {
     return (
         <div id="GameStartPage">
             <h1>Game Settings</h1>
-            <SettingsForm updateInGame={props.updateInGame}/>
+            <SettingsForm />
         </div>
     );
 }
@@ -21,11 +21,10 @@ function randomRoomId(len) {
     }
     return ans;
 }
-function SettingsForm(props) {
+function SettingsForm() {
     const navigate = useNavigate(); // Get the history object for navigation
     const [timer, setTimer] = React.useState("5:00");
     const [roomId, setRoomId] = React.useState(randomRoomId(5));
-    const [inGame, setInGame] = React.useState(false);
 
     const onTimerChange = (event) => {
         setTimer(event.target.value);
@@ -84,7 +83,6 @@ function SettingsForm(props) {
             time: timer,
         };
         console.log(settings);
-        props.updateInGame(true);
         //sessionStorage.clear();
         navigate("/play", { state: { time: timer, roomId: roomId } }); // Navigate to the "/results" route
     }

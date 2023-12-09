@@ -11,19 +11,6 @@ export default function GameResultPage(props) {
         printWinner = "Black";
     }
 
-    useEffect(() => {
-        const cleanup = () => {
-            props.updateInGame(false);
-        };
-
-        window.addEventListener("beforeunload", cleanup);
-        
-        return () => {
-            window.removeEventListener("beforeunload", cleanup);
-            cleanup();
-        };
-    }, []);
-
     return (
         <div id="GameResultPage">
             <h1>Winner: {printWinner}</h1>
