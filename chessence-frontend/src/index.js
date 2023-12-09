@@ -46,7 +46,6 @@ export default function App() {
         setIsLoggedIn(status);
     }
 
-
     return (
         <MsalProvider instance={msalInstance}>
             <BrowserRouter>
@@ -57,10 +56,14 @@ export default function App() {
                     <Route
                         path="/login"
                         element={
-                            <LoginPage userId={userId} setId={setUserID} updateStatus={updateStatus}/>
+                            <LoginPage
+                                userId={userId}
+                                setId={setUserID}
+                                updateStatus={updateStatus}
+                            />
                         }
                     />
-                    <Route element={<ProtectedRoute isLoggedIn={isLoggedIn}/>}>
+                    <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
                         <Route path="/start" element={<GameStartPage />} />
                         <Route
                             path="/profile"
