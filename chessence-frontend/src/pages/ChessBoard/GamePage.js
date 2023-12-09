@@ -38,6 +38,7 @@ export default function GamePage() {
         function onJoinError() {
             setJoinError(true);
         }
+
         socket.on("connect", onConnect);
         socket.on("disconnect", onDisconnect);
         socket.on("joinError", onJoinError);
@@ -46,6 +47,7 @@ export default function GamePage() {
         socket.on("updateBoard", onUpdateBoard);
         // join a room
         socket.emit("join", { roomId, time });
+
         return () => {
             socket.off("connect", onConnect);
             socket.off("disconnect", onDisconnect);

@@ -21,6 +21,8 @@ export default function LoginPage(props) {
         const fetchData = async () => {
             const res = await isAuthenticated();
             setLoggedIn(res);
+            console.log(loggedIn);
+            props.updateStatus(loggedIn);
         };
         fetchData().catch(console.error);
     });
@@ -28,6 +30,7 @@ export default function LoginPage(props) {
         const res = await logoutUser();
         console.log(res);
         setLoggedIn(false);
+        props.updateStatus(false);
     };
 
     function LoginContent() {
@@ -41,7 +44,7 @@ export default function LoginPage(props) {
         } else {
             return (
                 <>
-                    <LoginBox setUserId={props.setId} />
+                    <LoginBox setUserId={props.setId} updateStatus={props.updateStatus} />
                     <img src="/msft-login.svg" onClick={redir} />
                 </>
             );

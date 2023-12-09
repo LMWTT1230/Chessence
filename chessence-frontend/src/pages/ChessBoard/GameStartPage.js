@@ -83,7 +83,7 @@ function SettingsForm() {
             time: timer,
         };
         console.log(settings);
-        sessionStorage.clear();
+        //sessionStorage.clear();
         navigate("/play", { state: { time: timer, roomId: roomId } }); // Navigate to the "/results" route
     }
 
