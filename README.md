@@ -5,6 +5,10 @@ Our product is for casual chess players who want an enhanced online chess experi
 
 Chessence is an online chess site that caters to casual users. Unlike the more popular app Chess.com, our product caters to chess players who want a more customizable, less serious chess experience while still competing with others. 
 
+Access our deployed app at:
+
+https://black-sea-0ce32c31e.4.azurestaticapps.net/
+
 # Get Started
 
 Create a Local Repository
