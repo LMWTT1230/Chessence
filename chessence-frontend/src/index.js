@@ -41,19 +41,16 @@ export default function App() {
     // Sets userID for communication across frontend pages
     function setUserID(user) {
         setId(user);
-        //console.log("index.js: ", userId);
     }
 
+    // Sets loggedIn for communication across frontend pages
     function updateStatus(status) {
-        //console.log("isLoggedIn before: ", isLoggedIn);
         setIsLoggedIn(status);
-        //console.log("isLoggedIn after: ", isLoggedIn);
     }
 
+    // Sets inGame status for communication across frontend pages
     function updateInGame(status) {
-        console.log("isInGame before: ", isInGame);
         setIsInGame(status);
-        console.log("isInGame after: ", isInGame);
     }
 
     return (
@@ -77,7 +74,7 @@ export default function App() {
                         />
                         <Route path="/redirect" element={<RedirectPage />} />
                         <Route element={<ProtectedGame isInGame={isInGame}/>}>
-                            <Route path="/play" element={<GamePage />} />
+                            <Route path="/play" element={<GamePage updateInGame={updateInGame}/>} />
                             <Route path="/results" element={<GameResultPage />} />
                         </Route>
                         <Route path="/archive" element={<ArchivePage />} />

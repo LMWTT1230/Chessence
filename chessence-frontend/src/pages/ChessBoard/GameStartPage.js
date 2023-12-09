@@ -85,7 +85,7 @@ function SettingsForm(props) {
         };
         console.log(settings);
         props.updateInGame(true);
-        sessionStorage.clear();
+        //sessionStorage.clear();
         navigate("/play", { state: { time: timer, roomId: roomId } }); // Navigate to the "/results" route
     }
 
