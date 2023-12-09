@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import Board from "./ChessBoard.js";
 import { Chess } from "chess.js";
 import { socket } from "../../api/socket";
-import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 export default function GamePage(props) {
     const { state } = useLocation();
     const { time, roomId } = state;
-    const navigate = useNavigate();
     const [timer, setTimer] = useState(time);
     const [isConnected, setIsConnected] = useState(socket.connected);
     const [hasSecondPlayer, setHasSecondPlayer] = useState(false);
@@ -42,7 +41,9 @@ export default function GamePage(props) {
         const cleanup = () => {
             socket.off("connect", onConnect);
             socket.off("disconnect", onDisconnect);
-            props.updateInGame(false);
+            if(!hasSecondPlayer) {
+                props.updateInGame(false);
+            }
         };
 
         window.addEventListener("beforeunload", cleanup);
@@ -54,7 +55,7 @@ export default function GamePage(props) {
         socket.on("updateBoard", onUpdateBoard);
         // join a room
         socket.emit("join", { roomId, time });
-        
+
         return () => {
             window.removeEventListener("beforeunload", cleanup);
             cleanup();
