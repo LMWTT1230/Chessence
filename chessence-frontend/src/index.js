@@ -21,7 +21,6 @@ import axios from "axios";
 import GameResultPage from "./pages/ChessBoard/GameResultPage.js";
 import GameStartPage from "./pages/ChessBoard/GameStartPage.js";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import ProtectedGame from "./components/ProtectedGame.jsx";
 
 // Set up MSAL
 const msalInstance = new PublicClientApplication(msalConfig);
